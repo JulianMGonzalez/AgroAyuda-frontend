@@ -167,7 +167,7 @@ export default {
   methods: {
     list() {
       axios
-        .get("https://backend-tudado.herokuapp.com/api/categoria/list", {
+        .get("http://localhost:3000/api/categoria/list", {
           headers: {
             token: this.$store.state.token
           }
@@ -196,7 +196,7 @@ export default {
     deleteItemConfirm() {
       if (this.editedItem.estado === 1) {
         axios
-          .put("https://backend-tudado.herokuapp.com/api/categoria/deactivate", {
+          .put("http://localhost:3000/api/categoria/deactivate", {
             id: this.editedItem.id,
           }, {
           headers: {
@@ -211,7 +211,7 @@ export default {
           });
       } else {
         axios
-          .put("https://backend-tudado.herokuapp.com/api/categoria/activate", {
+          .put("http://localhost:3000/api/categoria/activate", {
             id: this.editedItem.id,
           }, {
           headers: {
@@ -247,7 +247,7 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         axios
-          .put("https://backend-tudado.herokuapp.com/api/categoria/update", {
+          .put("http://localhost:3000/api/categoria/update", {
             id: this.editedItem.id,
             nombre: this.editedItem.nombre,
             descripcion: this.editedItem.descripcion,
@@ -264,7 +264,7 @@ export default {
           });
       } else {
         axios
-          .post("https://backend-tudado.herokuapp.com/api/categoria/add", {
+          .post("http://localhost:3000/api/categoria/add", {
             id: this.editedItem.id,
             nombre: this.editedItem.nombre,
             descripcion: this.editedItem.descripcion,

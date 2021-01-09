@@ -1,7 +1,5 @@
 <template>
     <!-- App.vue -->
-
-<v-app>
     
  
 </template>

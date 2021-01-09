@@ -46,7 +46,7 @@ export default {
     //  },
     methods:{
         ingresar(){
-            axios.post('https://backend-tudado.herokuapp.com/api/usuario/login',{email: this.email, password: this.password})
+            axios.post('http://localhost:3000/api/usuario/login',{email: this.email, password: this.password})
             .then(respuesta =>{
                  console.log(respuesta.data);
                  let user = respuesta.data.user;

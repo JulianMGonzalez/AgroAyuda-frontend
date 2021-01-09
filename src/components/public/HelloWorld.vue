@@ -313,7 +313,7 @@ export default {
       {
         src:
           "https://cdn.pixabay.com/photo/2016/07/07/16/46/roll-the-dice-1502706_960_720.jpg",
-        p: "TuDado",
+        p: "AgroAyuda",
       },
       {
         src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",

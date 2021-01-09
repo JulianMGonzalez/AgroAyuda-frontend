@@ -372,7 +372,7 @@ export default {
     registrar() {
       axios
         .post(
-          "https://backend-tudado.herokuapp.com/api/usuario/add",
+          "http://localhost:3000/api/usuario/add",
           {
             nombre: this.nombre,
             email: this.email,
