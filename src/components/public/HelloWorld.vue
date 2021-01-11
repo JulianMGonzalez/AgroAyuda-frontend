@@ -1,15 +1,15 @@
 <template>
   <!-- App.vue -->
   <v-app>
-    <v-banner elevation="7" class="mt-12">
-      <v-carousel cycle show-arrows-on-hover hide-delimiters height="400">
+    <v-banner elevation="7" class="mt-16">
+      <v-carousel cycle show-arrows-on-hover hide-delimiters height="500">
         <v-carousel-item
           v-for="(item, i) in imagenes"
           :key="i"
-          :src="item.src"
           reverse-transition="fade-transition"
           transition="fade-transition"
         >
+          <v-img :src="item.src" max-height="500"></v-img>
           <v-row class="d-flex align-end" align="center" justify="center">
             <div class="display-3 font-weight-black" v-text="item.p"></div>
           </v-row>
@@ -71,17 +71,13 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="orange" dense dark>
+    <v-app-bar app color="white" dense dark prominent>
       <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
-        max-height="50"
-        max-width="50"
-        src="@/assets/TuDado.png"
+        max-height="98"
+        max-width="98"
+        src="@/assets/LOGO (2).png"
       ></v-img>
-      <v-toolbar-title class="font-weight-black"
-        ><span class="#051C9E--text">TuDado</span></v-toolbar-title
-      >
-
       <v-spacer></v-spacer>
 
       <v-menu>
@@ -89,7 +85,8 @@
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
               <v-btn
-                color="indigo darken-4"
+                color="#1b5e20 "
+                class="mt-7"
                 dark
                 v-bind="attrs"
                 v-on="{ ...tooltip, ...menu }"
@@ -154,9 +151,12 @@
             >
               Registrate
             </v-btn>
-            <v-btn v-else loading class="ml-2 text-white" color="indigo darken-4"></v-btn>
-            
-          
+            <v-btn
+              v-else
+              loading
+              class="ml-2 text-white"
+              color="indigo darken-4"
+            ></v-btn>
           </v-list-item>
         </v-list>
       </v-menu>
@@ -220,89 +220,79 @@
       </v-alert>
 
       <!-- Provides the application the proper gutter -->
-     
     </v-main>
+      <v-footer v-bind="localAttrs"
+      :padless="padless">
+        <v-card flat tile class="blue-grey lighten-1 text-center">
+          <v-card-text>
+            <v-btn
+              v-for="icon in icons"
+              :key="icon"
+              class="mx-4 white--text"
+              icon
+              color="orange"
+            >
+              <v-icon size="24px">
+                {{ icon }}
+              </v-icon>
+            </v-btn>
+          </v-card-text>
 
-    <v-footer dark padless class="d-flex justify-center">
-      <v-card flat tile class="indigo darken-4 white--text text-center">
-        <v-card-text>
-          <v-btn
-            v-for="icon in icons"
-            :key="icon"
-            class="mx-4 white--text"
-            icon
-            color="orange"
+          <v-card-text
+            class="white--text pt-0"
           >
-            <v-icon size="24px">
-              {{ icon }}
-            </v-icon>
-          </v-btn>
-        </v-card-text>
+            <div class="container p-4">
+              <!--Grid row-->
+              <div class="row">
+                <!--Grid column-->
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                  <v-img
+                    lazy-src="https://picsum.photos/id/11/10/6"
+                    max-height="70"
+                    max-width="70"
+                    src="@/assets/LOGO (2).png"
+                  ></v-img>
+                  <h5 class="text-uppercase">RESEÑA</h5>
 
-        <v-card-text class="white--text pt-0" v-if="this.$store.state.usuario">
-          <div class="container p-4">
-            <!--Grid row-->
-            <div class="row">
-              <!--Grid column-->
-              <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <v-img
-                  lazy-src="https://picsum.photos/id/11/10/6"
-                  max-height="50"
-                  max-width="50"
-                  src="@/assets/TuDado.png"
-                ></v-img>
-                <h5 class="text-uppercase">TuDado</h5>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Iste atque ea quis molestias. Fugiat pariatur maxime quis
+                    culpa corporis vitae repudiandae aliquam voluptatem veniam,
+                    est atque cumque eum delectus sint!
+                  </p>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+                  <v-img
+                    lazy-src="https://picsum.photos/id/11/10/6"
+                    max-height="70"
+                    max-width="70"
+                    src="@/assets/LOGO (2).png"
+                  ></v-img>
+                  <h5 class="text-uppercase">CONTACTOS</h5>
 
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste
-                  atque ea quis molestias. Fugiat pariatur maxime quis culpa
-                  corporis vitae repudiandae aliquam voluptatem veniam, est
-                  atque cumque eum delectus sint!
-                </p>
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                    Iste atque ea quis molestias. Fugiat pariatur maxime quis
+                    culpa corporis vitae repudiandae aliquam voluptatem veniam,
+                    est atque cumque eum delectus sint!
+                  </p>
+                </div>
               </div>
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <v-img
-                  lazy-src="https://picsum.photos/id/11/10/6"
-                  max-height="50"
-                  max-width="50"
-                  src="@/assets/TuDado.png"
-                ></v-img>
-                <h5 class="text-uppercase">Contacto</h5>
-
-                <p>Nmeros lugares correos</p>
-              </div>
-              <!--Grid column-->
+              <!--Grid row-->
             </div>
-            <!--Grid row-->
-          </div>
-        </v-card-text>
-        <v-card-text class="white--text pt-0" v-else>
-          Las personas transcurren la gran parte del día en sus en sus trabajos,
-          donde se enfrentan frecuentemente a diversos tipos de problemáticas,
-          en este escenario los inconvenientes abundan. <br />Por eso, las
-          habilidades blandas han adquirido gran importancia y valor en el mundo
-          de los negocios, ya que sirven para resolver inconvenientes y
-          enfrentar de manera correcta la jornada laboral. <br />
-          Julian David Montero <br />
-          Monterogjulian@gmail.com <br />
-          Tel: 323 2477487 <br />
-        </v-card-text>
+          </v-card-text>
+          <v-divider></v-divider>
 
-        <v-divider></v-divider>
-
-        <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>TuDado</strong><br />
-          <a
-            href="https://github.com/JulianMGonzalez/semana-5-69"
-            class="btn btn-success"
-            >GitHub</a
-          >
-        </v-card-text>
-      </v-card>
-    </v-footer>
+          <v-card-text class="white--text">
+            {{ new Date().getFullYear() }} — <strong>AgroAyuda</strong><br />
+            <a
+              href="https://github.com/JulianMGonzalez/semana-5-69"
+              class="btn btn-success"
+              >GitHub</a
+            >
+          </v-card-text>
+        </v-card>
+      </v-footer>
   </v-app>
 </template>
 
@@ -312,22 +302,23 @@ export default {
     imagenes: [
       {
         src:
-          "https://cdn.pixabay.com/photo/2016/07/07/16/46/roll-the-dice-1502706_960_720.jpg",
-        p: "AgroAyuda",
+          require('@/assets/maiz.jpg')
+        
       },
       {
-        src: "https://cdn.vuetifyjs.com/images/carousel/sky.jpg",
-        p: "",
-      },
-      {
-        src:
-          "https://cdn.pixabay.com/photo/2016/02/19/11/23/women-1209678_960_720.jpg",
-        p: "",
+        src: 
+          require('@/assets/frutas.png')
+        
       },
       {
         src:
-          "https://cdn.pixabay.com/photo/2016/11/21/17/50/battle-1846807_960_720.jpg",
-        p: "Desarrolla tus habilidades blandas",
+          require('@/assets/persona.png')
+        
+      },
+      {
+        src:
+          require('@/assets/carro.jpg')
+        
       },
     ],
     drawer: true,
@@ -388,3 +379,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+</style>

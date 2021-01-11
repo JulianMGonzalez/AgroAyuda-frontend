@@ -93,14 +93,14 @@
             <div class="mt-13">
               <div class="d-flex justify-content-center align-items-center">
                 <img
-                  src="@/assets/TuDado.png"
+                  src="@/assets/LOGO (2).png"
                   width="150"
                   height="150"
                   alt=""
                 />
-                <h1 class="font-weight-black text-danger">TuDado</h1>
+                <h1 class="font-weight-black ">AgroAyuda</h1>
               </div>
-              <h1 class="alert alert-secundary mt-5 ml-15">¡Unete a TuDado!</h1>
+              <h1 class="alert alert-secundary mt-5 ml-15">¡Unete a nuestros servicos de AgroAyuda!</h1>
 
               <validation-observer ref="observer" v-slot="{ invalid }">
                 <form @submit.prevent="submit">
