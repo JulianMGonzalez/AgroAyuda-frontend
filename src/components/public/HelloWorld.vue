@@ -221,104 +221,120 @@
 
       <!-- Provides the application the proper gutter -->
     </v-main>
-      <v-footer v-bind="localAttrs"
-      :padless="padless">
-        <v-card flat tile class="brown darken-2 text-center">
-          <v-card-text>
-            <v-btn
-              v-for="icon in icons"
-              :key="icon"
-              class="mx-4 white--text"
-              icon
-              color="orange"
-            >
-              <v-icon size="24px">
-                {{ icon }}
-              </v-icon>
-            </v-btn>
-          </v-card-text>
-
-          <v-card-text
-            class="white--text pt-0"
+    <v-footer v-bind="localAttrs" :padless="padless">
+      <v-card flat tile class="text-center" color="#5e2129">
+        <v-card-text>
+          <v-btn
+            v-for="icon in icons"
+            :key="icon"
+            class="mx-4 white--text"
+            icon
+            color="white"
           >
-            <div>
-              <!--Grid row-->
-              <div class="row">
-                <!--Grid column-->
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                  <v-img
-                    lazy-src="https://picsum.photos/id/11/10/6"
-                    max-height="50"
-                    max-width="50"
-                    src="@/assets/TuDado.png"
-                  ></v-img>
-                  <h5 class="text-uppercase">TuDado</h5>
+            <v-icon size="24px">
+              {{ icon }}
+            </v-icon>
+             
+          </v-btn>
+        </v-card-text>
+        <v-card-text class="white--text pt-0">
+          <div>
+            <!--Grid row-->
+            <div class="row">
+              <!--Grid column-->
+              <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
+                <h5 class="text-uppercase"><b>Agroayuda</b></h5>
 
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Iste atque ea quis molestias. Fugiat pariatur maxime quis
-                    culpa corporis vitae repudiandae aliquam voluptatem veniam,
-                    est atque cumque eum delectus sint!
-                  </p>
-                </div>
-                <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                  <v-img
-                    lazy-src="https://picsum.photos/id/11/10/6"
-                    max-height="50"
-                    max-width="50"
-                    src="@/assets/TuDado.png"
-                  ></v-img>
-                  <h5 class="text-uppercase">TuDado</h5>
-
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Iste atque ea quis molestias. Fugiat pariatur maxime quis
-                    culpa corporis vitae repudiandae aliquam voluptatem veniam,
-                    est atque cumque eum delectus sint!
-                  </p>
-                </div>
+                <br />
+                <p>
+                  <font size="4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eum veritatis debitis sit, recusandae modi! Obcaecati praesentium eaque qui sapiente exercitationem, eligendi ipsum, perspiciatis delectus adipisci, ducimus ratione consequuntur voluptatum.</font>
+                </p>
               </div>
-              <!--Grid row-->
+              <div class="col-lg-2 d-flex justify-content-center">
+                <v-img
+                  lazy-src="https://picsum.photos/id/11/10/6"
+                  src="@/assets/logo footer.png"
+                  max-height="125"
+                  max-width="125"
+                ></v-img>
+              </div>
+              <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
+                <v-btn
+                  v-for="(item, i) in links"
+                  :onclick= "item.onclick"
+                  :key="i"
+                  color="white"
+                  text
+                  rounded
+                  class="my-2"
+                >
+                  {{ item.p }}
+                </v-btn>
+                <!-- <h5 class="text-uppercase"><b>CONTACTOS</b></h5>
+                  <br>
+                  <p>
+                    <font size=4> 
+                      <ul><li><a href="mailto:tuagroayuda@gmail.com">Gmail</a></li></ul>
+                     </font>
+                  </p> -->
+              </div>
             </div>
-          </v-card-text>
-          <v-divider></v-divider>
+            <!--Grid row-->
+          </div>
+        </v-card-text>
+        <v-divider></v-divider>
 
-          <v-card-text class="white--text">
-            {{ new Date().getFullYear() }} — <strong>AgroAyuda</strong><br />
-            <a
-              href="https://github.com/JulianMGonzalez/semana-5-69"
-              class="btn btn-success"
-              >GitHub</a
-            >
-          </v-card-text>
-        </v-card>
-      </v-footer>
+        <v-card-text class="white--text">
+          {{ new Date().getFullYear() }} — <strong>AgroAyuda</strong><br />
+          <a
+            href="https://github.com/JulianMGonzalez/semana-5-69"
+            class="btn btn-success"
+            >GitHub</a
+          >
+        </v-card-text>
+      </v-card>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
 export default {
   data: () => ({
+    links: [
+      {
+        p: "inicio",
+        onclick: "home",
+      },
+      {
+        p: "Sobre Nosotros",
+        onclick: "",
+      },
+      {
+        p: "Gmail",
+        onclick: "location.href='mailto:tuagroayuda@gmail.com'",
+      },
+      {
+        p: "Equipo",
+        onclick: "home",
+      },
+      {
+        p: "Soporte Técnico",
+        onclick: "home",
+      },
+    ],
+    direccionar: [],
     imagenes: [
       {
-        src:
-          require('@/assets/maiz.jpg')
-        
+        src: require("@/assets/maiz.jpg"),
       },
       {
-        src: 
-          require('@/assets/frutas.png')
-        
+        src: require("@/assets/frutas.png"),
       },
       {
-        src:
-          require('@/assets/persona.png')
-        
+        src: require("@/assets/persona.png"),
       },
       {
-        src:
-          require('@/assets/carro.jpg')
-        
+        src: require("@/assets/carro.jpg"),
       },
     ],
     drawer: true,
@@ -328,7 +344,6 @@ export default {
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     mini: true,
     padless: false,
-    variant: 'default',
   }),
   methods: {
     getUserDetails() {
@@ -379,25 +394,23 @@ export default {
   created() {
     this.getUserDetails();
   },
-    computed: {
-      localAttrs () {
-        const attrs = {}
+  computed: {
+    localAttrs() {
+      const attrs = {};
 
-        if (this.variant === 'default') {
-          attrs.absolute = false
-          attrs.fixed = false
-        } else {
-          attrs[this.variant] = true
-        }
-        return attrs
-      },
+      if (this.variant === "default") {
+        attrs.absolute = false;
+        attrs.fixed = false;
+      } else {
+        attrs[this.variant] = true;
+      }
+      return attrs;
     },
-
-}
+  },
+};
 </script>
 <style scoped>
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-
 </style>
