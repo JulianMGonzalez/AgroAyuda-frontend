@@ -222,8 +222,8 @@
       <!-- Provides the application the proper gutter -->
     </v-main>
       <v-footer v-bind="localAttrs"
-      :padless="padless">
-        <v-card flat tile class="blue-grey lighten-1 text-center">
+      :padless="padless" >
+        <v-card flat tile class="brown darken-2 text-center">
           <v-card-text>
             <v-btn
               v-for="icon in icons"
@@ -248,11 +248,11 @@
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                   <v-img
                     lazy-src="https://picsum.photos/id/11/10/6"
-                    max-height="70"
-                    max-width="70"
-                    src="@/assets/LOGO (2).png"
+                    max-height="50"
+                    max-width="50"
+                    src="@/assets/TuDado.png"
                   ></v-img>
-                  <h5 class="text-uppercase">RESEÑA</h5>
+                  <h5 class="text-uppercase">TuDado</h5>
 
                   <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -264,11 +264,11 @@
                 <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
                   <v-img
                     lazy-src="https://picsum.photos/id/11/10/6"
-                    max-height="70"
-                    max-width="70"
-                    src="@/assets/LOGO (2).png"
+                    max-height="50"
+                    max-width="50"
+                    src="@/assets/TuDado.png"
                   ></v-img>
-                  <h5 class="text-uppercase">CONTACTOS</h5>
+                  <h5 class="text-uppercase">TuDado</h5>
 
                   <p>
                     Lorem ipsum dolor sit amet consectetur, adipisicing elit.
@@ -327,6 +327,7 @@ export default {
     alert: true,
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     mini: true,
+    padless: false,
   }),
   methods: {
     getUserDetails() {
@@ -377,7 +378,12 @@ export default {
   created() {
     this.getUserDetails();
   },
-};
+    computed: {
+      localAttrs () {
+      const attrs = {}
+  }
+}
+}
 </script>
 <style scoped>
 * {
