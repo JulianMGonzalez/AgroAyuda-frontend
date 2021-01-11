@@ -222,7 +222,7 @@
       <!-- Provides the application the proper gutter -->
     </v-main>
       <v-footer v-bind="localAttrs"
-      :padless="padless" >
+      :padless="padless">
         <v-card flat tile class="brown darken-2 text-center">
           <v-card-text>
             <v-btn
@@ -241,7 +241,7 @@
           <v-card-text
             class="white--text pt-0"
           >
-            <div class="container p-4">
+            <div>
               <!--Grid row-->
               <div class="row">
                 <!--Grid column-->
@@ -328,6 +328,7 @@ export default {
     icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     mini: true,
     padless: false,
+    variant: 'default',
   }),
   methods: {
     getUserDetails() {
@@ -380,9 +381,18 @@ export default {
   },
     computed: {
       localAttrs () {
-      const attrs = {}
-  }
-}
+        const attrs = {}
+
+        if (this.variant === 'default') {
+          attrs.absolute = false
+          attrs.fixed = false
+        } else {
+          attrs[this.variant] = true
+        }
+        return attrs
+      },
+    },
+
 }
 </script>
 <style scoped>
