@@ -1,7 +1,8 @@
 <template>
   <!-- App.vue -->
   <v-app>
-    <v-banner elevation="7" class="mt-16">
+    <section id="inicio">
+    <v-banner elevation="7" class= "mt-16">
       <v-carousel cycle show-arrows-on-hover hide-delimiters height="500">
         <v-carousel-item
           v-for="(item, i) in imagenes"
@@ -16,6 +17,7 @@
         </v-carousel-item>
       </v-carousel>
     </v-banner>
+    </section>
     <v-navigation-drawer
       v-model="drawer"
       :mini-variant.sync="mini"
@@ -70,7 +72,6 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
     <v-app-bar app color="white" dense dark prominent>
       <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
@@ -161,7 +162,6 @@
         </v-list>
       </v-menu>
     </v-app-bar>
-
     <!-- Sizes your content based upon application components -->
     <v-main class="bg-dark">
       <v-alert border="bottom" colored-border type="warning" elevation="2">
@@ -208,6 +208,7 @@
           </v-row>
         </v-img>
       </v-card>
+      
       <v-alert
         v-model="alert"
         border="left"
@@ -218,6 +219,44 @@
       >
         Para entrar en zona de administracion dale en Geston!
       </v-alert>
+       <v-item-group multiple>
+    <v-container>
+      <v-row>
+        <v-col
+          v-for="([imagen,nombre,rol],i) in equipo"
+          :key="i"
+          cols="12"
+          md="2"
+        >
+          <v-item v-slot="{ active, toggle }">
+            <v-card
+              class="d-flex align-center"
+              :color="active ? 'light-green darken-4':'white'"
+              dark
+              height="400"
+              max-width="400"
+              @click="toggle"
+            >
+              <v-img v-if="!active" src="@/assets/usco.png"></v-img>
+              <v-scroll-y-transition>
+                <div
+                  v-if="active"
+                  class="text-center"
+                >
+                  <div> <v-img :src="imagen" width="200" height="200" ></v-img> <!-- poner bonito -->
+                    <font size="5"> <p class="mt-2" v-text="nombre"></p> </font>
+                    <v-divider></v-divider> <!-- quedar bien una sola linea y acomodar las letras -->
+                    <font size="5"> <p class="mt-2" v-text="rol"></p> </font>
+                  </div>
+                  
+                </div>
+              </v-scroll-y-transition>
+            </v-card>
+          </v-item>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-item-group>
 
       <!-- Provides the application the proper gutter -->
     </v-main>
@@ -245,7 +284,7 @@
               <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
                 <h5 class="text-uppercase"><b>Agroayuda</b></h5>
 
-                <br />
+                <br/>
                 <p>
                   <font size="4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eum veritatis debitis sit, recusandae modi! Obcaecati praesentium eaque qui sapiente exercitationem, eligendi ipsum, perspiciatis delectus adipisci, ducimus ratione consequuntur voluptatum.</font>
                 </p>
@@ -270,6 +309,7 @@
                 >
                   {{ item.p }}
                 </v-btn>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d501058.6514427606!2d-75.780221!3d2.074216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e24fd4a965ba00b%3A0x2acff39e4ee259aa!2sResina%2C%20Guadalupe%2C%20Huila!5e1!3m2!1ses-419!2sco!4v1610416486886!5m2!1ses-419!2sco" width="300" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                 <!-- <h5 class="text-uppercase"><b>CONTACTOS</b></h5>
                   <br>
                   <p>
@@ -300,26 +340,58 @@
 <script>
 export default {
   data: () => ({
+    equipo: [
+      [
+        require("@/assets/frutas.png"),
+        "Julian David Montero Gonzalez",
+        "Desarrollador Web"
+      ],
+      [
+        require("@/assets/maiz.jpg"),
+        "Julian Carranza Capera",
+        "Aprendíz"
+      ],
+      [
+        require("@/assets/frutas.png"),
+        "Jesus David Bermeo Quimbaya",
+        "Ad empresas"
+      ],
+      [
+        require("@/assets/frutas.png"),
+        "Santiago Maragua",
+        "Diseñador"
+      ],
+      [
+        require("@/assets/frutas.png"),
+        "Laura Vargas Perdomo",
+        "Diseñadora"
+      ],
+      [
+        require("@/assets/sonriendo.jpg"),
+        "Eylen",
+        "projesora"
+      ]
+    ],
     links: [
       {
         p: "inicio",
-        onclick: "home",
+        onclick:"location.href='#inicio'",
       },
       {
-        p: "Sobre Nosotros",
-        onclick: "",
+        p: "Teléfono",
+        onclick: "location.href='https://wa.me/573232477487'",
       },
       {
         p: "Gmail",
         onclick: "location.href='mailto:tuagroayuda@gmail.com'",
       },
       {
-        p: "Equipo",
-        onclick: "home",
+        p: "nuestro Equipo",
+        onclick: "",
       },
       {
         p: "Soporte Técnico",
-        onclick: "home",
+        onclick: "",
       },
     ],
     direccionar: [],
@@ -341,7 +413,7 @@ export default {
     length: 3,
     onboarding: 0,
     alert: true,
-    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+    icons: ["mdi-facebook location.href='mailto:www.facebook.com", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     mini: true,
     padless: false,
   }),
