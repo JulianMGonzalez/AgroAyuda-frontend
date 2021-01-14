@@ -2,21 +2,18 @@
   <!-- App.vue -->
   <v-app>
     <section id="inicio">
-    <v-banner elevation="7" class= "mt-16">
-      <v-carousel cycle show-arrows-on-hover hide-delimiters height="500">
-        <v-carousel-item
-          v-for="(item, i) in imagenes"
-          :key="i"
-          reverse-transition="fade-transition"
-          transition="fade-transition"
-        >
-          <v-img :src="item.src" max-height="500"></v-img>
-          <v-row class="d-flex align-end" align="center" justify="center">
-            <div class="display-3 font-weight-black" v-text="item.p"></div>
-          </v-row>
-        </v-carousel-item>
-      </v-carousel>
-    </v-banner>
+      <v-banner elevation="7" class="mt-16">
+        <v-carousel cycle show-arrows-on-hover hide-delimiters height="500">
+          <v-carousel-item
+            v-for="(item, i) in imagenes"
+            :key="i"
+            reverse-transition="fade-transition"
+            transition="fade-transition"
+          >
+            <v-img :src="item.src" max-height="500"></v-img>
+          </v-carousel-item>
+        </v-carousel>
+      </v-banner>
     </section>
     <v-navigation-drawer
       v-model="drawer"
@@ -80,8 +77,47 @@
         src="@/assets/LOGO (2).png"
       ></v-img>
       <v-spacer></v-spacer>
-
-      <v-menu>
+      <v-navigation-drawer temporary v-model="sideNav">
+        <v-list>
+          <v-list-tile
+            v-for="item in menuItems"
+            :key="item.title"
+            :to="item.link"
+          >
+            <v-list-tile-action>
+              <v-icon>{{ item.icon }}</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>{{ item.title }}</v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+      </v-navigation-drawer>
+      <v-toolbar dark class="primary">
+        <v-toolbar-side-icon
+          @click.stop="sideNav = !sideNav"
+          class="hidden-sm-and-up"
+        ></v-toolbar-side-icon>
+        <v-toolbar-title>
+          <router-link to="/" tag="span" style="cursor: pointer"
+            >DevMeetup</router-link
+          >
+        </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items class="hidden-xs-only">
+          <v-btn
+            flat
+            v-for="item in menuItems"
+            :key="item.title"
+            :to="item.link"
+          >
+            <v-icon left dark>{{ item.icon }}</v-icon>
+            {{ item.title }}
+          </v-btn>
+        </v-toolbar-items>
+      </v-toolbar>
+      <main>
+        <router-view></router-view>
+      </main>
+      <!-- <v-menu>
         <template v-slot:activator="{ on: menu, attrs }">
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
@@ -160,7 +196,7 @@
             ></v-btn>
           </v-list-item>
         </v-list>
-      </v-menu>
+      </v-menu>   -->
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
     <v-main class="bg-dark">
@@ -172,43 +208,48 @@
         durante la búsqueda de una oportunidad laboral como en su permanencia y
         crecimiento dentro de una compañía
       </v-alert>
-      <v-card max-width="900" max-height="400" tile>
-        <v-img height="400" width="900" src="@/assets/ajedrez.jpg">
-          <v-row align="end" class="fill-height">
-            <v-col align-self="start" class="pa-0" cols="12">
-              <v-avatar class="profile" color="grey" size="250" tile>
+      <v-card max-width="900" max-height="400" tile v-for ="(item, twiter) in twiter"
+      :key="twiter">
+        <!-- cambiar a testimonios y pnerlo bonito -->
+        <v-card class="mx-auto" color="#26c6da" dark max-width="400">
+          <v-card-title>
+            <v-icon large left> mdi-twitter </v-icon>
+            <span class="title font-weight-light">Twitter</span>
+          </v-card-title>
+          
+          
+          <!-- <v-card-text class="headline font-weight-bold">
+
+            "Agradecemos al equipo de desarrollo web por facilitarnos esta
+            herammienta de ventas, las cuales nos ayudan a tener conexión con
+            nuestros compradores."
+          </v-card-text> -->
+
+          <v-card-actions>
+            <!-- `<v-list-item class="grow">
+              <v-list-item-avatar color="grey darken-3">
                 <v-img
-                  src="@/assets/sonriendo.jpg"
-                  width="250"
-                  height="250"
+                  class="elevation-6"
+                  alt=""
+                  src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                 ></v-img>
-                <v-list-item-title class="title">
-                  Juan Carlos Garcia
-                </v-list-item-title>
-              </v-avatar>
-            </v-col>
-            <v-col class="py-0">
-              <v-list-item color="rgba(0, 0, 0, .4)" dark>
-                <v-list-item-content>
-                  <v-list-item-title class="title">
-                    Juan Carlos Garcia
-                  </v-list-item-title>
-                  <v-list-item-subtitle>Neiva, Huila</v-list-item-subtitle>
-                  <v-list-item-subtitle
-                    >"El desarrollo de habilidades blandas como: trabajar en
-                    equipo, poseer un buen nivel de comunicación, tener
-                    adaptabilidad ante los distintos escenarios, una actitud
-                    positiva en la oficina me han hecho un mejor trabajador,
-                    recomiendo totalmente la pagina para desarrollar estas
-                    increibles habilidades! "</v-list-item-subtitle
-                  >
-                </v-list-item-content>
-              </v-list-item>
-            </v-col>
-          </v-row>
-        </v-img>
+              </v-list-item-avatar>
+
+              <v-list-item-content>
+                <v-list-item-title>Evan You</v-list-item-title>
+              </v-list-item-content>` -->
+
+              <v-row align="center" justify="end">
+                <v-icon class="mr-1"> mdi-heart </v-icon>
+                <span class="subheading mr-2">256</span>
+                <span class="mr-1">·</span>
+                <v-icon class="mr-1"> mdi-share-variant </v-icon>
+                <span class="subheading">45</span>
+              </v-row>
+            </v-list-item> -->
+          </v-card-actions>
+        </v-card>
       </v-card>
-      
       <v-alert
         v-model="alert"
         border="left"
@@ -219,44 +260,48 @@
       >
         Para entrar en zona de administracion dale en Geston!
       </v-alert>
-       <v-item-group multiple>
-    <v-container>
-      <v-row>
-        <v-col
-          v-for="([imagen,nombre,rol],i) in equipo"
-          :key="i"
-          cols="12"
-          md="2"
-        >
-          <v-item v-slot="{ active, toggle }">
-            <v-card
-              class="d-flex align-center"
-              :color="active ? 'light-green darken-4':'white'"
-              dark
-              height="400"
-              max-width="400"
-              @click="toggle"
+      <v-item-group multiple>
+        <v-container>
+          <v-row>
+            <v-col
+              v-for="([imagen, nombre, rol], i) in equipo"
+              :key="i"
+              cols="12"
+              md="2"
             >
-              <v-img v-if="!active" src="@/assets/usco.png"></v-img>
-              <v-scroll-y-transition>
-                <div
-                  v-if="active"
-                  class="text-center"
+              <v-item v-slot="{ active, toggle }">
+                <v-card
+                  class="d-flex align-center"
+                  :color="active ? 'light-green darken-4' : 'white'"
+                  dark
+                  height="400"
+                  max-width="400"
+                  @click="toggle"
                 >
-                  <div> <v-img :src="imagen" width="200" height="200" ></v-img> <!-- poner bonito -->
-                    <font size="5"> <p class="mt-2" v-text="nombre"></p> </font>
-                    <v-divider></v-divider> <!-- quedar bien una sola linea y acomodar las letras -->
-                    <font size="5"> <p class="mt-2" v-text="rol"></p> </font>
-                  </div>
-                  
-                </div>
-              </v-scroll-y-transition>
-            </v-card>
-          </v-item>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-item-group>
+                  <v-img v-if="!active" src="@/assets/usco.png"></v-img>
+                  <v-scroll-y-transition>
+                    <div v-if="active" class="text-center">
+                      <div>
+                        <v-img :src="imagen" width="200" height="200"></v-img>
+                        <v-divider></v-divider>
+                        <!-- poner bonito -->
+                        <font size="5">
+                          <p class="mt-2" v-text="nombre"></p>
+                        </font>
+                        <v-divider></v-divider>
+                        <!-- quedar bien una sola linea y acomodar las letras -->
+                        <font size="5">
+                          <p class="mt-2" v-text="rol"></p>
+                        </font>
+                      </div>
+                    </div>
+                  </v-scroll-y-transition>
+                </v-card>
+              </v-item>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-item-group>
 
       <!-- Provides the application the proper gutter -->
     </v-main>
@@ -273,7 +318,6 @@
             <v-icon size="24px">
               {{ icon }}
             </v-icon>
-             
           </v-btn>
         </v-card-text>
         <v-card-text class="white--text pt-0">
@@ -284,9 +328,15 @@
               <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
                 <h5 class="text-uppercase"><b>Agroayuda</b></h5>
 
-                <br/>
+                <br />
                 <p>
-                  <font size="4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eum veritatis debitis sit, recusandae modi! Obcaecati praesentium eaque qui sapiente exercitationem, eligendi ipsum, perspiciatis delectus adipisci, ducimus ratione consequuntur voluptatum.</font>
+                  <font size="4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Cumque eum veritatis debitis sit, recusandae modi! Obcaecati
+                    praesentium eaque qui sapiente exercitationem, eligendi
+                    ipsum, perspiciatis delectus adipisci, ducimus ratione
+                    consequuntur voluptatum.</font
+                  >
                 </p>
               </div>
               <div class="col-lg-2 d-flex justify-content-center">
@@ -300,7 +350,7 @@
               <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
                 <v-btn
                   v-for="(item, i) in links"
-                  :onclick= "item.onclick"
+                  :onclick="item.onclick"
                   :key="i"
                   color="white"
                   text
@@ -309,7 +359,16 @@
                 >
                   {{ item.p }}
                 </v-btn>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d501058.6514427606!2d-75.780221!3d2.074216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e24fd4a965ba00b%3A0x2acff39e4ee259aa!2sResina%2C%20Guadalupe%2C%20Huila!5e1!3m2!1ses-419!2sco!4v1610416486886!5m2!1ses-419!2sco" width="300" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d501058.6514427606!2d-75.780221!3d2.074216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e24fd4a965ba00b%3A0x2acff39e4ee259aa!2sResina%2C%20Guadalupe%2C%20Huila!5e1!3m2!1ses-419!2sco!4v1610416486886!5m2!1ses-419!2sco"
+                  width="300"
+                  height="300"
+                  frameborder="0"
+                  style="border: 0"
+                  allowfullscreen=""
+                  aria-hidden="false"
+                  tabindex="0"
+                ></iframe>
                 <!-- <h5 class="text-uppercase"><b>CONTACTOS</b></h5>
                   <br>
                   <p>
@@ -340,42 +399,45 @@
 <script>
 export default {
   data: () => ({
+    twiter: [
+        {nombre: "Carlos Perez"},
+  ],
+    sideNav: false,
+    menuItems: [
+      { icon: "supervisor_account", title: "View Meetups", link: "/meetups" },
+      { icon: "room", title: "Organize Meetup", link: "/meetup/new" },
+      { icon: "person", title: "Profile", link: "/profile" },
+      { icon: "face", title: "Sign up", link: "/signup" },
+      { icon: "lock_open", title: "Sign in", link: "/signin" },
+    ],
     equipo: [
       [
         require("@/assets/frutas.png"),
-        "Julian David Montero Gonzalez",
-        "Desarrollador Web"
+        "Julian Montero Gonzalez",
+        "Desarrollador Web",
       ],
+      [require("@/assets/maiz.jpg"), "Julian Carranza Capera", "Aprendíz"],
+      [require("@/assets/frutas.png"), "David Bermeo Quimbaya", "Ad empresas"],
       [
-        require("@/assets/maiz.jpg"),
-        "Julian Carranza Capera",
-        "Aprendíz"
+        require("@/assets/frutas.png"),
+        "Santiago Maragua ㅤㅤㅤㅤ",
+        "Diseñador",
       ],
       [
         require("@/assets/frutas.png"),
-        "Jesus David Bermeo Quimbaya",
-        "Ad empresas"
-      ],
-      [
-        require("@/assets/frutas.png"),
-        "Santiago Maragua",
-        "Diseñador"
-      ],
-      [
-        require("@/assets/frutas.png"),
-        "Laura Vargas Perdomo",
-        "Diseñadora"
+        "Laura Vargas Perdomo ㅤㅤ",
+        "Diseñadora",
       ],
       [
         require("@/assets/sonriendo.jpg"),
-        "Eylen",
-        "projesora"
-      ]
+        "Eylen ㅤㅤㅤㅤㅤㅤㅤㅤㅤ",
+        "projesora",
+      ],
     ],
     links: [
       {
         p: "inicio",
-        onclick:"location.href='#inicio'",
+        onclick: "location.href='#inicio'",
       },
       {
         p: "Teléfono",
@@ -413,7 +475,12 @@ export default {
     length: 3,
     onboarding: 0,
     alert: true,
-    icons: ["mdi-facebook location.href='mailto:www.facebook.com", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
+    icons: [
+      "mdi-facebook location.href='mailto:www.facebook.com",
+      "mdi-twitter",
+      "mdi-linkedin",
+      "mdi-instagram",
+    ],
     mini: true,
     padless: false,
   }),
@@ -486,3 +553,4 @@ export default {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 </style>
+
