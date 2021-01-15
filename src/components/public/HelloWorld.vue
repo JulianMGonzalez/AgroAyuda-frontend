@@ -209,107 +209,98 @@
         crecimiento dentro de una compañía
       </v-alert>
       <v-row>
-      <v-card max-width="2400" max-height="2400" tile v-for ="([testimonio, imagen, autor, like, share], a )  in testimonio"
-      :key="a" class="col-lg-4 col-md-12 mb-4 mb-md-0"
-      >
-        <!-- cambiar a testimonios y pnerlo bonito  -->
-        <v-card class="mx-auto" color="#5e2129" dark>
-          <v-card-title>
-            <v-icon large left> mdi-twitter </v-icon>
-            <span class="title font-weight-light">Twitter</span>
-          </v-card-title>
-          
-          
-           <v-card-text class="headline font-weight-bold">
-             {{testimonio}}
-          </v-card-text> 
+        <v-card
+          max-width="2400"
+          max-height="2400"
+          tile
+          v-for="([testimonio, imagen, autor, like, share], a) in testimonio"
+          :key="a"
+          class="col-lg-4 col-md-12 mb-4 mb-md-0"
+        >
+          <!-- cambiar a testimonios y pnerlo bonito  -->
+          <v-card class="mx-auto" color="#5e2129" dark>
+            <v-card-title>
+              <v-icon large left> mdi-twitter </v-icon>
+              <span class="title font-weight-light">Twitter</span>
+            </v-card-title>
 
-          <v-card-actions>
-            <v-list-item class="grow">
-              <v-list-item-avatar color="grey darken-3">
-                <v-img
-                  class="elevation-6"
-                  alt=""
-                  :src="imagen"
-                ></v-img>
-              </v-list-item-avatar>
+            <v-card-text class="headline font-weight-bold">
+              {{ testimonio }}
+            </v-card-text>
 
-              <v-list-item-content>
-                <v-list-item-title>{{autor}}</v-list-item-title>
-              </v-list-item-content>
+            <v-card-actions>
+              <v-list-item class="grow">
+                <v-list-item-avatar color="grey darken-3">
+                  <v-img class="elevation-6" alt="" :src="imagen"></v-img>
+                </v-list-item-avatar>
 
-               <v-row align="center" justify="end">
-                <v-icon class="mr-1"> mdi-heart </v-icon>
-                <span class="subheading mr-2">{{share}}</span>
-                <span class="mr-1">·</span>
-                <v-icon class="mr-1"> mdi-share-variant </v-icon>
-                <span class="subheading">{{like}}</span>
-              </v-row>
-            </v-list-item> 
-          </v-card-actions>
+                <v-list-item-content>
+                  <v-list-item-title>{{ autor }}</v-list-item-title>
+                </v-list-item-content>
+
+                <v-row align="center" justify="end">
+                  <v-icon class="mr-1"> mdi-heart </v-icon>
+                  <span class="subheading mr-2">{{ share }}</span>
+                  <span class="mr-1">·</span>
+                  <v-icon class="mr-1"> mdi-share-variant </v-icon>
+                  <span class="subheading">{{ like }}</span>
+                </v-row>
+              </v-list-item>
+            </v-card-actions>
+          </v-card>
         </v-card>
-      </v-card>
       </v-row>
-     <v-alert
-      border="top"
-      colored-border
-      type="info"
-      elevation="9"
-    >
-      Vestibulum ullamcorper mauris at ligula. Nam pretium turpis et arcu. Ut varius tincidunt libero. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Morbi nec metus.
-    </v-alert>
-      <v-item-group multiple class="blue-grey lighten-4 align-center">
-        <v-container>
-          <v-row>
-            <v-col
-              v-for="([imagen, nombre, rol], i) in equipo"
-              :key="i"
-              cols="12"
-              md="2"
-            >
-              <v-item v-slot="{ active, toggle }">
-                <v-card
-                  class="d-flex align-center"
-                  :color="active ? 'light-green darken-4' : 'white'"
-                  dark
-                  height="400"
-                  max-width="300"
-                  @click="toggle"
-                >
-                  <v-img v-if="!active" src="@/assets/usco.png"></v-img>
-                  <v-scroll-y-transition>
-                    <div v-if="active" class="text-center">
-                      <div>
-                        <v-img :src="imagen" width="273" height="200"></v-img>
-                        <v-divider></v-divider>
-                        <!-- poner bonito -->
-                        <font size="5">
-                          <p class="mt-2" v-text="nombre"></p>
-                        </font>
-                        <v-divider></v-divider>
-                        <!-- quedar bien una sola linea y acomodar las letras -->
-                        <font size="5">
-                          <p class="mt-2" v-text="rol"></p>
-                        </font>
-                      </div>
-                    </div>
-                  </v-scroll-y-transition>
-                </v-card>
-              </v-item>
-            </v-col>
-          </v-row>
-        </v-container>
-      </v-item-group>
+      <v-alert border="top" colored-border type="info" elevation="9">
+        Vestibulum ullamcorper mauris at ligula. Nam pretium turpis et arcu. Ut
+        varius tincidunt libero. Curabitur ligula sapien, tincidunt non, euismod
+        vitae, posuere imperdiet, leo. Morbi nec metus.
+      </v-alert>
+          <div id="team" class="container-fluid">
+      <div class="row justify-content-center mb-5" >
+        <div class="col mt-5" v-for="(item, index) of team" :key="index">
+      <div
+        class="card green darken-4 text-white"
+        :key="i"
+      >
+        <div class="d-flex justify-content-center p-2">
+          <img
+            v-bind:src="item.image"
+            width="190"
+            height="190"
+            alt="Estudiante"
+          />
+        </div>
+        <div class="card-body">
+          <h5 class="text-center">{{ item.codigo }}. {{ item.nombre }}</h5>
+          <p class="text-center">{{ item.descripcion }}</p>
+          <p class="text-center">{{ item.rol }}</p>
+        </div>
+        <div class="p-3 mb-2 yellow darken-4 text-dark">
+          <p class="text-center">¡El campo es de todos!</p>
+        </div>
+      </div>
+      </div>
+      </div>
+    </div>
+      
 
       <!-- Provides the application the proper gutter -->
     </v-main>
     <v-footer v-bind="localAttrs" :padless="padless">
-      <v-card max-height="2400" max-width="2400" flat tile class="text-center" color="#5e2129">
+      <v-card
+        max-height="2400"
+        max-width="2400"
+        flat
+        tile
+        class="text-center"
+        color="#5e2129"
+      >
         <v-card-text>
           <v-btn
             v-for="icon in icons"
             :key="icon"
-            :onclick="icon.onclick" target="_blank"
+            :onclick="icon.onclick"
+            target="_blank"
             class="mx-4 white--text"
             icon
             color="white"
@@ -384,7 +375,6 @@
 
         <v-card-text class="white--text">
           {{ new Date().getFullYear() }} — <strong>AgroAyuda</strong><br />
-         
         </v-card-text>
       </v-card>
     </v-footer>
@@ -395,14 +385,28 @@
 export default {
   data: () => ({
     testimonio: [
-        [ "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
-         require("@/assets/agriculture.png"),"Juan Pablo", "3","10"],
-        [ "100% recomendado, la verdad ayuda mucho a mis ventas; ahora todos mis cultivos se venden y no tengo perdida de ellos.",
-         require("@/assets/hombre.png"),"Miguel Rivera","4","5"],
-        [ "Gracias a los desarrolladores y a los agricultores por pensar en nosotros, las personas de la ciudad la cual queremos aprender sobre el campo.",
-         require("@/assets/sr.png"),"Julio Gomez", "6","12"]
-        
-  ],
+      [
+        "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
+        require("@/assets/agriculture.png"),
+        "Juan Pablo",
+        "3",
+        "10",
+      ],
+      [
+        "100% recomendado, la verdad ayuda mucho a mis ventas; ahora todos mis cultivos se venden y no tengo perdida de ellos.",
+        require("@/assets/hombre.png"),
+        "Miguel Rivera",
+        "4",
+        "5",
+      ],
+      [
+        "Gracias a los desarrolladores y a los agricultores por pensar en nosotros, las personas de la ciudad la cual queremos aprender sobre el campo.",
+        require("@/assets/sr.png"),
+        "Julio Gomez",
+        "6",
+        "12",
+      ],
+    ],
     sideNav: false,
     menuItems: [
       { icon: "supervisor_account", title: "View Meetups", link: "/meetups" },
@@ -411,29 +415,46 @@ export default {
       { icon: "face", title: "Sign up", link: "/signup" },
       { icon: "lock_open", title: "Sign in", link: "/signin" },
     ],
-    equipo: [
-      [
-        require("@/assets/rolito.jpg"),
-        "Julian Montero Gonzalez",
-        "Desarrollador Web",
-      ],
-      [require("@/assets/yo.jpg"), "Julian Carranza Capera", "Aprendíz"],
-      [require("@/assets/david.jpg"), "David Bermeo Quimbaya", "Ad empresas"],
-      [
-        require("@/assets/maragua.jpg"),
-        "Santiago Maragua Trujillo",
-        "Diseñador",
-      ],
-      [
-        require("@/assets/laura.jpg"),
-        "Laura Vargas Perdomo ㅤ",
-        "Diseñadora",
-      ],
-      [
-        require("@/assets/sonriendo.jpg"),
-        "Eylen ㅤㅤㅤㅤㅤㅤㅤㅤㅤ",
-        "projesora",
-      ],
+    team: [
+      {
+        codigo: 1,
+        nombre: "Julian Carranza",
+        descripcion:
+          "",
+        rol: "Desarrollador backend",
+        image: require("@/assets/maiz.jpg"),
+      },
+      {
+        codigo: 2,
+        nombre: "Julian David Montero",
+        descripcion:
+          "",
+        rol: "Desarrollador backend",
+        image: require("@/assets/maiz.jpg"),
+      },
+      {
+        codigo: 3,
+        nombre: "Laura Vargas",
+        descripcion: "",
+        rol: "______________",
+        image: require("@/assets/maiz.jpg"),
+      },
+      {
+        codigo: 4,
+        nombre: "Santiago maragua",
+        descripcion:
+          "",
+        rol: "Desarrollador backend",
+        image: require("@/assets/maiz.jpg"),
+      },
+      {
+        codigo: 5,
+        nombre: "Jesus bermeo",
+        descripcion:
+          "",
+        rol: "Desarrollador backend",
+        image: require("@/assets/maiz.jpg"),
+      },
     ],
     links: [
       {
@@ -443,7 +464,7 @@ export default {
       {
         p: "Teléfono",
         // onclick: "location.href='https://wa.me/573232477487'",
-        onclick: "window.open('https://wa.me/573232477487', '_blank')"
+        onclick: "window.open('https://wa.me/573232477487', '_blank')",
       },
       {
         p: "Gmail",
@@ -478,18 +499,23 @@ export default {
     onboarding: 0,
     alert: true,
     icons: [
-     {p: "mdi-facebook",
-     onclick: "window.open('https://www.facebook.com/', '_blank')"
-     },
-     {p: "mdi-instagram",
-     onclick: "window.open('https://www.instagram.com/', '_blank')"
-     },
-     {p: "mdi-twitter",
-     onclick: "window.open('https://www.twitter.com/', '_blank')"
-     },
-     {p: "mdi-github",
-     onclick: "window.open('https://github.com/julca02/backendagroayuda', '_blank')"
-     }
+      {
+        p: "mdi-facebook",
+        onclick: "window.open('https://www.facebook.com/', '_blank')",
+      },
+      {
+        p: "mdi-instagram",
+        onclick: "window.open('https://www.instagram.com/', '_blank')",
+      },
+      {
+        p: "mdi-twitter",
+        onclick: "window.open('https://www.twitter.com/', '_blank')",
+      },
+      {
+        p: "mdi-github",
+        onclick:
+          "window.open('https://github.com/julca02/backendagroayuda', '_blank')",
+      },
     ],
     mini: true,
     padless: false,
