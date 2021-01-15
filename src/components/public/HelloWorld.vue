@@ -2,7 +2,7 @@
   <!-- App.vue -->
   <v-app>
     <section id="inicio">
-      <v-banner elevation="7" class="mt-16">
+      <v-banner app elevation="7" class="mt-16">
         <v-carousel cycle show-arrows-on-hover hide-delimiters height="500">
           <v-carousel-item
             v-for="(item, i) in imagenes"
@@ -19,7 +19,7 @@
       v-model="drawer"
       :mini-variant.sync="mini"
       app
-      color="indigo darken-4"
+      color="green darken-4"
       v-if="this.$store.state.usuario"
     >
       <v-list-item class="px-2">
@@ -199,7 +199,7 @@
       </v-menu>   -->
     </v-app-bar>
     <!-- Sizes your content based upon application components -->
-    <v-main class="bg-dark">
+    <v-main>
       <v-alert border="bottom" colored-border type="warning" elevation="2">
         Nos Centramos en el sector cultural. Si bien estas competencias son
         innatas, todos tenemos la capacidad de poder desarrollarlas. Por ello,
@@ -208,59 +208,57 @@
         durante la búsqueda de una oportunidad laboral como en su permanencia y
         crecimiento dentro de una compañía
       </v-alert>
-      <v-card max-width="900" max-height="400" tile v-for ="(item, twiter) in twiter"
-      :key="twiter">
-        <!-- cambiar a testimonios y pnerlo bonito -->
-        <v-card class="mx-auto" color="#26c6da" dark max-width="400">
+      <v-row>
+      <v-card max-width="2400" max-height="2400" tile v-for ="([testimonio, imagen, autor, like, share], a )  in testimonio"
+      :key="a" class="col-lg-4 col-md-12 mb-4 mb-md-0"
+      >
+        <!-- cambiar a testimonios y pnerlo bonito  -->
+        <v-card class="mx-auto" color="#5e2129" dark>
           <v-card-title>
             <v-icon large left> mdi-twitter </v-icon>
             <span class="title font-weight-light">Twitter</span>
           </v-card-title>
           
           
-          <!-- <v-card-text class="headline font-weight-bold">
-
-            "Agradecemos al equipo de desarrollo web por facilitarnos esta
-            herammienta de ventas, las cuales nos ayudan a tener conexión con
-            nuestros compradores."
-          </v-card-text> -->
+           <v-card-text class="headline font-weight-bold">
+             {{testimonio}}
+          </v-card-text> 
 
           <v-card-actions>
-            <!-- `<v-list-item class="grow">
+            <v-list-item class="grow">
               <v-list-item-avatar color="grey darken-3">
                 <v-img
                   class="elevation-6"
                   alt=""
-                  src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                  :src="imagen"
                 ></v-img>
               </v-list-item-avatar>
 
               <v-list-item-content>
-                <v-list-item-title>Evan You</v-list-item-title>
-              </v-list-item-content>` -->
+                <v-list-item-title>{{autor}}</v-list-item-title>
+              </v-list-item-content>
 
-              <v-row align="center" justify="end">
+               <v-row align="center" justify="end">
                 <v-icon class="mr-1"> mdi-heart </v-icon>
-                <span class="subheading mr-2">256</span>
+                <span class="subheading mr-2">{{share}}</span>
                 <span class="mr-1">·</span>
                 <v-icon class="mr-1"> mdi-share-variant </v-icon>
-                <span class="subheading">45</span>
+                <span class="subheading">{{like}}</span>
               </v-row>
-            </v-list-item> -->
+            </v-list-item> 
           </v-card-actions>
         </v-card>
       </v-card>
-      <v-alert
-        v-model="alert"
-        border="left"
-        close-text="Close Alert"
-        color="indigo darken-4"
-        dark
-        dismissible
-      >
-        Para entrar en zona de administracion dale en Geston!
-      </v-alert>
-      <v-item-group multiple>
+      </v-row>
+     <v-alert
+      border="top"
+      colored-border
+      type="info"
+      elevation="9"
+    >
+      Vestibulum ullamcorper mauris at ligula. Nam pretium turpis et arcu. Ut varius tincidunt libero. Curabitur ligula sapien, tincidunt non, euismod vitae, posuere imperdiet, leo. Morbi nec metus.
+    </v-alert>
+      <v-item-group multiple class="blue-grey lighten-4 align-center">
         <v-container>
           <v-row>
             <v-col
@@ -275,14 +273,14 @@
                   :color="active ? 'light-green darken-4' : 'white'"
                   dark
                   height="400"
-                  max-width="400"
+                  max-width="300"
                   @click="toggle"
                 >
                   <v-img v-if="!active" src="@/assets/usco.png"></v-img>
                   <v-scroll-y-transition>
                     <div v-if="active" class="text-center">
                       <div>
-                        <v-img :src="imagen" width="200" height="200"></v-img>
+                        <v-img :src="imagen" width="273" height="200"></v-img>
                         <v-divider></v-divider>
                         <!-- poner bonito -->
                         <font size="5">
@@ -306,17 +304,18 @@
       <!-- Provides the application the proper gutter -->
     </v-main>
     <v-footer v-bind="localAttrs" :padless="padless">
-      <v-card flat tile class="text-center" color="#5e2129">
+      <v-card max-height="2400" max-width="2400" flat tile class="text-center" color="#5e2129">
         <v-card-text>
           <v-btn
             v-for="icon in icons"
             :key="icon"
+            :onclick="icon.onclick" target="_blank"
             class="mx-4 white--text"
             icon
             color="white"
           >
             <v-icon size="24px">
-              {{ icon }}
+              {{ icon.p }}
             </v-icon>
           </v-btn>
         </v-card-text>
@@ -385,11 +384,7 @@
 
         <v-card-text class="white--text">
           {{ new Date().getFullYear() }} — <strong>AgroAyuda</strong><br />
-          <a
-            href="https://github.com/JulianMGonzalez/semana-5-69"
-            class="btn btn-success"
-            >GitHub</a
-          >
+         
         </v-card-text>
       </v-card>
     </v-footer>
@@ -399,8 +394,14 @@
 <script>
 export default {
   data: () => ({
-    twiter: [
-        {nombre: "Carlos Perez"},
+    testimonio: [
+        [ "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
+         require("@/assets/agriculture.png"),"Juan Pablo", "3","10"],
+        [ "100% recomendado, la verdad ayuda mucho a mis ventas; ahora todos mis cultivos se venden y no tengo perdida de ellos.",
+         require("@/assets/hombre.png"),"Miguel Rivera","4","5"],
+        [ "Gracias a los desarrolladores y a los agricultores por pensar en nosotros, las personas de la ciudad la cual queremos aprender sobre el campo.",
+         require("@/assets/sr.png"),"Julio Gomez", "6","12"]
+        
   ],
     sideNav: false,
     menuItems: [
@@ -412,20 +413,20 @@ export default {
     ],
     equipo: [
       [
-        require("@/assets/frutas.png"),
+        require("@/assets/rolito.jpg"),
         "Julian Montero Gonzalez",
         "Desarrollador Web",
       ],
-      [require("@/assets/maiz.jpg"), "Julian Carranza Capera", "Aprendíz"],
-      [require("@/assets/frutas.png"), "David Bermeo Quimbaya", "Ad empresas"],
+      [require("@/assets/yo.jpg"), "Julian Carranza Capera", "Aprendíz"],
+      [require("@/assets/david.jpg"), "David Bermeo Quimbaya", "Ad empresas"],
       [
-        require("@/assets/frutas.png"),
-        "Santiago Maragua ㅤㅤㅤㅤ",
+        require("@/assets/maragua.jpg"),
+        "Santiago Maragua Trujillo",
         "Diseñador",
       ],
       [
-        require("@/assets/frutas.png"),
-        "Laura Vargas Perdomo ㅤㅤ",
+        require("@/assets/laura.jpg"),
+        "Laura Vargas Perdomo ㅤ",
         "Diseñadora",
       ],
       [
@@ -441,7 +442,8 @@ export default {
       },
       {
         p: "Teléfono",
-        onclick: "location.href='https://wa.me/573232477487'",
+        // onclick: "location.href='https://wa.me/573232477487'",
+        onclick: "window.open('https://wa.me/573232477487', '_blank')"
       },
       {
         p: "Gmail",
@@ -476,10 +478,18 @@ export default {
     onboarding: 0,
     alert: true,
     icons: [
-      "mdi-facebook location.href='mailto:www.facebook.com",
-      "mdi-twitter",
-      "mdi-linkedin",
-      "mdi-instagram",
+     {p: "mdi-facebook",
+     onclick: "window.open('https://www.facebook.com/', '_blank')"
+     },
+     {p: "mdi-instagram",
+     onclick: "window.open('https://www.instagram.com/', '_blank')"
+     },
+     {p: "mdi-twitter",
+     onclick: "window.open('https://www.twitter.com/', '_blank')"
+     },
+     {p: "mdi-github",
+     onclick: "window.open('https://github.com/julca02/backendagroayuda', '_blank')"
+     }
     ],
     mini: true,
     padless: false,
