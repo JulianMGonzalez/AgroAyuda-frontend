@@ -69,55 +69,75 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app color="white" dense dark prominent>
-      <v-img
-        lazy-src="https://picsum.photos/id/11/10/6"
-        max-height="98"
-        max-width="98"
-        src="@/assets/LOGO (2).png"
-      ></v-img>
-      <v-spacer></v-spacer>
-      <v-navigation-drawer temporary v-model="sideNav">
-        <v-list>
-          <v-list-tile
-            v-for="item in menuItems"
-            :key="item.title"
-            :to="item.link"
-          >
-            <v-list-tile-action>
-              <v-icon>{{ item.icon }}</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>{{ item.title }}</v-list-tile-content>
-          </v-list-tile>
-        </v-list>
-      </v-navigation-drawer>
-      <v-toolbar dark class="primary">
-        <v-toolbar-side-icon
+    <v-card>
+      <v-app-bar app color="white" dense dark prominent hide-on-scroll>
+        <v-img
+          lazy-src="https://picsum.photos/id/11/10/6"
+          max-height="98"
+          max-width="98"
+          src="@/assets/LOGO (2).png"
+        ></v-img>
+
+        <v-spacer></v-spacer>
+        <v-app-bar-nav-icon 
           @click.stop="sideNav = !sideNav"
           class="hidden-sm-and-up"
-        ></v-toolbar-side-icon>
-        <v-toolbar-title>
-          <router-link to="/" tag="span" style="cursor: pointer"
-            >DevMeetup</router-link
-          >
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items class="hidden-xs-only">
-          <v-btn
-            flat
-            v-for="item in menuItems"
-            :key="item.title"
-            :to="item.link"
-          >
-            <v-icon left dark>{{ item.icon }}</v-icon>
-            {{ item.title }}
-          </v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-      <main>
-        <router-view></router-view>
-      </main>
-      <!-- <v-menu>
+          ><v-icon color="green" class="mt-10" large>mdi-microsoft-xbox-controller-menu</v-icon></v-app-bar-nav-icon
+        >
+        <v-navigation-drawer right app v-model="sideNav" color="green darken-4">
+          <v-list>
+            <v-list-item
+              v-for="item in menuItems"
+              :key="item.title"
+              :to="item.link"
+            >
+              <v-list-item-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>{{ item.title }}</v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-navigation-drawer>
+
+        <v-btn
+          color="#1b5e20"
+          text
+          class="hidden-xs-only mt-6"
+          v-for="(item, i) in menuItems"
+          :key="i"
+          :to="item.link"
+        >
+          <v-icon left dark>{{ item.icon }}</v-icon>
+          {{ item.title }}
+        </v-btn>
+         <v-btn
+              v-if="!this.$store.state.usuario"
+              depressed
+              color="#1b5e20"
+              class="hidden-xs-only mt-6"
+              text
+              to="/login"
+              ><v-icon>mdi-github</v-icon>Inicia Sesion
+              </v-btn
+            >
+            <v-btn
+              v-else
+              color="#1b5e20"
+              text
+              class="hidden-xs-only mt-6"
+              @click="salir()"
+              ><v-icon>mdi-github</v-icon> Salir</v-btn
+            >
+            <v-btn
+              v-if="!this.$store.state.usuario"
+              color="#1b5e20"
+              text
+              class="hidden-xs-only mt-6"
+              @click="registrar()"
+            ><v-icon>mdi-github</v-icon>
+              Registrate
+            </v-btn>
+        <!-- <v-menu>
         <template v-slot:activator="{ on: menu, attrs }">
           <v-tooltip bottom>
             <template v-slot:activator="{ on: tooltip }">
@@ -197,7 +217,8 @@
           </v-list-item>
         </v-list>
       </v-menu>   -->
-    </v-app-bar>
+      </v-app-bar>
+    </v-card>
     <!-- Sizes your content based upon application components -->
     <v-main>
       <v-alert border="bottom" colored-border type="warning" elevation="2">
@@ -213,7 +234,7 @@
           max-width="2400"
           max-height="2400"
           tile
-          v-for="([testimonio, imagen, autor, like, share], a) in testimonio"
+          v-for="([testimonio, imagen, autor, like, share], a) in testimonios"
           :key="a"
           class="col-lg-4 col-md-12 mb-4 mb-md-0"
         >
@@ -255,34 +276,32 @@
         varius tincidunt libero. Curabitur ligula sapien, tincidunt non, euismod
         vitae, posuere imperdiet, leo. Morbi nec metus.
       </v-alert>
-          <div id="team" class="container-fluid">
-      <div class="row justify-content-center mb-5" >
-        <div class="col mt-5" v-for="(item, index) of team" :key="index">
-      <div
-        class="card green darken-4 text-white"
-        :key="i"
-      >
-        <div class="d-flex justify-content-center p-2">
-          <img
-            v-bind:src="item.image"
-            width="190"
-            height="190"
-            alt="Estudiante"
-          />
-        </div>
-        <div class="card-body">
-          <h5 class="text-center">{{ item.codigo }}. {{ item.nombre }}</h5>
-          <p class="text-center">{{ item.descripcion }}</p>
-          <p class="text-center">{{ item.rol }}</p>
-        </div>
-        <div class="p-3 mb-2 yellow darken-4 text-dark">
-          <p class="text-center">¡El campo es de todos!</p>
+      <div id="team" class="container-fluid">
+        <div class="row justify-content-center mb-5">
+          <div class="col mt-5" v-for="(item, index) of team" :key="index">
+            <div class="card green darken-4 text-white" :key="index">
+              <div class="d-flex justify-content-center p-2">
+                <img
+                  v-bind:src="item.image"
+                  width="190"
+                  height="190"
+                  alt="Estudiante"
+                />
+              </div>
+              <div class="card-body">
+                <h5 class="text-center">
+                  {{ item.codigo }}. {{ item.nombre }}
+                </h5>
+                <p class="text-center">{{ item.descripcion }}</p>
+                <p class="text-center">{{ item.rol }}</p>
+              </div>
+              <div class="p-3 mb-2 yellow darken-4 text-dark">
+                <p class="text-center">¡El campo es de todos!</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      </div>
-      </div>
-    </div>
-      
 
       <!-- Provides the application the proper gutter -->
     </v-main>
@@ -297,8 +316,8 @@
       >
         <v-card-text>
           <v-btn
-            v-for="icon in icons"
-            :key="icon"
+            v-for="(icon, i) in icons"
+            :key="i"
             :onclick="icon.onclick"
             target="_blank"
             class="mx-4 white--text"
@@ -384,7 +403,14 @@
 <script>
 export default {
   data: () => ({
-    testimonio: [
+    sideNav: false,
+    menuItems: [
+      { icon: "mdi-github", title: "inicio", link: "/" },
+      { icon: "mdi-github", title: "Blog", link: "/blog" },
+      { icon: "mdi-github", title: "servicio", link: "/servicio" },
+      { icon: "mdi-github", title: "Tienda", link: "/tienda" },
+    ],
+    testimonios: [
       [
         "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
         require("@/assets/agriculture.png"),
@@ -407,28 +433,18 @@ export default {
         "12",
       ],
     ],
-    sideNav: false,
-    menuItems: [
-      { icon: "supervisor_account", title: "View Meetups", link: "/meetups" },
-      { icon: "room", title: "Organize Meetup", link: "/meetup/new" },
-      { icon: "person", title: "Profile", link: "/profile" },
-      { icon: "face", title: "Sign up", link: "/signup" },
-      { icon: "lock_open", title: "Sign in", link: "/signin" },
-    ],
     team: [
       {
         codigo: 1,
         nombre: "Julian Carranza",
-        descripcion:
-          "",
+        descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/maiz.jpg"),
       },
       {
         codigo: 2,
         nombre: "Julian David Montero",
-        descripcion:
-          "",
+        descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/maiz.jpg"),
       },
@@ -442,16 +458,14 @@ export default {
       {
         codigo: 4,
         nombre: "Santiago maragua",
-        descripcion:
-          "",
+        descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/maiz.jpg"),
       },
       {
         codigo: 5,
         nombre: "Jesus bermeo",
-        descripcion:
-          "",
+        descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/maiz.jpg"),
       },
@@ -521,6 +535,7 @@ export default {
     padless: false,
   }),
   methods: {
+    
     getUserDetails() {
       let user = localStorage.getItem("user");
       if (user) {
