@@ -1,92 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar app color="orange" dense dark>
-      <v-img
-        lazy-src="https://picsum.photos/id/11/10/6"
-        max-height="50"
-        max-width="50"
-        src="@/assets/TuDado.png"
-      ></v-img>
-      <v-toolbar-title class="font-weight-black"
-        ><span class="#051C9E--text">TuDado</span></v-toolbar-title
-      >
-
-      <v-spacer></v-spacer>
-
-      <v-menu>
-        <template v-slot:activator="{ on: menu, attrs }">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on: tooltip }">
-              <v-btn
-                color="indigo darken-4"
-                dark
-                v-bind="attrs"
-                v-on="{ ...tooltip, ...menu }"
-              >
-                <v-icon> mdi-microsoft-xbox-controller-menu </v-icon>
-              </v-btn>
-            </template>
-            <span>Menu</span>
-          </v-tooltip>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-btn
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="inicio()"
-            >
-              Inicio
-            </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="servicio()"
-            >
-              Servicios
-            </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="blog()"
-            >
-              Blog
-            </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn
-              v-if="!this.$store.state.usuario"
-              depressed
-              color="amber darken-1"
-              class="ml-2"
-              elevation="4"
-              @click="entrar()"
-              >Inicia Sesion</v-btn
-            >
-            <v-btn
-              v-else
-              depressed
-              color="amber darken-1"
-              class="ml-2"
-              elevation="4"
-              @click="salir()"
-              >Salir</v-btn
-            >
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-app-bar>
-    <main app>
+    
+    <main app class="mt-16">
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6 lg5 x14>
           <v-card>
@@ -234,75 +149,7 @@
         </v-flex>
       </v-layout>
     </main>
-    <v-footer dark padless class="d-flex justify-center mt-10">
-      <v-card flat tile class="indigo darken-4 white--text text-center">
-        <v-card-text>
-          <v-btn
-            v-for="icon in icons"
-            :key="icon"
-            class="mx-4 white--text"
-            icon
-            color="orange"
-          >
-            <v-icon size="24px">
-              {{ icon }}
-            </v-icon>
-          </v-btn>
-        </v-card-text>
-
-        <v-card-text class="white--text pt-0">
-          <div class="container p-4">
-            <!--Grid row-->
-            <div class="row">
-              <!--Grid column-->
-              <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <v-img
-                  lazy-src="https://picsum.photos/id/11/10/6"
-                  max-height="50"
-                  max-width="50"
-                  src="@/assets/TuDado.png"
-                ></v-img>
-                <h5 class="text-uppercase">TuDado</h5>
-
-                <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iste
-                  atque ea quis molestias. Fugiat pariatur maxime quis culpa
-                  corporis vitae repudiandae aliquam voluptatem veniam, est
-                  atque cumque eum delectus sint!
-                </p>
-              </div>
-              <!--Grid column-->
-
-              <!--Grid column-->
-              <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-                <v-img
-                  lazy-src="https://picsum.photos/id/11/10/6"
-                  max-height="50"
-                  max-width="50"
-                  src="@/assets/TuDado.png"
-                ></v-img>
-                <h5 class="text-uppercase">Contacto</h5>
-
-                <p>Nmeros lugares correos</p>
-              </div>
-              <!--Grid column-->
-            </div>
-            <!--Grid row-->
-          </div>
-        </v-card-text>
-
-        <v-divider></v-divider>
-
-        <v-card-text class="white--text">
-          {{ new Date().getFullYear() }} — <strong>TuDado</strong><br />
-          <a
-            href="https://github.com/JulianMGonzalez/semana-5-69"
-            class="btn btn-success"
-            >GitHub</a
-          >
-        </v-card-text>
-      </v-card>
-    </v-footer>
+    
   </v-app>
 </template>
 
@@ -362,7 +209,6 @@ export default {
     confirmation: "",
     checkbox: null,
     dialog: null,
-    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
   }),
 
   methods: {
@@ -400,23 +246,7 @@ export default {
       this.confirmation = "";
       this.checkbox = null;
       this.$refs.observer.reset();
-    },
-    inicio() {
-      this.$router.push({ name: "Home" });
-    },
-    entrar() {
-      this.$router.push({ name: "Login" });
-    },
-    servicio() {
-      this.$router.push({ name: "Servicio" });
-    },
-    blog() {
-      this.$router.push({ name: "Blog" });
-    },
-    salir() {
-      this.$store.dispatch("salir");
-      this.$router.push({ name: "Login" });
-    },
+    }
   },
 };
 </script>

@@ -1,7 +1,5 @@
 <template>
-    <!-- App.vue -->
-
-<v-app>
+    <v-app>
 
 
 
@@ -14,13 +12,12 @@
       <!-- If using vue-router -->
       <router-view></router-view>
     </v-container>
-    <h1>crear tabla e implementar</h1>
+    <h1>crear tienda julian</h1>
   </v-main>
 
 
 </v-app>
 </template>
-
 <script>
 export default {
     

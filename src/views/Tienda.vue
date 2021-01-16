@@ -1,30 +1,27 @@
 <template>
-  <div>
-    <menu-component></menu-component>
+<div>
+  <menu-component></menu-component>
     <navigation-drawer></navigation-drawer>
-    <HelloWorld />
-    <footer-component></footer-component>
-  </div>
-  
+  <tienda-component></tienda-component>
+  <footer-component></footer-component>
+
+</div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/public/HelloWorld.vue'
+import TiendaComponent from '../components/public/TiendaComponent'
 import FooterComponent from '../components/shared/FooterComponent.vue'
 import MenuComponent from '../components/shared/MenuComponent.vue'
 import NavigationDrawer from '../components/shared/NavigationDrawer.vue'
 
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld,
+  components:{
+    TiendaComponent,
     FooterComponent,
     MenuComponent,
     NavigationDrawer
   }
+
+  
 }
 </script>
-
-    Menu,
-    NavigationDrawerComponent

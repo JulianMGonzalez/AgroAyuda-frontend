@@ -19,9 +19,9 @@
           lazy-src="https://picsum.photos/id/11/10/6"
           max-height="50"
           max-width="50"
-          src="@/assets/TuDado.png"
+          src="@/assets/LOGO (2).png"
       ></v-img>
-      <v-toolbar-title>TuDado</v-toolbar-title>
+      <v-toolbar-title>AgroAyuda</v-toolbar-title>
       <v-spacer></v-spacer>
 
       <v-btn 
