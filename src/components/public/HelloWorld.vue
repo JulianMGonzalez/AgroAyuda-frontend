@@ -340,6 +340,7 @@
 <script>
 export default {
   data: () => ({
+    padless: false,
     equipo: [
       [
         require("@/assets/frutas.png"),

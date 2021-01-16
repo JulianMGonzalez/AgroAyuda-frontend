@@ -57,106 +57,128 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar app color="white" dense dark prominent>
-      <v-img
-        lazy-src="https://picsum.photos/id/11/10/6"
-        max-height="98"
-        max-width="98"
-        src="@/assets/LOGO (2).png"
-      ></v-img>
-      <v-spacer></v-spacer>
+    <v-card>
+      <v-app-bar app color="white" dense dark prominent hide-on-scroll>
+        <v-img
+          lazy-src="https://picsum.photos/id/11/10/6"
+          max-height="98"
+          max-width="98"
+          src="@/assets/LOGO (2).png"
+        ></v-img>
+        <v-img
+          lazy-src="https://picsum.photos/id/11/10/6"
+          max-height="150"
+          max-width="150"
+           class="mt-8 hidden-xs-only"
+          src="@/assets/agroayuda.png"
+        ></v-img>
 
-      <v-menu>
-        <template v-slot:activator="{ on: menu, attrs }">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on: tooltip }">
-              <v-btn
-                color="#1b5e20 "
-                class="mt-7"
-                dark
-                v-bind="attrs"
-                v-on="{ ...tooltip, ...menu }"
-              >
-                <v-icon> mdi-microsoft-xbox-controller-menu </v-icon>
-              </v-btn>
-            </template>
-            <span>Menu</span>
-          </v-tooltip>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-btn
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="servicio()"
+        <v-spacer></v-spacer>
+        <v-app-bar-nav-icon 
+          @click.stop="sideNav = !sideNav"
+          class="hidden-sm-and-up"
+          ><v-icon color="green" class="mt-10" large>mdi-microsoft-xbox-controller-menu</v-icon></v-app-bar-nav-icon
+        >
+        <v-navigation-drawer right app v-model="sideNav" color="green darken-4">
+          <v-list>
+            <v-list-item-group >
+            <v-list-item
+            v-for="(item, i) in menuItems"
+              :key="i"
+              :to= "{path: item.link}"
             >
-              Servicios
-            </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="blog()"
+              <v-list-item-action>
+                <v-icon>{{ item.icon }}</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>{{ item.title }}</v-list-item-content>
+            </v-list-item>
+
+            <v-list-item
+              v-if="!this.$store.state.usuario"
+              to="/login"
             >
-              Blog
-            </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn
+              <v-list-item-action>
+                <v-icon>mdi-github</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>Inicia Sesion</v-list-item-content>
+            </v-list-item>
+
+            <v-list-item
+             v-else
+             @click="salir()"
+              
+            >
+              <v-list-item-action>
+                <v-icon>mdi-github</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>Salir</v-list-item-content>
+            </v-list-item>
+            </v-list-item-group>
+          </v-list>
+
+          <v-list-item
+              v-if="!this.$store.state.usuario"
+              to="/registrar"
+            >
+              <v-list-item-action>
+                <v-icon>mdi-github</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>Registrate</v-list-item-content>
+            </v-list-item>
+        </v-navigation-drawer>
+
+        <v-btn
+          color="#1b5e20"
+          text
+          class="hidden-xs-only mt-6"
+          v-for="(item, i) in menuItems"
+          :key="i"
+          :to="item.link"
+        >
+          <v-icon left dark>{{ item.icon }}</v-icon>
+          {{ item.title }}
+        </v-btn>
+         <v-btn
               v-if="!this.$store.state.usuario"
               depressed
-              color="amber darken-1"
-              class="ml-2"
-              elevation="4"
-              @click="entrar()"
-              >Inicia Sesion</v-btn
+              color="#1b5e20"
+              class="hidden-xs-only mt-6"
+              text
+              to="/login"
+              ><v-icon>mdi-github</v-icon>Inicia Sesion
+              </v-btn
             >
             <v-btn
               v-else
-              depressed
-              color="amber darken-1"
-              class="ml-2"
-              elevation="4"
+              color="#1b5e20"
+              text
+              class="hidden-xs-only mt-6"
               @click="salir()"
-              >Salir</v-btn
+              ><v-icon>mdi-github</v-icon> Salir</v-btn
             >
-          </v-list-item>
-          <v-list-item>
             <v-btn
               v-if="!this.$store.state.usuario"
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="registrar()"
-            >
+              color="#1b5e20"
+              text
+              class="hidden-xs-only mt-6"
+              to="/registrar"
+            ><v-icon>mdi-github</v-icon>
               Registrate
             </v-btn>
-            <v-btn
-              v-else
-              loading
-              class="ml-2 text-white"
-              color="indigo darken-4"
-            ></v-btn>
-          </v-list-item>
-        </v-list>
-      </v-menu>
-    </v-app-bar>
+        
+      </v-app-bar>
+    </v-card>
 
     <!-- Sizes your content based upon application components -->
-    <v-main>
+    <v-main class="main">
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
       </v-container>
-      <h1 class="d-flex justify-content-center">Servicios</h1>
+      
       <v-sheet class="mx-auto" elevation="8" max-width="1200">
+        <h1 class="d-flex justify-content-center"><strong>Servicios</strong></h1>
         <v-slide-group v-model="model" class="pa-4" show-arrows center-active>
           <v-slide-item
             v-for="([img, resumen], i) in servicios"
@@ -164,17 +186,17 @@
             v-slot="{ active, toggle }"
           >
             <v-card
-              :color="active ? 'success' : 'grey lighten-1'"
+              :color="active ? '#5e2129' : 'grey lighten-1'"
               class="ma-4"
-              height="250"
-              width="325"
+              height="700"
+              width="500"
               @click="toggle"
             >
               <v-img
                 v-if="!active"
                 :src="img"
-                max-height="250"
-                max-width="325"
+                max-height="700"
+                max-width="500"
               ></v-img>
               <v-row class="fill-height" align="center" justify="center">
                 <v-scale-transition>
@@ -201,7 +223,8 @@
               <v-btn color="green" class="mx-4 white--text"><v-icon size="24px">
               mdi-storefront-outline
             </v-icon>Tienda</v-btn><br>
-            <p>hola</p>
+            <v-divider></v-divider>
+            <p>Lo mejor es AgroAyuda</p>
             
               
             </v-card>
@@ -210,20 +233,28 @@
       </v-sheet>
     </v-main>
 
-    <v-footer v-bind="localAttrs" :padless="padless">
-      <v-card flat tile class="text-center" color="#5e2129">
+    <v-footer v-bind="localAttrs" :padless="padless" class="mt-10">
+      <v-card
+        max-height="2400"
+        max-width="2400"
+        flat
+        tile
+        class="text-center"
+        color="#5e2129"
+      >
         <v-card-text>
           <v-btn
-            v-for="icon in icons"
-            :key="icon"
+            v-for="(icon, i) in icons"
+            :key="i"
+            :onclick="icon.onclick"
+            target="_blank"
             class="mx-4 white--text"
             icon
             color="white"
           >
             <v-icon size="24px">
-              {{ icon }}
+              {{ icon.p }}
             </v-icon>
-             
           </v-btn>
         </v-card-text>
         <v-card-text class="white--text pt-0">
@@ -234,9 +265,15 @@
               <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
                 <h5 class="text-uppercase"><b>Agroayuda</b></h5>
 
-                <br/>
+                <br />
                 <p>
-                  <font size="4"> Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque eum veritatis debitis sit, recusandae modi! Obcaecati praesentium eaque qui sapiente exercitationem, eligendi ipsum, perspiciatis delectus adipisci, ducimus ratione consequuntur voluptatum.</font>
+                  <font size="4">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    Cumque eum veritatis debitis sit, recusandae modi! Obcaecati
+                    praesentium eaque qui sapiente exercitationem, eligendi
+                    ipsum, perspiciatis delectus adipisci, ducimus ratione
+                    consequuntur voluptatum.</font
+                  >
                 </p>
               </div>
               <div class="col-lg-2 d-flex justify-content-center">
@@ -250,7 +287,7 @@
               <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
                 <v-btn
                   v-for="(item, i) in links"
-                  :onclick= "item.onclick"
+                  :onclick="item.onclick"
                   :key="i"
                   color="white"
                   text
@@ -259,7 +296,16 @@
                 >
                   {{ item.p }}
                 </v-btn>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d501058.6514427606!2d-75.780221!3d2.074216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e24fd4a965ba00b%3A0x2acff39e4ee259aa!2sResina%2C%20Guadalupe%2C%20Huila!5e1!3m2!1ses-419!2sco!4v1610416486886!5m2!1ses-419!2sco" width="300" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d501058.6514427606!2d-75.780221!3d2.074216!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e24fd4a965ba00b%3A0x2acff39e4ee259aa!2sResina%2C%20Guadalupe%2C%20Huila!5e1!3m2!1ses-419!2sco!4v1610416486886!5m2!1ses-419!2sco"
+                  width="300"
+                  height="300"
+                  frameborder="0"
+                  style="border: 0"
+                  allowfullscreen=""
+                  aria-hidden="false"
+                  tabindex="0"
+                ></iframe>
                 <!-- <h5 class="text-uppercase"><b>CONTACTOS</b></h5>
                   <br>
                   <p>
@@ -276,11 +322,6 @@
 
         <v-card-text class="white--text">
           {{ new Date().getFullYear() }} — <strong>AgroAyuda</strong><br />
-          <a
-            href="https://github.com/JulianMGonzalez/semana-5-69"
-            class="btn btn-success"
-            >GitHub</a
-          >
         </v-card-text>
       </v-card>
     </v-footer>
@@ -290,20 +331,72 @@
 <script>
 export default {
   data: () => ({
+    padless: false,
     drawer: true,
     mini: true,
     model: null,
-    icons: ["mdi-facebook", "mdi-twitter", "mdi-linkedin", "mdi-instagram"],
     servicios: [
       [
-        "https://cdn.pixabay.com/photo/2016/07/07/16/46/roll-the-dice-1502706_960_720.jpg",
+        require("@/assets/servicios1.jpg"),
       ],
-      ["https://cdn.vuetifyjs.com/images/carousel/sky.jpg"],
       [
-        "https://cdn.pixabay.com/photo/2016/02/19/11/23/women-1209678_960_720.jpg",
-        
+        require("@/assets/servicios2.jpg"),
       ],
-      [require("@/assets/TuDado.png")],
+      [
+        require("@/assets/servicios3.jpg"),
+      ],
+      [
+        require("@/assets/servicios4.jpg")
+      ],
+    ],
+    sideNav: false,
+    menuItems: [
+      { icon: "mdi-github", title: "inicio", link: "/" },
+      { icon: "mdi-github", title: "Blog", link: "/blog" },
+      { icon: "mdi-github", title: "servicio", link: "/servicio" },
+      { icon: "mdi-github", title: "Tienda", link: "/tienda" },
+    ],
+    links: [
+      {
+        p: "inicio",
+        onclick: "location.href='#inicio'",
+      },
+      {
+        p: "Teléfono",
+        // onclick: "location.href='https://wa.me/573232477487'",
+        onclick: "window.open('https://wa.me/573232477487', '_blank')",
+      },
+      {
+        p: "Gmail",
+        onclick: "location.href='mailto:tuagroayuda@gmail.com'",
+      },
+      {
+        p: "nuestro Equipo",
+        onclick: "",
+      },
+      {
+        p: "Soporte Técnico",
+        onclick: "",
+      },
+    ],
+    icons: [
+      {
+        p: "mdi-facebook",
+        onclick: "window.open('https://www.facebook.com/', '_blank')",
+      },
+      {
+        p: "mdi-instagram",
+        onclick: "window.open('https://www.instagram.com/', '_blank')",
+      },
+      {
+        p: "mdi-twitter",
+        onclick: "window.open('https://www.twitter.com/', '_blank')",
+      },
+      {
+        p: "mdi-github",
+        onclick:
+          "window.open('https://github.com/julca02/backendagroayuda', '_blank')",
+      },
     ],
   }),
   methods: {
@@ -347,11 +440,27 @@ export default {
   created() {
     this.getUserDetails();
   },
+  computed: {
+    localAttrs() {
+      const attrs = {};
+      if (this.variant === "default") {
+        attrs.absolute = false;
+        attrs.fixed = false;
+      } else {
+        attrs[this.variant] = true;
+      }
+      return attrs;
+    },
+  },
 };
 </script>
 
 <style scoped>
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
+.main{
+  background: url(fondo.png);
 }
 </style>
