@@ -455,12 +455,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   
 }
-.main{
-  background: url(fondo.png);
+.main {
+  background: url("fondo.png");
 }
 </style>
