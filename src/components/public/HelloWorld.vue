@@ -1,6 +1,7 @@
 <template>
   <!-- App.vue -->
   <v-app>
+    <v-system-bar app color="#5e2129"> </v-system-bar>
     <section id="inicio">
       <v-banner app elevation="7" class="mt-16">
         <v-carousel cycle show-arrows-on-hover hide-delimiters height="500">
@@ -81,62 +82,54 @@
           lazy-src="https://picsum.photos/id/11/10/6"
           max-height="150"
           max-width="150"
-           class="mt-8 hidden-xs-only"
+          class="mt-8 hidden-xs-only"
           src="@/assets/agroayuda.png"
         ></v-img>
 
         <v-spacer></v-spacer>
-        <v-app-bar-nav-icon 
+        <v-app-bar-nav-icon
           @click.stop="sideNav = !sideNav"
           class="hidden-sm-and-up"
-          ><v-icon color="green" class="mt-10" large>mdi-microsoft-xbox-controller-menu</v-icon></v-app-bar-nav-icon
+          ><v-icon color="green" class="mt-10" large
+            >mdi-microsoft-xbox-controller-menu</v-icon
+          ></v-app-bar-nav-icon
         >
         <v-navigation-drawer right app v-model="sideNav" color="green darken-4">
           <v-list>
-            <v-list-item-group >
-            <v-list-item
-            v-for="(item, i) in menuItems"
-              :key="i"
-              :to= "{path: item.link}"
-            >
-              <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>{{ item.title }}</v-list-item-content>
-            </v-list-item>
+            <v-list-item-group>
+              <v-list-item
+                v-for="(item, i) in menuItems"
+                :key="i"
+                :to="{ path: item.link }"
+              >
+                <v-list-item-action>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>{{ item.title }}</v-list-item-content>
+              </v-list-item>
 
-            <v-list-item
-              v-if="!this.$store.state.usuario"
-              to="/login"
-            >
-              <v-list-item-action>
-                <v-icon>mdi-github</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>Inicia Sesion</v-list-item-content>
-            </v-list-item>
+              <v-list-item v-if="!this.$store.state.usuario" to="/login">
+                <v-list-item-action>
+                  <v-icon>mdi-github</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>Inicia Sesion</v-list-item-content>
+              </v-list-item>
 
-            <v-list-item
-             v-else
-             @click="salir()"
-              
-            >
-              <v-list-item-action>
-                <v-icon>mdi-github</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>Salir</v-list-item-content>
-            </v-list-item>
+              <v-list-item v-else @click="salir()">
+                <v-list-item-action>
+                  <v-icon>mdi-github</v-icon>
+                </v-list-item-action>
+                <v-list-item-content>Salir</v-list-item-content>
+              </v-list-item>
             </v-list-item-group>
           </v-list>
 
-          <v-list-item
-              v-if="!this.$store.state.usuario"
-              to="/registrar"
-            >
-              <v-list-item-action>
-                <v-icon>mdi-github</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>Registrate</v-list-item-content>
-            </v-list-item>
+          <v-list-item v-if="!this.$store.state.usuario" to="/registrar">
+            <v-list-item-action>
+              <v-icon>mdi-github</v-icon>
+            </v-list-item-action>
+            <v-list-item-content>Registrate</v-list-item-content>
+          </v-list-item>
         </v-navigation-drawer>
 
         <v-btn
@@ -150,65 +143,64 @@
           <v-icon left dark>{{ item.icon }}</v-icon>
           {{ item.title }}
         </v-btn>
-         <v-btn
-              v-if="!this.$store.state.usuario"
-              depressed
-              color="#1b5e20"
-              class="hidden-xs-only mt-6"
-              text
-              to="/login"
-              ><v-icon>mdi-github</v-icon>Inicia Sesion
-              </v-btn
-            >
-            <v-btn
-              v-else
-              color="#1b5e20"
-              text
-              class="hidden-xs-only mt-6"
-              @click="salir()"
-              ><v-icon>mdi-github</v-icon> Salir</v-btn
-            >
-            <v-btn
-              v-if="!this.$store.state.usuario"
-              color="#1b5e20"
-              text
-              class="hidden-xs-only mt-6"
-              to="/registrar"
-            ><v-icon>mdi-github</v-icon>
-              Registrate
-            </v-btn>
-        
+        <v-btn
+          v-if="!this.$store.state.usuario"
+          depressed
+          color="#1b5e20"
+          class="hidden-xs-only mt-6"
+          text
+          to="/login"
+          ><v-icon>mdi-github</v-icon>Inicia Sesion
+        </v-btn>
+        <v-btn
+          v-else
+          color="#1b5e20"
+          text
+          class="hidden-xs-only mt-6"
+          @click="salir()"
+          ><v-icon>mdi-github</v-icon> Salir</v-btn
+        >
+        <v-btn
+          v-if="!this.$store.state.usuario"
+          color="#1b5e20"
+          text
+          class="hidden-xs-only mt-6"
+          to="/registrar"
+          ><v-icon>mdi-github</v-icon>
+          Registrate
+        </v-btn>
       </v-app-bar>
     </v-card>
     <!-- Sizes your content based upon application components -->
-    <section id="indicadores">
-      <p>indicadores</p>
 
+    <v-main class="main">
+      <section id="resumen">
+        <v-sheet class="mx-auto" elevation="8" max-width="1200">
+          <v-card>
+            <v-alert border="top" elevation="9">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, nostrum atque saepe temporibus fugit cupiditate obcaecati expedita sed repudiandae, voluptas veritatis animi earum deleniti repellendus officia ratione perferendis corporis fugiat?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum accusantium, quia incidunt, fugit accusamus veniam exercitationem voluptatibus dolor libero necessitatibus, quaerat sapiente? Quidem iusto distinctio error officia. Voluptate, quos nemo?
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, nostrum atque saepe temporibus fugit cupiditate obcaecati expedita sed repudiandae, voluptas veritatis animi earum deleniti repellendus officia ratione perferendis corporis fugiat?
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum accusantium, quia incidunt, fugit accusamus veniam exercitationem voluptatibus dolor libero necessitatibus, quaerat sapiente? Quidem iusto distinctio error officia. Voluptate, quos nemo?
+            </v-alert>
+          </v-card>
+        </v-sheet>
+      </section>
 
-    </section>
-    
-    <section id="resumen">
-      <v-alert border="top" colored-border type="info" elevation="9">
-        Vestibulum ullamcorper mauris at ligula. Nam pretium turpis et arcu. Ut
-        varius tincidunt libero. Curabitur ligula sapien, tincidunt non, euismod
-        vitae, posuere imperdiet, leo. Morbi nec metus.
-      </v-alert>
-    </section>
-    
-    <v-main>
-      
-      <v-row>
-        <v-spacer></v-spacer>
-        <v-card
-          max-width="2400"
-          max-height="2400"
-          tile
-          v-for="([testimonio, imagen, autor, like, share], a) in testimonios"
-          :key="a"
-          class="col-lg-6 col-md-12 mb-4 mb-md-0"
-        >
-          <!-- cambiar a testimonios y pnerlo bonito  -->
-          <v-card class="mx-auto" color="#5e2129" dark>
+      <section id="indicadores">
+        <v-sheet class="mx-auto" elevation="8" max-width="1200">
+          <v-card>
+            <h1 class="d-flex justify-content-center">indicadores</h1>
+            <p>no encuentro una api buena</p>
+          </v-card>
+        </v-sheet>
+      </section>
+      <div id="team" class="container-fluid">
+        <div class="row justify-content-center mb-5">
+          <div class="col mt-5" v-for="([testimonio, imagen, autor, like, share], a) in testimonios"
+          :key="a">
+          <v-card class="ml-5 mr-5">
+            <v-card class="mx-auto" color="#5e2129" dark>
             <v-card-title>
               <v-icon large left> mdi-twitter </v-icon>
               <span class="title font-weight-light">Twitter</span>
@@ -239,8 +231,11 @@
             </v-card-actions>
           </v-card>
         </v-card>
-      </v-row>
+          </div>
+        </div>
+      </div>
       
+
       <div id="team" class="container-fluid">
         <div class="row justify-content-center mb-5">
           <div class="col mt-5" v-for="(item, index) of team" :key="index">
@@ -366,8 +361,7 @@
 </template>
 
 <script>
-import axios from 'axios';
-
+import axios from "axios";
 
 export default {
   data: () => ({
@@ -393,7 +387,6 @@ export default {
         "4",
         "5",
       ],
-      
     ],
     team: [
       {
@@ -498,7 +491,6 @@ export default {
     news: null,
   }),
   methods: {
-    
     getUserDetails() {
       let user = localStorage.getItem("user");
       if (user) {
@@ -561,16 +553,18 @@ export default {
     },
   },
   mounted() {
-  axios.get('')
-  .then(response => {
-    (this.news = response.data)
-      console.log(this.news)
-    })
-  }
-}
+    axios.get("").then((response) => {
+      this.news = response.data;
+      console.log(this.news);
+    });
+  },
+};
 </script>
 <style scoped>
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.main {
+  background: url("/assets/fondo.png");
 }
 </style>
