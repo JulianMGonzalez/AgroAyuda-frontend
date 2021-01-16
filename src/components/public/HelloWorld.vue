@@ -388,6 +388,38 @@ export default {
         "5",
       ],
     ],
+    padless: false,
+    equipo: [
+      [
+        require("@/assets/frutas.png"),
+        "Julian David Montero Gonzalez",
+        "Desarrollador Web"
+      ],
+      [
+        require("@/assets/maiz.jpg"),
+        "Julian Carranza Capera",
+        "Aprendíz"
+      ],
+      [
+        require("@/assets/frutas.png"),
+        "Jesus David Bermeo Quimbaya",
+        "Ad empresas"
+      ],
+      [
+        "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
+        require("@/assets/agriculture.png"),
+        "Juan Pablo",
+        "3",
+        "10",
+      ],
+      [
+        "100% recomendado, la verdad ayuda mucho a mis ventas; ahora todos mis cultivos se venden y no tengo perdida de ellos.",
+        require("@/assets/hombre.png"),
+        "Miguel Rivera",
+        "4",
+        "5",
+      ],
+    ],
     team: [
       {
         codigo: 1,
