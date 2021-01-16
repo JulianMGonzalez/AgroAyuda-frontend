@@ -86,17 +86,50 @@
         >
         <v-navigation-drawer right app v-model="sideNav" color="green darken-4">
           <v-list>
+            <v-list-item-group >
             <v-list-item
-              v-for="item in menuItems"
-              :key="item.title"
-              :to="item.link"
+            v-for="(item, i) in menuItems"
+              :key="i"
+              :to= "{path: item.link}"
             >
               <v-list-item-action>
                 <v-icon>{{ item.icon }}</v-icon>
               </v-list-item-action>
               <v-list-item-content>{{ item.title }}</v-list-item-content>
             </v-list-item>
+
+            <v-list-item
+              v-if="!this.$store.state.usuario"
+              to="/login"
+            >
+              <v-list-item-action>
+                <v-icon>mdi-github</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>Inicia Sesion</v-list-item-content>
+            </v-list-item>
+
+            <v-list-item
+             v-else
+             @click="salir()"
+              
+            >
+              <v-list-item-action>
+                <v-icon>mdi-github</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>Salir</v-list-item-content>
+            </v-list-item>
+            </v-list-item-group>
           </v-list>
+
+          <v-list-item
+              v-if="!this.$store.state.usuario"
+              to="/registrar"
+            >
+              <v-list-item-action>
+                <v-icon>mdi-github</v-icon>
+              </v-list-item-action>
+              <v-list-item-content>Registrate</v-list-item-content>
+            </v-list-item>
         </v-navigation-drawer>
 
         <v-btn
@@ -133,7 +166,7 @@
               color="#1b5e20"
               text
               class="hidden-xs-only mt-6"
-              @click="registrar()"
+              to="/registrar"
             ><v-icon>mdi-github</v-icon>
               Registrate
             </v-btn>
