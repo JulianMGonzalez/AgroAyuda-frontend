@@ -21,3 +21,8 @@ export default {
   }),
 };
 </script>
+<style>
+.main {
+  background: url("/fondo.png");
+}
+</style>
