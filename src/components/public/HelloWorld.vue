@@ -77,6 +77,13 @@
           max-width="98"
           src="@/assets/LOGO (2).png"
         ></v-img>
+        <v-img
+          lazy-src="https://picsum.photos/id/11/10/6"
+          max-height="150"
+          max-width="150"
+           class="mt-8 hidden-xs-only"
+          src="@/assets/agroayuda.png"
+        ></v-img>
 
         <v-spacer></v-spacer>
         <v-app-bar-nav-icon 
@@ -170,106 +177,35 @@
             ><v-icon>mdi-github</v-icon>
               Registrate
             </v-btn>
-        <!-- <v-menu>
-        <template v-slot:activator="{ on: menu, attrs }">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on: tooltip }">
-              <v-btn
-                color="#1b5e20 "
-                class="mt-7"
-                dark
-                v-bind="attrs"
-                v-on="{ ...tooltip, ...menu }"
-              >
-                <v-icon> mdi-microsoft-xbox-controller-menu </v-icon>
-              </v-btn>
-            </template>
-            <span>Menu</span>
-          </v-tooltip>
-        </template>
-        <v-list>
-          <v-list-item>
-            <v-btn
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="servicio()"
-            >
-              Servicios
-            </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="blog()"
-            >
-              Blog
-            </v-btn>
-          </v-list-item>
-          <v-list-item>
-            <v-btn
-              v-if="!this.$store.state.usuario"
-              depressed
-              color="amber darken-1"
-              class="ml-2"
-              elevation="4"
-              @click="entrar()"
-              >Inicia Sesion</v-btn
-            >
-            <v-btn
-              v-else
-              depressed
-              color="amber darken-1"
-              class="ml-2"
-              elevation="4"
-              @click="salir()"
-              >Salir</v-btn
-            >
-          </v-list-item>
-          <v-list-item>
-            <v-btn
-              v-if="!this.$store.state.usuario"
-              depressed
-              color="indigo darken-4"
-              class="ml-2 text-white"
-              elevation="4"
-              @click="registrar()"
-            >
-              Registrate
-            </v-btn>
-            <v-btn
-              v-else
-              loading
-              class="ml-2 text-white"
-              color="indigo darken-4"
-            ></v-btn>
-          </v-list-item>
-        </v-list>
-      </v-menu>   -->
+        
       </v-app-bar>
     </v-card>
     <!-- Sizes your content based upon application components -->
-    <v-main>
-      <v-alert border="bottom" colored-border type="warning" elevation="2">
-        Nos Centramos en el sector cultural. Si bien estas competencias son
-        innatas, todos tenemos la capacidad de poder desarrollarlas. Por ello,
-        estos cursos son muy solicitados, ya que los profesionales necesitan
-        diferenciarse y destacarse dentro del competitivo mercado actual, tanto
-        durante la búsqueda de una oportunidad laboral como en su permanencia y
-        crecimiento dentro de una compañía
+    <section id="indicadores">
+      <p>indicadores</p>
+
+
+    </section>
+    
+    <section id="resumen">
+      <v-alert border="top" colored-border type="info" elevation="9">
+        Vestibulum ullamcorper mauris at ligula. Nam pretium turpis et arcu. Ut
+        varius tincidunt libero. Curabitur ligula sapien, tincidunt non, euismod
+        vitae, posuere imperdiet, leo. Morbi nec metus.
       </v-alert>
+    </section>
+    
+    <v-main>
+      
       <v-row>
+        <v-spacer></v-spacer>
         <v-card
           max-width="2400"
           max-height="2400"
           tile
           v-for="([testimonio, imagen, autor, like, share], a) in testimonios"
           :key="a"
-          class="col-lg-4 col-md-12 mb-4 mb-md-0"
+          class="col-lg-6 col-md-12 mb-4 mb-md-0"
         >
           <!-- cambiar a testimonios y pnerlo bonito  -->
           <v-card class="mx-auto" color="#5e2129" dark>
@@ -304,11 +240,7 @@
           </v-card>
         </v-card>
       </v-row>
-      <v-alert border="top" colored-border type="info" elevation="9">
-        Vestibulum ullamcorper mauris at ligula. Nam pretium turpis et arcu. Ut
-        varius tincidunt libero. Curabitur ligula sapien, tincidunt non, euismod
-        vitae, posuere imperdiet, leo. Morbi nec metus.
-      </v-alert>
+      
       <div id="team" class="container-fluid">
         <div class="row justify-content-center mb-5">
           <div class="col mt-5" v-for="(item, index) of team" :key="index">
@@ -434,6 +366,9 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+
 export default {
   data: () => ({
     sideNav: false,
@@ -458,13 +393,7 @@ export default {
         "4",
         "5",
       ],
-      [
-        "Gracias a los desarrolladores y a los agricultores por pensar en nosotros, las personas de la ciudad la cual queremos aprender sobre el campo.",
-        require("@/assets/sr.png"),
-        "Julio Gomez",
-        "6",
-        "12",
-      ],
+      
     ],
     team: [
       {
@@ -566,6 +495,7 @@ export default {
     ],
     mini: true,
     padless: false,
+    news: null,
   }),
   methods: {
     
@@ -630,11 +560,17 @@ export default {
       return attrs;
     },
   },
-};
+  mounted() {
+  axios.get('')
+  .then(response => {
+    (this.news = response.data)
+      console.log(this.news)
+    })
+  }
+}
 </script>
 <style scoped>
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 </style>
-
