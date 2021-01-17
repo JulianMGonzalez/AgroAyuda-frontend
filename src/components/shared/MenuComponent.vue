@@ -1,5 +1,40 @@
 <template>
   <v-card>
+    <v-navigation-drawer temporary v-model="sideNav" app right>
+      <v-list>
+        <v-list-item
+          v-for="item in menuItems"
+          :key="item.title"
+          :to="item.link"
+          color="#1b5e20"
+        >
+          <v-list-item-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>{{ item.title }}</v-list-item-content>
+        </v-list-item>
+        <v-list-item to="/registrar" v-if="!this.$store.state.usuario" color="#1b5e20">
+          <v-list-item-action>
+            <v-icon>mdi-github</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>registrate</v-list-item-content>
+        </v-list-item>
+
+        <v-list-item to="/login" v-if="!this.$store.state.usuario" color="#1b5e20">
+          <v-list-item-action>
+            <v-icon>mdi-github</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>iniciar sesion</v-list-item-content>
+        </v-list-item>
+
+        <v-list-item @click="salir()" v-else color="#1b5e20">
+          <v-list-item-action>
+            <v-icon>mdi-github</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>salir</v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
     <v-app-bar app color="white" dense dark prominent hide-on-scroll>
       <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
@@ -23,43 +58,6 @@
           >mdi-microsoft-xbox-controller-menu</v-icon
         ></v-app-bar-nav-icon
       >
-      <v-navigation-drawer right app v-model="sideNav" color="green darken-4">
-        <v-list>
-          <v-list-item-group>
-            <v-list-item
-              v-for="(item, i) in menuItems"
-              :key="i"
-              :to="{ path: item.link }"
-            >
-              <v-list-item-action>
-                <v-icon>{{ item.icon }}</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>{{ item.title }}</v-list-item-content>
-            </v-list-item>
-
-            <v-list-item v-if="!this.$store.state.usuario" to="/login">
-              <v-list-item-action>
-                <v-icon>mdi-github</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>Inicia Sesion</v-list-item-content>
-            </v-list-item>
-
-            <v-list-item v-else @click="salir()">
-              <v-list-item-action>
-                <v-icon>mdi-github</v-icon>
-              </v-list-item-action>
-              <v-list-item-content>Salir</v-list-item-content>
-            </v-list-item>
-          </v-list-item-group>
-        </v-list>
-
-        <v-list-item v-if="!this.$store.state.usuario" to="/registrar">
-          <v-list-item-action>
-            <v-icon>mdi-github</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>Registrate</v-list-item-content>
-        </v-list-item>
-      </v-navigation-drawer>
 
       <v-btn
         color="#1b5e20"
@@ -116,6 +114,10 @@ export default {
     salir() {
       this.$store.dispatch("salir");
       this.$router.push({ name: "Login" });
-    },}
+    },
+    inicio() {
+      this.$router.push({ name: "Home" });
+    },
+  },
 };
 </script>
