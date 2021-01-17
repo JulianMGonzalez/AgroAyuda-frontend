@@ -206,13 +206,7 @@ export default {
       this.onboarding =
         this.onboarding - 1 < 0 ? this.length - 1 : this.onboarding - 1;
     },
-  },
-  created() {
-    this.getUserDetails();
-  },
-  mounted() {
-    
-  },
+  }
 };
 </script>
 <style >
