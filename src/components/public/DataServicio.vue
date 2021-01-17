@@ -1,13 +1,13 @@
 <template>
  <v-app>
     <!-- Sizes your content based upon application components -->
+    <section id="inicio">
     <v-main class="main">
       <!-- Provides the application the proper gutter -->
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
       </v-container>
-      
       <v-sheet class="mx-auto" elevation="8" max-width="1200">
         <h1 class="d-flex justify-content-center"><strong>Servicios</strong></h1>
         <v-slide-group v-model="model" class="pa-4" show-arrows center-active>
@@ -62,6 +62,7 @@
         </v-expand-transition>
       </v-sheet>
     </v-main>
+    </section>
 
   </v-app>
 </template>

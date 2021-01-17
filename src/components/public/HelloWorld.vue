@@ -118,13 +118,6 @@ import axios from "axios";
 
 export default {
   data: () => ({
-    sideNav: false,
-    menuItems: [
-      { icon: "mdi-github", title: "inicio", link: "/" },
-      { icon: "mdi-github", title: "Blog", link: "/blog" },
-      { icon: "mdi-github", title: "servicio", link: "/servicio" },
-      { icon: "mdi-github", title: "Tienda", link: "/tienda" },
-    ],
     testimonios: [
       [
         "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",

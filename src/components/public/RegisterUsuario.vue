@@ -1,7 +1,7 @@
 <template>
   <v-app>
     
-    <main app class="mt-16">
+    <main app class="mt-16" id="inicio">
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6 lg5 x14>
           <v-card>

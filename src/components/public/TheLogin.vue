@@ -1,6 +1,6 @@
 <template>
   <v-app class="mt-16">
-    <v-main>
+    <v-main id="inicio">
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
