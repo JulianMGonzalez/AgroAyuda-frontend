@@ -2,31 +2,58 @@
   <!-- App.vue -->
   <v-app>
     <section id="inicio">
-      <v-banner app elevation="7" class="mt-16">
-        <v-carousel cycle show-arrows-on-hover hide-delimiters height="500">
+      <v-banner  elevation="7" class="mt-16">
+        <v-carousel cycle show-arrows-on-hover hide-delimiters height="550">
           <v-carousel-item
             v-for="(item, i) in imagenes"
             :key="i"
+            :src="item.src"
             reverse-transition="fade-transition"
             transition="fade-transition"
           >
-            <v-img :src="item.src" max-height="500"></v-img>
           </v-carousel-item>
         </v-carousel>
       </v-banner>
     </section>
     
+
     <!-- Sizes your content based upon application components -->
 
     <v-main class="main">
       <section id="resumen">
-        <v-sheet class="mx-auto" elevation="8" max-width="1200">
+        <v-sheet class="mx-auto" elevation="8" max-width="1200"> 
           <v-card>
-            <v-alert border="top" elevation="9">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, nostrum atque saepe temporibus fugit cupiditate obcaecati expedita sed repudiandae, voluptas veritatis animi earum deleniti repellendus officia ratione perferendis corporis fugiat?
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum accusantium, quia incidunt, fugit accusamus veniam exercitationem voluptatibus dolor libero necessitatibus, quaerat sapiente? Quidem iusto distinctio error officia. Voluptate, quos nemo?
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam, nostrum atque saepe temporibus fugit cupiditate obcaecati expedita sed repudiandae, voluptas veritatis animi earum deleniti repellendus officia ratione perferendis corporis fugiat?
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum accusantium, quia incidunt, fugit accusamus veniam exercitationem voluptatibus dolor libero necessitatibus, quaerat sapiente? Quidem iusto distinctio error officia. Voluptate, quos nemo?
+            <v-alert border="top" elevation="9" type="warning" color="#1b5e20">
+              Según el DANE, Los campesinos corresponden al 30% de nuestra
+              población en Colombia, los cuales producen el 83,5 % de los
+              alimentos que consumimos diariamente. Además de ser una población
+              excluida y con diversos problemas a la hora de su producción,
+              compra y venta. Igualmente, se presenta conflictos en sectores
+              esenciales como la salud, educación, vivienda, etc. Por lo tanto,
+              nos enfocaremos en la perdida de esto productos, por la falta de
+              opciones de venta. Podemos referirnos a la difícil situación que
+              afronta el campesino al tratar de contribuir y sacar sus cosechas.
+              La cual sea capaz de suplementar sus necesidades básicas. Nuestro
+              problema se sustenta en las desventajas y características que son
+              atribuidas a problemas emergente, actuales y extensos en nuestro
+              país:<br>
+              • Los campesinos no cuentan con herramientas tecnológicas
+              que faciliten su labor diaria.<br>
+              • No cuenta con una buena educación
+              para sustentar y aprovechar los productos del campo y capacitarse
+              en medios sustentables para el medio ambiente. <br>
+              • La alta demanda
+              de los productos agrícolas hace las compra-venta colapsen y los
+              productores pequeños no puedan exportar, dichos producidos a otras
+              localidades.<br>
+              • No cuentas con precios estables pasa
+              comercialización de estos productos. • La falta de infraestructura
+              vial y transporte.<br>
+               • Constante alza en precios de los peajes. <br>
+               • Compra de producto importados de otros países.<br>
+              • Productos de agro-insumo en constante alza de sus precios y más contaminantes
+              para el ser humano y medio ambiente. <br>
+              • Sequias, inundaciones, plagas, etc. Generado perdidas para el campesino.
             </v-alert>
           </v-card>
         </v-sheet>
@@ -42,44 +69,46 @@
       </section>
       <div id="team" class="container-fluid">
         <div class="row justify-content-center mb-5">
-          <div class="col mt-5" v-for="([testimonio, imagen, autor, like, share], a) in testimonios"
-          :key="a">
-          <v-card class="ml-5 mr-5">
-            <v-card class="mx-auto" color="#5e2129" dark>
-            <v-card-title>
-              <v-icon large left> mdi-twitter </v-icon>
-              <span class="title font-weight-light">Twitter</span>
-            </v-card-title>
+          <div
+            class="col mt-5"
+            v-for="([testimonio, imagen, autor, like, share], a) in testimonios"
+            :key="a"
+          >
+            <v-card class="ml-5 mr-5">
+              <v-card class="mx-auto" color="#5e2129" dark>
+                <v-card-title>
+                  <v-icon large left> mdi-twitter </v-icon>
+                  <span class="title font-weight-light">Twitter</span>
+                </v-card-title>
 
-            <v-card-text class="headline font-weight-bold">
-              {{ testimonio }}
-            </v-card-text>
+                <v-card-text class="headline font-weight-bold">
+                  {{ testimonio }}
+                </v-card-text>
 
-            <v-card-actions>
-              <v-list-item class="grow">
-                <v-list-item-avatar color="grey darken-3">
-                  <v-img class="elevation-6" alt="" :src="imagen"></v-img>
-                </v-list-item-avatar>
+                <v-card-actions>
+                  <v-list-item class="grow">
+                    <v-list-item-avatar color="grey darken-3">
+                      <v-img class="elevation-6" alt="" :src="imagen"></v-img>
+                    </v-list-item-avatar>
 
-                <v-list-item-content>
-                  <v-list-item-title>{{ autor }}</v-list-item-title>
-                </v-list-item-content>
+                    <v-list-item-content>
+                      <v-list-item-title>{{ autor }}</v-list-item-title>
+                    </v-list-item-content>
 
-                <v-row align="center" justify="end">
-                  <v-icon class="mr-1"> mdi-heart </v-icon>
-                  <span class="subheading mr-2">{{ share }}</span>
-                  <span class="mr-1">·</span>
-                  <v-icon class="mr-1"> mdi-share-variant </v-icon>
-                  <span class="subheading">{{ like }}</span>
-                </v-row>
-              </v-list-item>
-            </v-card-actions>
-          </v-card>
-        </v-card>
+                    <v-row align="center" justify="end">
+                      <v-icon class="mr-1"> mdi-heart </v-icon>
+                      <span class="subheading mr-2">{{ share }}</span>
+                      <span class="mr-1">·</span>
+                      <v-icon class="mr-1"> mdi-share-variant </v-icon>
+                      <span class="subheading">{{ like }}</span>
+                    </v-row>
+                  </v-list-item>
+                </v-card-actions>
+              </v-card>
+            </v-card>
           </div>
         </div>
       </div>
-      
 
       <div id="team" class="container-fluid">
         <div class="row justify-content-center mb-5">
@@ -173,7 +202,7 @@ export default {
     ],
     imagenes: [
       {
-        src: require("@/assets/maiz.jpg"),
+        src: require("@/assets/banner1.jpg"),
       },
       {
         src: require("@/assets/frutas.png"),
@@ -199,14 +228,15 @@ export default {
       this.onboarding =
         this.onboarding - 1 < 0 ? this.length - 1 : this.onboarding - 1;
     },
-  }
+  },
 };
 </script>
-<style >
+<style>
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .main {
   background: url(fondo.png);
 }
+
 </style>

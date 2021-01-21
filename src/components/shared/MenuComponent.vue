@@ -15,21 +15,21 @@
         </v-list-item>
         <v-list-item to="/registrar" v-if="!this.$store.state.usuario" color="#1b5e20">
           <v-list-item-action>
-            <v-icon>mdi-github</v-icon>
+            <v-icon>mdi-account-plus</v-icon>
           </v-list-item-action>
           <v-list-item-content>registrate</v-list-item-content>
         </v-list-item>
 
         <v-list-item to="/login" v-if="!this.$store.state.usuario" color="#1b5e20">
           <v-list-item-action>
-            <v-icon>mdi-github</v-icon>
+            <v-icon>mdi-login</v-icon>
           </v-list-item-action>
           <v-list-item-content>iniciar sesion</v-list-item-content>
         </v-list-item>
 
         <v-list-item @click="salir()" v-else color="#1b5e20">
           <v-list-item-action>
-            <v-icon>mdi-github</v-icon>
+            <v-icon>mdi-logout-variant</v-icon>
           </v-list-item-action>
           <v-list-item-content>salir</v-list-item-content>
         </v-list-item>
@@ -77,7 +77,7 @@
         class="hidden-xs-only mt-6"
         text
         to="/login"
-        ><v-icon>mdi-github</v-icon>Inicia Sesion
+        ><v-icon>mdi-login</v-icon>Inicia Sesion
       </v-btn>
       <v-btn
         v-else
@@ -85,7 +85,7 @@
         text
         class="hidden-xs-only mt-6"
         @click="salir()"
-        ><v-icon>mdi-github</v-icon> Salir</v-btn
+        ><v-icon>mdi-logout-variant</v-icon> Salir</v-btn
       >
       <v-btn
         v-if="!this.$store.state.usuario"
@@ -93,7 +93,7 @@
         text
         class="hidden-xs-only mt-6"
         to="/registrar"
-        ><v-icon>mdi-github</v-icon>
+        ><v-icon>mdi-account-plus</v-icon>
         Registrate
       </v-btn>
     </v-app-bar>
@@ -104,10 +104,10 @@ export default {
   data: () => ({
     sideNav: false,
     menuItems: [
-      { icon: "mdi-github", title: "inicio", link: "/" },
-      { icon: "mdi-github", title: "Blog", link: "/blog" },
-      { icon: "mdi-github", title: "servicio", link: "/servicio" },
-      { icon: "mdi-github", title: "Tienda", link: "/tienda" },
+      { icon: "mdi-home", title: "inicio", link: "/" },
+      { icon: "mdi-forum", title: "Blog", link: "/blog" },
+      { icon: "mdi-clipboard-text-outline", title: "servicio", link: "/servicio" },
+      { icon: "mdi-store", title: "Tienda", link: "/tienda" },
     ],
   }),
   methods: {

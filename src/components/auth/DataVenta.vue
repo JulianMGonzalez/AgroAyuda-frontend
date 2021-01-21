@@ -3,7 +3,7 @@
     <v-app id="inspire">
       <v-data-table
         :headers="headers"
-        :items="articulos"
+        :items="categorias"
         sort-by="nombre"
         class="elevation-1"
         :loading="cargando"
@@ -12,7 +12,7 @@
       >
         <template v-slot:top>
           <v-toolbar flat>
-            <v-toolbar-title>Articulos</v-toolbar-title>
+            <v-toolbar-title>Categorias</v-toolbar-title>
             <v-divider class="mx-4" inset vertical></v-divider>
             <v-spacer></v-spacer>
             <template
@@ -34,7 +34,7 @@
                   v-bind="attrs"
                   v-on="on"
                 >
-                  Agregar Articulo
+                  Agregar Categoria
                 </v-btn>
               </template>
               <v-card>
@@ -45,12 +45,6 @@
                 <v-card-text>
                   <v-container>
                     <v-row>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.id"
-                          label="id"
-                        ></v-text-field>
-                      </v-col>
                       <v-col cols="12" sm="6" md="4">
                         <v-text-field
                           v-model="editedItem.nombre"
@@ -65,49 +59,6 @@
                           no-resize
                           counter="256"
                         ></v-textarea>
-                      </v-col>
-                      <v-col cols="12">
-                        <v-textarea
-                          v-model="editedItem.imagen"
-                          label="Imagen"
-                          auto-grow
-                          no-resize
-                          counter="256"
-                        ></v-textarea>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-select
-                          v-model="categoria"
-                          label="categoria"
-                          :items="categorias"
-                          item-text="nombre"
-                          item-value="id"
-                          return-object
-                        ></v-select>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.precio_venta"
-                          label="Valor"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.stock"
-                          label="Cantidad"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.codigo"
-                          label="codigo"
-                        ></v-text-field>
-                      </v-col>
-                      <v-col cols="12" sm="6" md="4">
-                        <v-text-field
-                          v-model="editedItem.estado"
-                          label="estado"
-                        ></v-text-field>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -143,15 +94,6 @@
             </v-dialog>
           </v-toolbar>
         </template>
-        <template v-slot:item.imagen="{ item }">
-          <div class="p-2">
-            <v-img
-              :src="item.imagen"
-              height="50px"
-              width="50px"
-            ></v-img>
-          </div>
-        </template>
         <template v-slot:item.actions="{ item }">
           <v-icon medium class="mr-2" @click="editItem(item)" color="orange">
             mdi-pencil
@@ -175,62 +117,37 @@ export default {
     dialog: false,
     dialogDelete: false,
     cargando: true,
-    search: "",
+    search: '',
     headers: [
       { text: "ID", value: "id" },
-      { text: "Imagen", value: "imagen" },
       {
-        text: "Nombre articulo",
+        text: "Nombre Categoria",
         align: "start",
         sortable: true,
         value: "nombre",
       },
       { text: "Descripcion", value: "descripcion" },
-      { text: "Codigo", value: "codigo" },
-      { text: "Categoria", value: "categoriaId" },
-      { text: "Venta", value: "precio_venta" },
-      { text: "Cantidad", value: "stock" },
       { text: "Estado", value: "estado" },
       { text: "Actions", value: "actions", sortable: false },
     ],
-    articulos: [],
+    desserts: [],
     categorias: [],
-    categoria: "",
     editedIndex: -1,
     editedItem: {
-      id: 0,
       nombre: "",
       descripcion: "",
-      imagen: "",
-      codigo: "",
       estado: 0,
-      stock: 0,
-      precio_venta: 0,
-      categoria: {
-        id: 0,
-        nombre: "",
-      },
     },
     defaultItem: {
-      id: 0,
       nombre: "",
-      imagen:
-        "https://www.eoi.es/blogs/juanadoricelcepeda/files/2012/01/im1.jpg",
       descripcion: "",
-      codigo: "",
-      estado: 0,
-      stock: 0,
-      precio_venta: 0,
-      categoria: {
-        id: 0,
-        nombre: "",
-      },
+      estado: 1,
     },
   }),
 
   computed: {
     formTitle() {
-      return this.editedIndex === -1 ? "Agregar articulo" : "Editar articulo";
+      return this.editedIndex === -1 ? "Agregar categoria" : "Editar categoria";
     },
   },
 
@@ -245,34 +162,19 @@ export default {
 
   created() {
     this.list();
-    this.listCategoria();
   },
 
   methods: {
     list() {
       axios
-        .get("http://localhost:3000/api/articulo/list", {
-          headers: {
-            token: this.$store.state.token,
-          },
-        })
-        .then((response) => {
-          this.articulos = response.data;
-          this.cargando = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    },
-    listCategoria() {
-      axios
         .get("http://localhost:3000/api/categoria/list", {
           headers: {
-            token: this.$store.state.token,
-          },
+            token: this.$store.state.token
+          }
         })
         .then((response) => {
           this.categorias = response.data;
+          this.cargando = false;
         })
         .catch((error) => {
           console.log(error);
@@ -281,7 +183,6 @@ export default {
 
     editItem(item) {
       this.editedIndex = item.id;
-      this.categoria = item ? item.categoriaId : "";
       this.editedItem = Object.assign({}, item);
       this.dialog = true;
     },
@@ -295,17 +196,13 @@ export default {
     deleteItemConfirm() {
       if (this.editedItem.estado === 1) {
         axios
-          .put(
-            "http://localhost:3000/api/articulo/deactivate",
-            {
-              id: this.editedItem.id,
-            },
-            {
-              headers: {
-                token: this.$store.state.token,
-              },
-            }
-          )
+          .put("http://localhost:3000/api/categoria/deactivate", {
+            id: this.editedItem.id,
+          }, {
+          headers: {
+            token: this.$store.state.token
+          }
+        })
           .then((response) => {
             this.list();
           })
@@ -314,17 +211,13 @@ export default {
           });
       } else {
         axios
-          .put(
-            "http://localhost:3000/api/articulo/activate",
-            {
-              id: this.editedItem.id,
-            },
-            {
-              headers: {
-                token: this.$store.state.token,
-              },
-            }
-          )
+          .put("http://localhost:3000/api/categoria/activate", {
+            id: this.editedItem.id,
+          }, {
+          headers: {
+            token: this.$store.state.token
+          }
+        })
           .then((response) => {
             this.list();
           })
@@ -340,7 +233,6 @@ export default {
       this.$nextTick(() => {
         this.editedItem = Object.assign({}, this.defaultItem);
         this.editedIndex = -1;
-        this.categoria = "";
       });
     },
 
@@ -355,24 +247,15 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         axios
-          .put(
-            "http://localhost:3000/api/articulo/update",
-            {
-              id: this.editedItem.id,
-              nombre: this.editedItem.nombre,
-              imagen: this.editedItem.imagen,
-              descripcion: this.editedItem.descripcion,
-              codigo: this.editedItem.codigo,
-              categoria: this.categoria.id,
-              stock: this.editedItem.stock,
-              precio_venta: this.editedItem.precio_venta,
-            },
-            {
-              headers: {
-                token: this.$store.state.token,
-              },
-            }
-          )
+          .put("http://localhost:3000/api/categoria/update", {
+            id: this.editedItem.id,
+            nombre: this.editedItem.nombre,
+            descripcion: this.editedItem.descripcion,
+          }, {
+          headers: {
+            token: this.$store.state.token
+          }
+        })
           .then((response) => {
             this.list();
           })
@@ -381,25 +264,16 @@ export default {
           });
       } else {
         axios
-          .post(
-            "http://localhost:3000/api/articulo/add",
-            {
-              estado: 1,
-              id: this.editedItem.id,
-              nombre: this.editedItem.nombre,
-              imagen: this.editedItem.imagen,
-              descripcion: this.editedItem.descripcion,
-              codigo: this.editedItem.codigo,
-              categoriaId: this.categoria.id,
-              stock: this.editedItem.stock,
-              precio_venta: this.editedItem.precio_venta,
-            },
-            {
-              headers: {
-                token: this.$store.state.token,
-              },
-            }
-          )
+          .post("http://localhost:3000/api/categoria/add", {
+            id: this.editedItem.id,
+            nombre: this.editedItem.nombre,
+            descripcion: this.editedItem.descripcion,
+            estado: 0,
+          }, {
+          headers: {
+            token: this.$store.state.token
+          }
+        })
           .then((response) => {
             this.list();
           })
