@@ -24,6 +24,7 @@
         <v-sheet class="mx-auto" elevation="8" max-width="1200"> 
           <v-card>
             <v-alert border="top" elevation="9" type="warning" color="#1b5e20">
+              <p class="texto">
               Según el DANE, Los campesinos corresponden al 30% de nuestra
               población en Colombia, los cuales producen el 83,5 % de los
               alimentos que consumimos diariamente. Además de ser una población
@@ -54,6 +55,7 @@
               • Productos de agro-insumo en constante alza de sus precios y más contaminantes
               para el ser humano y medio ambiente. <br>
               • Sequias, inundaciones, plagas, etc. Generado perdidas para el campesino.
+              </p>
             </v-alert>
           </v-card>
         </v-sheet>
@@ -237,6 +239,9 @@ export default {
 }
 .main {
   background: url(fondo.png);
+}
+.texto{
+  font-size: 18px;
 }
 
 </style>

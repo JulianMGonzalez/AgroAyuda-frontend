@@ -108,6 +108,7 @@ export default {
       { icon: "mdi-forum", title: "Blog", link: "/blog" },
       { icon: "mdi-clipboard-text-outline", title: "servicio", link: "/servicio" },
       { icon: "mdi-store", title: "Tienda", link: "/tienda" },
+      { icon: "mdi-cart", title: "Carrito", link: "/compras" },
     ],
   }),
   methods: {

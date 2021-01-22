@@ -1,5 +1,5 @@
 <template>
-    <v-footer v-bind="localAttrs" :padless="padless" class="mt-10">
+    <v-footer app absolute inset v-bind="localAttrs" padless>
       <v-card
         max-height="2400"
         max-width="2400"
@@ -96,7 +96,6 @@
 <script>
 export default {
     data:() => ({
-        padless: false,
         links: [
       {
         p: "inicio",
@@ -113,7 +112,7 @@ export default {
       },
       {
         p: "nuestro Equipo",
-        onclick: "",
+        onclick: "location.href='#team'",
       },
       {
         p: "Soporte Técnico",

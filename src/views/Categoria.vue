@@ -1,5 +1,5 @@
 <template>
-    <data-categoria></data-categoria>
+    <data-categoria class="mt-7"></data-categoria>
 </template>
 
 <script>

@@ -1,11 +1,11 @@
 <template>
   <v-app>
-    
-    <main app class="mt-16" id="inicio">
+    <main id="inicio">
+     
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6 lg5 x14>
-          <v-card>
-            <div class="mt-13">
+          <v-card class="mt-16">
+            <div>
               <div class="d-flex justify-content-center align-items-center">
                 <img
                   src="@/assets/LOGO (2).png"
@@ -150,11 +150,12 @@
       </v-layout>
     </main>
     
+  
   </v-app>
 </template>
 
 <script>
-import sawl from "sweetalert";
+import swal from "sweetalert";
 import axios from "axios";
 import { required, digits, email, max, regex } from "vee-validate/dist/rules";
 import {

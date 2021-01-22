@@ -1,11 +1,7 @@
 <template>
   <v-app class="mt-16">
     <v-main id="inicio">
-      <v-container fluid>
-        <!-- If using vue-router -->
-        <router-view></router-view>
-      </v-container>
-
+      
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6 lg5 x14>
           <v-card>

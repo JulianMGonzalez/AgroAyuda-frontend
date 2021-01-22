@@ -1,5 +1,5 @@
 <template>
-    <data-usuario></data-usuario>
+    <data-usuario class="mt-7"></data-usuario>
 </template>
 
 <script>
