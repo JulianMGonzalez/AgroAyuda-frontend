@@ -8,9 +8,9 @@
 
 <script>
 // @ is an alias to /src
-import BlogComponent from '../components/public/BlogComponent.vue'
-import FooterComponent from '../components/shared/FooterComponent.vue'
-import NavigationDrawer from '../components/shared/NavigationDrawer.vue'
+import BlogComponent from '@/components/public/BlogComponent.vue'
+import FooterComponent from '@/components/shared/FooterComponent.vue'
+import NavigationDrawer from '@/components/shared/NavigationDrawer.vue'
 
 export default {
   components: {

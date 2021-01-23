@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import SeguraComponent from "../components/auth/SeguraComponent";
-import MenuAdmin from '../components/shared/MenuAdmin.vue';
+import SeguraComponent from "@/components/auth/SeguraComponent";
+import MenuAdmin from '@/components/shared/MenuAdmin.vue';
 export default {
   components: { SeguraComponent, MenuAdmin },
 };

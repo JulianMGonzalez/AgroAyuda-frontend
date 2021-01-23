@@ -35,6 +35,20 @@
                   </validation-provider>
                   <validation-provider
                     v-slot="{ errors }"
+                    name="Telofono"
+                    rules="required|max:20"
+                  >
+                    <v-text-field
+                      class="ml-6 mr-6"
+                      v-model="telefono"
+                      :counter="20"
+                      :error-messages="errors"
+                      label="Telefono"
+                      required
+                    ></v-text-field>
+                  </validation-provider>
+                  <validation-provider
+                    v-slot="{ errors }"
                     name="email"
                     rules="required|email"
                   >
@@ -205,6 +219,7 @@ export default {
 
   data: () => ({
     nombre: "",
+    telefono: "",
     email: "",
     password: "",
     confirmation: "",
@@ -224,6 +239,7 @@ export default {
             nombre: this.nombre,
             email: this.email,
             password: this.password,
+            telefono: this.telefono
           },
           {
             headers: {
@@ -243,6 +259,7 @@ export default {
     clear() {
       this.name = "";
       this.email = "";
+      this.telefono = "";
       this.password = "";
       this.confirmation = "";
       this.checkbox = null;

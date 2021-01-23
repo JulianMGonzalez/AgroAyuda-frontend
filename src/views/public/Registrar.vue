@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import RegisterUsuario from "../components/public/RegisterUsuario.vue";
+import RegisterUsuario from "@/components/public/RegisterUsuario.vue";
 export default {
   components: {
     RegisterUsuario

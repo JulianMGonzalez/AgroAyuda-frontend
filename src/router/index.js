@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
-import store from '../store'
+import Home from '../views/public/Home.vue'
+import store from '@/store/index'
 import swal from 'sweetalert'
 
 Vue.use(VueRouter)
@@ -13,7 +13,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "login" */ '../views/Login.vue'),
+    component: () => import(/* webpackChunkName: "login" */ '../views/public/Login.vue'),
     meta: {
       public: true
     }
@@ -33,7 +33,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "tienda" */ '../views/Tienda.vue'),
+    component: () => import(/* webpackChunkName: "tienda" */ '../views/public/Tienda.vue'),
     meta: {
       public: true
     }
@@ -44,7 +44,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "tienda" */ '../views/Compras.vue'),
+    component: () => import(/* webpackChunkName: "tienda" */ '../views/auth/Compras.vue'),
     meta: {
       public: true
     }
@@ -55,7 +55,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "register" */ '../views/Registrar.vue'),
+    component: () => import(/* webpackChunkName: "register" */ '../views/public/Registrar.vue'),
     meta: {
       public: true
     }
@@ -66,7 +66,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "servicio" */ '../views/Servicio.vue'),
+    component: () => import(/* webpackChunkName: "servicio" */ '../views/public/Servicio.vue'),
     meta: {
       public: true
     }
@@ -77,7 +77,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "blog" */ '../views/Blog.vue'),
+    component: () => import(/* webpackChunkName: "blog" */ '../views/public/Blog.vue'),
     meta: {
       public: true
     }
@@ -88,7 +88,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "admin" */ '../views/Admin.vue'),
+    component: () => import(/* webpackChunkName: "admin" */ '../views/auth/Admin.vue'),
     meta: {
       auth: true
     },
@@ -100,7 +100,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "categoria" */ '../views/Categoria.vue'),
+        component: () => import(/* webpackChunkName: "categoria" */ '../views/auth/Categoria.vue'),
         meta: {
           auth: true,
           administrador: true,
@@ -113,7 +113,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "venta" */ '../views/Venta.vue'),
+        component: () => import(/* webpackChunkName: "venta" */ '../views/auth/Venta.vue'),
         meta: {
           auth: true,
           administrador: true,
@@ -126,7 +126,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "articulo" */ '../views/Articulo.vue'),
+        component: () => import(/* webpackChunkName: "articulo" */ '../views/auth/Articulo.vue'),
         meta: {
           auth: true,
           administrador: true,
@@ -139,7 +139,7 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "usuario" */ '../views/Usuario.vue'),
+        component: () => import(/* webpackChunkName: "usuario" */ '../views/auth/Usuario.vue'),
         meta: {
           auth: true,
           administrador: true,

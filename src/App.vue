@@ -4,6 +4,23 @@
     <transition name="slide-fade" mode="out-in">
       <router-view />
     </transition>
+    <v-snackbar
+      v-model="$store.state.snackbar.show"
+      :multi-line="true"
+      :right="true"
+      :top="true"
+      :timeout="6000"
+      :color="$store.state.snackbar.variant"
+    >
+      {{ $store.state.snackbar.message }}
+      <v-btn
+        dark
+        text
+        @click="$store.commit('actualizarTienda', { show: false })"
+      >
+        Cerrar
+      </v-btn>
+    </v-snackbar>
   </v-app>
 </template>
 

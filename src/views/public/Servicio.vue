@@ -7,9 +7,9 @@
 </template>
 
 <script>
-import DataServicio from '../components/public/DataServicio.vue'
-import FooterComponent from '../components/shared/FooterComponent.vue'
-import NavigationDrawer from '../components/shared/NavigationDrawer.vue'
+import DataServicio from '@/components/public/DataServicio.vue'
+import FooterComponent from '@/components/shared/FooterComponent.vue'
+import NavigationDrawer from '@/components/shared/NavigationDrawer.vue'
 
 export default {
     components:{

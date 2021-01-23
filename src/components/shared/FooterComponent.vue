@@ -1,8 +1,7 @@
 <template>
-    <v-footer app absolute inset v-bind="localAttrs" padless>
+    <v-footer app padless inset absolute>
       <v-card
-        max-height="2400"
-        max-width="2400"
+        
         flat
         tile
         class="text-center"
@@ -139,18 +138,6 @@ export default {
       },
     ],
     }),
-    computed: {
-    localAttrs() {
-      const attrs = {};
-
-      if (this.variant === "default") {
-        attrs.absolute = false;
-        attrs.fixed = false;
-      } else {
-        attrs[this.variant] = true;
-      }
-      return attrs;
-    },
-  },
+    
 }
 </script>

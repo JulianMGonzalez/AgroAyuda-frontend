@@ -2,7 +2,7 @@
   <!-- App.vue -->
   <v-app>
     <section id="inicio">
-      <v-banner  elevation="7" class="mt-16">
+      <v-banner elevation="7" class="mt-16">
         <v-carousel cycle show-arrows-on-hover hide-delimiters height="550">
           <v-carousel-item
             v-for="(item, i) in imagenes"
@@ -15,56 +15,134 @@
         </v-carousel>
       </v-banner>
     </section>
-    
 
     <!-- Sizes your content based upon application components -->
 
     <v-main class="main">
-      <section id="resumen">
-        <v-sheet class="mx-auto" elevation="8" max-width="1200"> 
+      <section id="resumen" class="mr-5 ml-5">
+        <v-sheet class="mx-auto" elevation="8" max-width="1200">
           <v-card>
             <v-alert border="top" elevation="9" type="warning" color="#1b5e20">
               <p class="texto">
-              Según el DANE, Los campesinos corresponden al 30% de nuestra
-              población en Colombia, los cuales producen el 83,5 % de los
-              alimentos que consumimos diariamente. Además de ser una población
-              excluida y con diversos problemas a la hora de su producción,
-              compra y venta. Igualmente, se presenta conflictos en sectores
-              esenciales como la salud, educación, vivienda, etc. Por lo tanto,
-              nos enfocaremos en la perdida de esto productos, por la falta de
-              opciones de venta. Podemos referirnos a la difícil situación que
-              afronta el campesino al tratar de contribuir y sacar sus cosechas.
-              La cual sea capaz de suplementar sus necesidades básicas. Nuestro
-              problema se sustenta en las desventajas y características que son
-              atribuidas a problemas emergente, actuales y extensos en nuestro
-              país:<br>
-              • Los campesinos no cuentan con herramientas tecnológicas
-              que faciliten su labor diaria.<br>
-              • No cuenta con una buena educación
-              para sustentar y aprovechar los productos del campo y capacitarse
-              en medios sustentables para el medio ambiente. <br>
-              • La alta demanda
-              de los productos agrícolas hace las compra-venta colapsen y los
-              productores pequeños no puedan exportar, dichos producidos a otras
-              localidades.<br>
-              • No cuentas con precios estables pasa
-              comercialización de estos productos. • La falta de infraestructura
-              vial y transporte.<br>
-               • Constante alza en precios de los peajes. <br>
-               • Compra de producto importados de otros países.<br>
-              • Productos de agro-insumo en constante alza de sus precios y más contaminantes
-              para el ser humano y medio ambiente. <br>
-              • Sequias, inundaciones, plagas, etc. Generado perdidas para el campesino.
+                Según el DANE, Los campesinos corresponden al 30% de nuestra
+                población en Colombia, los cuales producen el 83,5 % de los
+                alimentos que consumimos diariamente. Además de ser una
+                población excluida y con diversos problemas a la hora de su
+                producción, compra y venta. Igualmente, se presenta conflictos
+                en sectores esenciales como la salud, educación, vivienda, etc.
+                Por lo tanto, nos enfocaremos en la perdida de esto productos,
+                por la falta de opciones de venta. Podemos referirnos a la
+                difícil situación que afronta el campesino al tratar de
+                contribuir y sacar sus cosechas. La cual sea capaz de
+                suplementar sus necesidades básicas. Nuestro problema se
+                sustenta en las desventajas y características que son atribuidas
+                a problemas emergente, actuales y extensos en nuestro país:<br />
+                • Los campesinos no cuentan con herramientas tecnológicas que
+                faciliten su labor diaria.<br />
+                • No cuenta con una buena educación para sustentar y aprovechar
+                los productos del campo y capacitarse en medios sustentables
+                para el medio ambiente. <br />
+                • La alta demanda de los productos agrícolas hace las
+                compra-venta colapsen y los productores pequeños no puedan
+                exportar, dichos producidos a otras localidades.<br />
+                • No cuentas con precios estables pasa comercialización de estos
+                productos. • La falta de infraestructura vial y transporte.<br />
+                • Constante alza en precios de los peajes. <br />
+                • Compra de producto importados de otros países.<br />
+                • Productos de agro-insumo en constante alza de sus precios y
+                más contaminantes para el ser humano y medio ambiente. <br />
+                • Sequias, inundaciones, plagas, etc. Generado perdidas para el
+                campesino.
               </p>
             </v-alert>
           </v-card>
         </v-sheet>
       </section>
+      <section>
+        <v-container>
+          <v-row>
+            <v-col sm="10" offset-sm="1" lg="8" offset-lg="2">
+              <h2>
+                <strong> productos populares </strong>
+                <v-btn to="/tienda" small text color="#5e2129">Ver Todos</v-btn>
+              </h2>
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col
+              sm="6"
+              md="4"
+              v-for="(producto, i) in tienda.slice(1, 4)"
+              :key="producto.nombre"
+            >
+              <v-card
+                outlined
+                :loading="loading"
+                class="mx-auto my-12"
+                max-width="374"
+              >
+                <template slot="progress">
+                  <v-progress-linear
+                    color="primary"
+                    height="10"
+                    indeterminate
+                  ></v-progress-linear>
+                </template>
+
+                <v-img height="250" :src="producto.imagen"></v-img>
+
+                <v-card-title>{{ producto.nombre }}</v-card-title>
+
+                <v-card-text>
+                  <v-row align="center" class="mx-0">
+                    <v-rating
+                      :value="4.5"
+                      color="amber"
+                      dense
+                      half-increments
+                      readonly
+                      size="14"
+                    ></v-rating>
+
+                    <div class="grey--text ml-4">4.5</div>
+                  </v-row>
+
+                  <div class="my-4 subtitle-1">
+                    ${{ producto.precio_venta }}
+                  </div>
+
+                  <div>{{ producto.descripcion }}</div>
+                </v-card-text>
+
+                <v-divider class="mx-4"></v-divider>
+
+                <v-card-title>Disponible!</v-card-title>
+
+                <v-card-text>
+                  <v-chip-group
+                    active-class="primary accent-4 white--text"
+                    column
+                  >
+                    <v-chip>{{ producto.stock }}</v-chip>
+                  </v-chip-group>
+                </v-card-text>
+
+                <v-card-actions>
+                  <v-btn color="#5e2129" outlined @click="agregarCarrito"
+                    ><v-icon>mdi-cart-plus</v-icon>
+                    Añadir al carro
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-col>
+          </v-row>
+        </v-container>
+      </section>
 
       <section id="indicadores">
         <v-sheet class="mx-auto" elevation="8" max-width="1200">
           <v-card>
-            <h1 class="d-flex justify-content-center">indicadores</h1>
+            <h1 class="text-center">indicadores</h1>
             <p>no encuentro una api buena</p>
           </v-card>
         </v-sheet>
@@ -149,6 +227,7 @@ import axios from "axios";
 
 export default {
   data: () => ({
+    loading: false,
     testimonios: [
       [
         "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
@@ -216,11 +295,17 @@ export default {
         src: require("@/assets/carro.jpg"),
       },
     ],
+
     length: 3,
+    tienda: [],
+    cargando: true,
     onboarding: 0,
     alert: true,
     news: null,
   }),
+  created() {
+    this.list();
+  },
   methods: {
     next() {
       this.onboarding =
@@ -229,6 +314,27 @@ export default {
     prev() {
       this.onboarding =
         this.onboarding - 1 < 0 ? this.length - 1 : this.onboarding - 1;
+    },
+    list() {
+      axios
+        .get("http://localhost:3000/api/articulo/list", {
+          headers: {
+            token: this.$store.state.token,
+          },
+        })
+        .then((response) => {
+          this.tienda = response.data;
+          this.cargando = false;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    agregarCarrito(index, quantity = 1) {
+      this.loading = true;
+      this.$store.commit("agregarCarrito", { itemId: index, quantity });
+      this.$store.commit("actualizarTienda", { show: true });
+      setTimeout(() => (this.loading = false), 2000);
     },
   },
 };
@@ -240,8 +346,7 @@ export default {
 .main {
   background: url(fondo.png);
 }
-.texto{
+.texto {
   font-size: 18px;
 }
-
 </style>

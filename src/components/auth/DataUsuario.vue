@@ -68,6 +68,13 @@
                       </v-col>
                       <v-col cols="12" sm="6" md="6">
                         <v-text-field
+                          v-model="editedItem.telefono"
+                          label="Telefono"
+                          
+                        ></v-text-field>
+                      </v-col>
+                      <v-col cols="12" sm="6" md="6">
+                        <v-text-field
                           v-model="editedItem.password"
                           label="Contraseña"
                         ></v-text-field>
@@ -139,13 +146,9 @@ export default {
     search: '',
     headers: [
       { text: "ID", value: "id" },
-      {
-        text: "Nombre",
-        align: "start",
-        sortable: true,
-        value: "nombre",
-      },
+      { text: "Nombre", align: "start", sortable: true, value: "nombre" },
       { text: "E-mail", value: "email" },
+      { text: "Telefono", value: "telefono" },
       { text: "Rol", value: "rol" },
       { text: "Estado", value: "estado" },
       { text: "Actions", value: "actions", sortable: false },
@@ -157,12 +160,14 @@ export default {
       id:0,
       nombre: "",
       email: "",
+      telefono: "",
       estado: 0,
     },
     defaultItem: {
       id:0,
       nombre: "",
       email: "",
+      telefono: "",
       estado: 1,
     },
   }),
@@ -273,6 +278,7 @@ export default {
             id: this.editedItem.id,
             nombre: this.editedItem.nombre,
             email: this.editedItem.email,
+            telefono: this.editItem.telefono,
             password: this.editedItem.password,
             rol: this.editedItem.rol,
           }, {
@@ -293,6 +299,7 @@ export default {
             id: this.editedItem.id,
             nombre: this.editedItem.nombre,
             email: this.editedItem.email,
+            telefono: this.editItem.telefono,
             password: this.editedItem.password,
             rol: this.editedItem.rol,
           }, {

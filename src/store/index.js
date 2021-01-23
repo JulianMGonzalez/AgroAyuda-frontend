@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import decode from "jwt-decode";
+import products from '@/components/auth/DataArticulo'
 import router from "../router/index";
 
 Vue.use(Vuex);
@@ -8,7 +9,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         token: null,
-        usuario: null
+        usuario: null,
+        products,
+        snackbar: {
+            show: false,
+            variant: 'primary',
+            message: 'Bien! Producto agregado al carrito'
+        },
+        cart: [] // { itemId, quantity }
     },
     mutations: {
         setToken(state, token) {
@@ -16,7 +24,24 @@ export default new Vuex.Store({
         },
         setUsuario(state, usuario) {
             state.usuario = usuario;
-        }
+        },
+        agregarCarrito(state, payload) {
+            const { itemId, quantity } = payload
+            const idx = state.cart.findIndex((product) => {
+              return product.itemId === itemId
+            })
+            if (idx === -1) {
+              state.cart.push({ itemId, quantity })
+            } else {
+              state.cart[idx].quantity += 1
+            }
+          },
+          actualizarTienda(state, settings) {
+            state.snackbar = {
+              ...state.snackbar,
+              ...settings
+            }
+          }
     },
     actions: {
         guardarToken({ commit }, token) {

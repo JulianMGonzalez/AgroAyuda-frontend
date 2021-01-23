@@ -53,7 +53,7 @@
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon
         @click.stop="sideNav = !sideNav"
-        class="hidden-sm-and-up"
+        class="hidden-lg-and-up"
         ><v-icon color="green" class="mt-10" large
           >mdi-microsoft-xbox-controller-menu</v-icon
         ></v-app-bar-nav-icon
@@ -62,7 +62,7 @@
       <v-btn
         color="#1b5e20"
         text
-        class="hidden-xs-only mt-6"
+        class="hidden-md-and-down mt-6"
         v-for="(item, i) in menuItems"
         :key="i"
         :to="item.link"
@@ -74,7 +74,7 @@
         v-if="!this.$store.state.usuario"
         depressed
         color="#1b5e20"
-        class="hidden-xs-only mt-6"
+        class="hidden-md-and-down mt-6"
         text
         to="/login"
         ><v-icon>mdi-login</v-icon>Inicia Sesion
@@ -83,7 +83,7 @@
         v-else
         color="#1b5e20"
         text
-        class="hidden-xs-only mt-6"
+        class="hidden-md-and-down mt-6"
         @click="salir()"
         ><v-icon>mdi-logout-variant</v-icon> Salir</v-btn
       >
@@ -91,7 +91,7 @@
         v-if="!this.$store.state.usuario"
         color="#1b5e20"
         text
-        class="hidden-xs-only mt-6"
+        class="hidden-md-and-down mt-6"
         to="/registrar"
         ><v-icon>mdi-account-plus</v-icon>
         Registrate

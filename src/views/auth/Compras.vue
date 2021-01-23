@@ -8,9 +8,9 @@
   </div>
 </template>
 <script>
-import ComprasComponent from "../components/auth/ComprasComponent.vue";
-import FooterComponent from '../components/shared/FooterComponent.vue';
-import NavigationDrawer from "../components/shared/NavigationDrawer.vue";
+import ComprasComponent from "@/components/auth/ComprasComponent";
+import FooterComponent from '@/components/shared/FooterComponent.vue';
+import NavigationDrawer from "@/components/shared/NavigationDrawer.vue";
 export default {
   components: { ComprasComponent, NavigationDrawer, FooterComponent },
 };
