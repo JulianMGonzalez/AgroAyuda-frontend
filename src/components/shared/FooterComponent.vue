@@ -1,5 +1,5 @@
 <template>
-    <v-footer app padless inset absolute>
+    <v-footer >
       <v-card
         
         flat
