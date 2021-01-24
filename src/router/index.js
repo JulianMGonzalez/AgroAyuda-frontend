@@ -44,7 +44,18 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "tienda" */ '../views/auth/Compras.vue'),
+    component: () => import(/* webpackChunkName: "tienda" */ '../views/public/Compras.vue'),
+    meta: {
+      public: true
+    }
+  },
+  {
+    path: '/validacion',
+    name: 'Validacion',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "tienda" */ '../views/public/Validacion.vue'),
     meta: {
       public: true
     }

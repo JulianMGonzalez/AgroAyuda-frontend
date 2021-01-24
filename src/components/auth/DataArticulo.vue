@@ -257,8 +257,9 @@ export default {
           },
         })
         .then((response) => {
-          this.articulos = response.data;
-          this.cargando = false;
+            this.articulos = response.data
+            this.cargando = false;
+          
         })
         .catch((error) => {
           console.log(error);

@@ -24,21 +24,21 @@
       <v-divider></v-divider>
 
       <v-list dense>
-        <v-list-item>
+        <v-list-item v-for="(item, i) in navegation" :key="i" link :to="item.accion">
           <v-list-item-icon>
-            <v-icon color="orange">mdi-home-city</v-icon>
+            <v-icon color="orange">{{item.icono}}</v-icon>
           </v-list-item-icon>
-          <v-list-item-title class="white--text">Inicio</v-list-item-title>
+          <v-list-item-title class="white--text" >{{item.nombre}}</v-list-item-title>
         </v-list-item>
-        <v-list-item>
+
+        <v-list-item @click="salir()">
           <v-list-item-icon>
-            <v-icon color="orange" @click="salir()">mdi-logout</v-icon>
+            <v-icon color="orange">mdi-logout</v-icon>
           </v-list-item-icon>
-          <v-list-item-title class="white--text" @click="salir()"
-            >Salir</v-list-item-title
-          >
+          <v-list-item-title class="white--text" >Salir</v-list-item-title>
         </v-list-item>
-        <v-list-item
+        
+        <v-list-item link
           v-if="
             this.$store.state.usuario.rol === 'Administrador' ||
             this.$store.state.usuario.rol === 'Vendedor'
@@ -59,9 +59,20 @@ export default {
     data: () => ({
         drawer: true,
         mini: true,
+        navegation:[
+          {
+            nombre: "Cuenta", icono: "mdi-account", accion: "Cuenta"
+          },
+          {
+            nombre: "Pedidos", icono: "mdi-storefront", accion: "Pedidos"
+          },
+          {
+            nombre: "Acerca de nosotros", icono: "mdi-account-supervisor-circle", accion: "Servicio"
+          }
+        ]
     }),
     methods:{
-        admin() {
+      admin() {
       try {
         if (
           this.$store.state.usuario.rol === "Administrador" ||

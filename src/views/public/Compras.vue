@@ -8,7 +8,7 @@
   </div>
 </template>
 <script>
-import ComprasComponent from "@/components/auth/ComprasComponent";
+import ComprasComponent from "@/components/public/ComprasComponent";
 import FooterComponent from '@/components/shared/FooterComponent.vue';
 import NavigationDrawer from "@/components/shared/NavigationDrawer.vue";
 export default {

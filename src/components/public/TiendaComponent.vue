@@ -1,7 +1,7 @@
 <template>
   <v-app>
     <!-- Sizes your content based upon application components -->
-    <v-main >
+    <v-main class="main">
       <v-container fluid>
         <!-- If using vue-router -->
         <router-view></router-view>
@@ -30,8 +30,9 @@
               </v-sheet>
               <v-expansion-panels v-if="$vuetify.breakpoint.smAndDown">
                 <v-expansion-panel>
-                  <v-expansion-panel-header expand-icon="fa-angle-down">
+                  <v-expansion-panel-header expand-icon="mdi-chevron-up">
                     Filtro
+                    
                   </v-expansion-panel-header>
                   <v-expansion-panel-content>
                     <v-radio-group v-model="priceFilter" :mandatory="true">
@@ -56,7 +57,7 @@
               sm="8"
               md="4"
               v-for="(producto, i) in tienda"
-              :key="producto.nombre"
+              :key="i"
             >
               <v-card
                 outlined
@@ -109,10 +110,9 @@
                     <v-chip>{{ producto.stock }}</v-chip>
                   </v-chip-group>
                 </v-card-text>
-
                 <v-card-actions>
-                  <v-btn color="#5e2129" outlined @click="agregarCarrito"
-                    ><v-icon>mdi-cart-plus</v-icon>
+                  <v-btn color="#5e2129" outlined @click="agregarCarrito(producto.codigo)"
+                    ><v-icon small>mdi-cart-plus</v-icon>
                     Añadir al carro
                   </v-btn>
                 </v-card-actions>
@@ -149,14 +149,49 @@ export default {
           },
         })
         .then((response) => {
-          this.tienda = response.data;
+          for(var i = 0; i < response.data.length; i++){
+              if(response.data[i].estado === 1){
+                var total = this.tienda.push(response.data[i])
+              };
+              }
           this.cargando = false;
+        
         })
         .catch((error) => {
           console.log(error);
         });
     },
     agregarCarrito(index, quantity = 1) {
+      for(var i = 0; i < this.tienda.length; i++){
+        if(index === this.tienda[i].codigo){
+          axios
+          .post(
+            "http://localhost:3000/api/carrito/add",
+            {
+              estado: this.tienda[i].estado,
+              nombre: this.tienda[i].nombre,
+              imagen: this.tienda[i].imagen,
+              descripcion: this.tienda[i].descripcion,
+              codigo: this.tienda[i].codigo,
+              categoria: this.tienda[i].categoriaId,
+              stock: this.tienda[i].stock,
+              precio_venta: this.tienda[i].precio_venta,
+            },
+            {
+              headers: {
+                token: this.$store.state.token,
+              },
+            }
+          )
+          .then((response) => {
+            
+          })
+          .catch((error) => {
+            return error;
+          });
+        }
+      }
+      
       this.loading = true;
       this.$store.commit("agregarCarrito", { itemId: index, quantity });
       this.$store.commit("actualizarTienda", { show: true });
@@ -165,3 +200,13 @@ export default {
   },
 };
 </script>
+
+<style>
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+}
+.main {
+  background: url("fondo.png");
+}
+</style>
