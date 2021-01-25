@@ -35,9 +35,10 @@ export default {
     HelloWorld,
     MenuComponent
   },
-
-  data: () => ({}),
-};
+  created(){
+    this.$store.dispatch("autoLogin");
+  },
+}
 </script>
 
 <style scoped>
