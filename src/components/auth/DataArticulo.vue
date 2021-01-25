@@ -143,7 +143,7 @@
             </v-dialog>
           </v-toolbar>
         </template>
-        <template v-slot:item.imagen="{ item }">
+        <template v-slot:[`item.imagen`]="{ item }">
           <div class="p-2">
             <v-img
               :src="item.imagen"
@@ -152,7 +152,7 @@
             ></v-img>
           </div>
         </template>
-        <template v-slot:item.actions="{ item }">
+        <template v-slot:[`item.actions`]="{ item }">
           <v-icon medium class="mr-2" @click="editItem(item)" color="orange">
             mdi-pencil
           </v-icon>
@@ -190,6 +190,7 @@ export default {
       { text: "Categoria", value: "categoriaId" },
       { text: "Venta", value: "precio_venta" },
       { text: "Cantidad", value: "stock" },
+      { text: "Disponible", value: "disponible" },
       { text: "Estado", value: "estado" },
       { text: "Actions", value: "actions", sortable: false },
     ],

@@ -2,77 +2,81 @@
   <v-main>
     <v-container>
       <v-row>
-        <v-col sm="8" md="5" offset-md="2" lg="4" offset-lg="3">
+        <v-col sm="8" md="5" offset-md="2" lg="4" xl="4" offset-lg="3">
           <div>
-            <v-row v-for="product in tienda" :key="product.id">
-              <v-card
-    outlined
-    min-width="100%"
-    class="mb-5 pa-4"
-  >
-    <div class="d-flex">
-      <div>
-        <v-img
-          :src="product.imagen"
-          width="120px"
-          height="120px"
-        />
-      </div>
-      
-      <div class="d-flex flex-column justify-center">
-        <v-card-title class="pt-0">
-          {{ product.nombre }}
-        </v-card-title>
-        
-        <v-card-subtitle>
-          ${{ product.precio_venta }}
-        </v-card-subtitle>
-        
-        <v-btn
-          color="error"
-          class="ml-4"
-          outlined
-          small
-          @click="removeFromCart"
-        >
-          <v-icon small left>fa-minus</v-icon>
-          Eliminar
-        </v-btn>
-      </div>
-    </div>
-  </v-card>
+            <v-row v-for="(product, i) in cart" :key="i">
+              <v-card outlined min-width="100%" class="mb-5 pa-4">
+                <div class="d-flex">
+                  <div>
+                    <v-img :src="product.imagen" width="120px" height="120px" />
+                  </div>
+
+                  <div class="d-flex flex-column justify-center">
+                    <v-card-title class="pt-0">
+                      {{ product.nombre }}
+                    </v-card-title>
+
+                    <v-card-subtitle>
+                      ${{ product.precio_venta}}
+                    </v-card-subtitle>
+                    <v-card-subtitle>
+                      {{ product.stock }}
+                    </v-card-subtitle>
+
+                    <v-btn
+                      color="error"
+                      class="ml-4"
+                      outlined
+                      small
+                      @click="eliminar(product.id)"
+                    >
+                      <v-icon small left>mdi-trash-can-outline</v-icon>
+                      Eliminar
+                    </v-btn>
+                    
+                  </div>
+                  <div class="d-flex flex-column justify-center">
+                      <v-btn class="mx-2" fab dark small color="primary" @click="aumentar(product.id)"> 
+                        <v-icon small>mdi-plus</v-icon>
+                      </v-btn>
+                      <v-btn class="mx-2" fab small disabled v-if="product.stock === 0">
+                      </v-btn>
+                      <v-btn class="mx-2" fab dark small color="error" @click="disminuir(product.id)" v-else>
+                        <v-icon small>mdi-minus</v-icon>
+                      </v-btn>
+                    </div>
+                </div>
+              </v-card>
             </v-row>
           </div>
         </v-col>
         <v-col sm="4" md="3" order="first" order-sm="last">
           <div>
-    <v-card
-      outlined
-    >
-      <v-card-title>Detalles del Pago</v-card-title>
+            <v-card outlined>
+              <v-card-title>Detalles del Pago</v-card-title>
 
-      <v-card-text>
-        <p>Total: $2500</p>
-        <v-btn
-          color="primary"
-          @click="goToCheckout"
-        >
-          Comprar
-        </v-btn>
-      </v-card-text>
-    </v-card>
-  </div>
+              <v-card-text>
+                <p v-for="(product, i) in cart" :key="i">
+                  {{ product.nombre }}: {{ product.precio_venta }} * {{product.stock}} + envio
+                </p>
+                <v-divider></v-divider>
+                <p>Total = {{total}}.00</p>
+                <v-btn color="primary" @click="goToCheckout"> Comprar </v-btn>
+              </v-card-text>
+            </v-card>
+          </div>
         </v-col>
       </v-row>
     </v-container>
-
+<div class="d-flex justify-center mt-10 mb-10">
     <v-card v-if="!this.$store.state.usuario">
-      <p>Aun no has iniciado sesion?</p>
-      <v-btn to="/login">
+      <v-card-text>Aun no has iniciado sesion?</v-card-text>
+      <v-btn to="/login" class="d-flex justify-center">
         <v-icon>mdi-account</v-icon>
         Iniciar Sesion</v-btn
       >
     </v-card>
+</div>
   </v-main>
 </template>
 
@@ -82,63 +86,64 @@ module.exports = {
     return {
       checkoutForm: null,
       nameRules: [],
-      name: '',
+      name: "",
       emailRules: [],
-      email: '',
-      tienda: []
+      email: "",
+      cart: [],
+    };
+  },
+  computed:{
+    total(){
+      let total = 0
+      for (let i=0; i<this.cart.length; i++){
+        total += this.cart[i].precio_venta*this.cart[i].stock
+      }
+      return total
     }
-    
   },
   created() {
-    this.list();
+    if(JSON.parse(localStorage.getItem('products'))){
+      let tienda = JSON.parse(localStorage.getItem('products'))
+      for (let i = 0; i< tienda.length ; i++){
+        tienda[i].stock = 1
+      }
+      this.cart = tienda
+
+    }else{
+      this.cart = []
+    }
   },
   methods: {
     goToCheckout() {
-      console.log('checkout')
-      this.$router.push({ name: 'Validacion' })
+      console.log("checkout");
+      this.$router.push({ name: "Validacion" });
     },
-    removeFromCart() {
-      if (this.tienda) {
-        axios
-          .put(
-            "http://localhost:3000/api/carrito/deactivate",
-            {
-              id: this.tienda[0].id,
-            },
-            {
-              headers: {
-                token: this.$store.state.token,
-              },
-            }
-          )
-          .then((response) => {
-          })
-          .catch((error) => {
-            return error;
-          });
+    eliminar(id){
+      for (let i = 0; i< this.cart.length ; i++){
+        if(this.cart[i].id == id){
+          this.cart.splice(i, 1)
+          localStorage.setItem('products', JSON.stringify(this.cart))
+        }
       }
-      
+
     },
-    list() {
-      axios
-        .get("http://localhost:3000/api/carrito/list", {
-          headers: {
-            token: this.$store.state.token,
-          },
-        })
-        .then((response) => {
-          for(var i = 0; i < response.data.length; i++){
-              if(response.data[i].estado === 1){
-                var total = this.tienda.push(response.data[i])
-              };
-              }
-          this.cargando = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    aumentar(id){
+      for(let i = 0; i < this.cart.length ; i++){
+        if (this.cart[i].id == id){
+          this.cart[i].stock++
+          localStorage.setItem('products', JSON.stringify(this.cart))
+        }
+      }
     },
-  
-  }
-}
+    disminuir(id){
+      for(let i = 0; i < this.cart.length ; i++){
+        if (this.cart[i].id == id){
+          this.cart[i].stock--
+          localStorage.setItem('products', JSON.stringify(this.cart))
+        }
+      }
+    }
+    
+  },
+};
 </script>

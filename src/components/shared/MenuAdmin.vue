@@ -98,7 +98,8 @@ export default {
         gestion: [
         ['Categoria', 'mdi-numeric-9-plus-box', 'Categoria'],
         ['Articulo', 'mdi-numeric-9-plus-box', 'Articulo'],
-        ['Ventas', 'mdi-numeric-9-plus-box', 'Venta']
+        ['Ventas', 'mdi-numeric-9-plus-box', 'Venta'],
+        ['Bloog', 'mdi-numeric-9-plus-box', 'Blog']
       ],
       cruds: [
         ['Usuario', 'mdi-plus-outline', 'Usuario']

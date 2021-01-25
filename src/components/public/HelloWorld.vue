@@ -72,7 +72,7 @@
             <v-col
               sm="6"
               md="4"
-              v-for="(producto, i) in tienda.slice(1, 4)"
+              v-for="(producto) in tienda.slice(0, 3)"
               :key="producto.nombre"
             >
               <v-card
@@ -108,7 +108,7 @@
                   </v-row>
 
                   <div class="my-4 subtitle-1">
-                    ${{ producto.precio_venta }}
+                    ${{ producto.precio_venta }}.00
                   </div>
 
                   <div>{{ producto.descripcion }}</div>
@@ -128,10 +128,15 @@
                 </v-card-text>
 
                 <v-card-actions>
-                  <v-btn color="#5e2129" outlined @click="agregarCarrito"
+                  <v-btn
+                    
+                    color="#5e2129"
+                    outlined
+                    to="/tienda"
                     ><v-icon>mdi-cart-plus</v-icon>
-                    Añadir al carro
+                    Comprar
                   </v-btn>
+                  
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -305,6 +310,7 @@ export default {
   }),
   created() {
     this.list();
+    
   },
   methods: {
     next() {
@@ -323,20 +329,18 @@ export default {
           },
         })
         .then((response) => {
-          this.tienda = response.data;
+          for (var i = 0; i < response.data.length; i++) {
+            if (response.data[i].estado === 1) {
+              this.tienda.push(response.data[i]);
+            }
+          }
           this.cargando = false;
         })
         .catch((error) => {
           console.log(error);
         });
-    },
-    agregarCarrito(index, quantity = 1) {
-      this.loading = true;
-      this.$store.commit("agregarCarrito", { itemId: index, quantity });
-      this.$store.commit("actualizarTienda", { show: true });
-      setTimeout(() => (this.loading = false), 2000);
-    },
-  },
+    }
+  }
 };
 </script>
 <style>
