@@ -4,7 +4,7 @@
       <v-row>
         <v-col sm="8" md="5" offset-md="2" lg="4" xl="4" offset-lg="3">
           <div>
-            <v-row v-for="(product, i) in cart" :key="i">
+            <v-row v-for="(product, i) in cart" :key="product.id">
               <v-card outlined min-width="100%" class="mb-5 pa-4">
                 <div class="d-flex">
                   <div>
@@ -61,22 +61,14 @@
                 </p>
                 <v-divider></v-divider>
                 <p>Total = {{total}}.00</p>
-                <v-btn color="primary" @click="goToCheckout"> Comprar </v-btn>
+                <v-btn color="primary" v-if="cart == ''" to="/login"> Iniciar Sesion </v-btn>
+                <v-btn color="primary" @click="goToCheckout" v-else> Comprar </v-btn>
               </v-card-text>
             </v-card>
           </div>
         </v-col>
       </v-row>
     </v-container>
-<div class="d-flex justify-center mt-10 mb-10">
-    <v-card v-if="!this.$store.state.usuario">
-      <v-card-text>Aun no has iniciado sesion?</v-card-text>
-      <v-btn to="/login" class="d-flex justify-center">
-        <v-icon>mdi-account</v-icon>
-        Iniciar Sesion</v-btn
-      >
-    </v-card>
-</div>
   </v-main>
 </template>
 

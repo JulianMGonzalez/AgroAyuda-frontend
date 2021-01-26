@@ -1,9 +1,5 @@
 <template>
 <v-app id="inspire">
-    
-
-    
-
   <v-item-group mandatory>
     <v-sheet
       class="overflow-y-auto"

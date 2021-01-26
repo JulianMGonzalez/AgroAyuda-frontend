@@ -66,7 +66,6 @@ export default {
           password: this.password,
         })
         .then((respuesta) => {
-          console.log(respuesta.data);
           let user = respuesta.data.user;
           localStorage.setItem("user", JSON.stringify(user));
           return respuesta.data;

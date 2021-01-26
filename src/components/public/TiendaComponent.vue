@@ -153,7 +153,7 @@ export default {
   created() {
     this.list();
 
-    let cart = [];
+   let cart = [];
     if (JSON.parse(localStorage.getItem("products"))) {
       cart = JSON.parse(localStorage.getItem("products"));
     } else {

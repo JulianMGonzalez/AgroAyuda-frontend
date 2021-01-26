@@ -20,7 +20,7 @@
               <v-text-field
                 v-model="data.name"
                 :rules="[rules.required]"
-                label="Name"
+                label="Nombre"
                 required
               />
 
@@ -34,24 +34,24 @@
               <v-text-field
                 v-model="data.phone"
                 :rules="[rules.required, rules.phone]"
-                label="Phone Number"
+                label="Numero celular"
                 required
               />
 
-              <v-btn color="primary" @click="next"> Continue </v-btn>
+              <v-btn color="primary" @click="next"> Continuar </v-btn>
               <v-btn text @click="$router.replace({ name: 'Compras' })">
-                Cancel
+                Cancelar
               </v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="2">
               <v-text-field
                 v-model="data.street"
-                label="Street Address"
+                label="Direccion"
                 required
               />
 
-              <v-text-field v-model="data.state" label="State" required />
+              <v-text-field v-model="data.state" label="Departamento" required />
 
               <v-text-field
                 v-model="data.zip"
@@ -60,14 +60,14 @@
                 required
               />
 
-              <v-btn color="primary" @click="next"> Continue </v-btn>
+              <v-btn color="primary" @click="next"> Continuar </v-btn>
 
-              <v-btn text @click="previous"> Go Back </v-btn>
+              <v-btn text @click="previous"> Volver </v-btn>
             </v-stepper-content>
 
             <v-stepper-content step="3">
               <v-list disabled dense>
-                <v-subheader class="title"> Review Order </v-subheader>
+                <v-subheader class="title"> Detalles del pago </v-subheader>
                 <v-list-item-group color="primary">
                   <v-list-item v-for="(value, name) in data" :key="name">
                     <v-list-item-content>
@@ -79,8 +79,11 @@
                 </v-list-item-group>
               </v-list>
 
-              <v-btn color="primary" @click="overlay = !overlay">
-                Submit
+              <v-btn color="primary" @click="overlay = !overlay" v-if="this.$store.state.usuario">
+                Comprar
+              </v-btn>
+              <v-btn color="primary" to="/login" v-else>
+                Iniciar
               </v-btn>
 
               <v-btn text @click="previous"> Volver </v-btn>

@@ -4,10 +4,7 @@
     <section id="inicio">
       <v-main class="main">
         <!-- Provides the application the proper gutter -->
-        <v-container fluid>
-          <!-- If using vue-router -->
-          <router-view></router-view>
-        </v-container>
+        
         <v-sheet class="mx-auto" elevation="8" max-width="1200">
           <h1 class="d-flex justify-content-center">
             <strong>Servicios</strong>
@@ -51,7 +48,7 @@
           >
             <v-sheet v-if="model != null" tile>
               <v-card align="center" justify="center">
-              <v-card-title v-if="model === i">{{item.nombre}}</v-card-title>
+              <v-card-subtitle v-if="model === i">{{item.nombre}}</v-card-subtitle>
               <v-card-subtitle v-if="model === i">{{item.texto}}</v-card-subtitle>
               <v-btn color="green" class="mx-4 white--text" v-if="model === i" :to= "{path: item.link}"><v-icon size="24px">
               {{ item.icono }}

@@ -57,6 +57,12 @@
                           label="Nombre"
                         ></v-text-field>
                       </v-col>
+                      <v-col cols="12" sm="6" md="4">
+                        <v-text-field
+                          v-model="editedItem.disponible"
+                          label="Nombre"
+                        ></v-text-field>
+                      </v-col>
                       <v-col cols="12">
                         <v-textarea
                           v-model="editedItem.descripcion"
@@ -207,6 +213,7 @@ export default {
       estado: 0,
       stock: 0,
       precio_venta: 0,
+      disponible: false,
       categoria: {
         id: 0,
         nombre: "",
@@ -222,6 +229,7 @@ export default {
       estado: 0,
       stock: 0,
       precio_venta: 0,
+      disponible: false,
       categoria: {
         id: 0,
         nombre: "",
@@ -368,6 +376,7 @@ export default {
               categoria: this.categoria.id,
               stock: this.editedItem.stock,
               precio_venta: this.editedItem.precio_venta,
+              disponible: this.editedItem.disponible
             },
             {
               headers: {
@@ -395,6 +404,7 @@ export default {
               categoriaId: this.categoria.id,
               stock: this.editedItem.stock,
               precio_venta: this.editedItem.precio_venta,
+              disponible: this.editedItem.disponible
             },
             {
               headers: {

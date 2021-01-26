@@ -99,7 +99,7 @@ export default {
         ['Categoria', 'mdi-numeric-9-plus-box', 'Categoria'],
         ['Articulo', 'mdi-numeric-9-plus-box', 'Articulo'],
         ['Ventas', 'mdi-numeric-9-plus-box', 'Venta'],
-        ['Bloog', 'mdi-numeric-9-plus-box', 'Blog']
+        ['Blog', 'mdi-numeric-9-plus-box', 'DataBlog']
       ],
       cruds: [
         ['Usuario', 'mdi-plus-outline', 'Usuario']

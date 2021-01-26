@@ -57,7 +57,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "tienda" */ '../views/public/Validacion.vue'),
     meta: {
-      public: true
+      auth: true
     }
   },
   {
@@ -78,6 +78,17 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "servicio" */ '../views/public/Servicio.vue'),
+    meta: {
+      public: true
+    }
+  },
+  {
+    path: '/cuenta',
+    name: 'Cuenta',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "servicio" */ '../views/auth/Profile.vue'),
     meta: {
       public: true
     }
@@ -156,7 +167,20 @@ const routes = [
           administrador: true,
           vendedor: false
         }
-      }
+      },
+      {
+        path: 'datablog',
+        name: 'DataBlog',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import(/* webpackChunkName: "categoria" */ '../views/auth/DataBlog.vue'),
+        meta: {
+          auth: true,
+          administrador: true,
+          vendedor: false
+        }
+      },
     ]
   },
 ]

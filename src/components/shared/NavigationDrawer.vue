@@ -61,13 +61,13 @@ export default {
         mini: true,
         navegation:[
           {
-            nombre: "Cuenta", icono: "mdi-account", accion: "Cuenta"
+            nombre: "Cuenta", icono: "mdi-account", accion: "cuenta"
           },
           {
-            nombre: "Pedidos", icono: "mdi-storefront", accion: "Pedidos"
+            nombre: "Pedidos", icono: "mdi-storefront", accion: "pedidos"
           },
           {
-            nombre: "Acerca de nosotros", icono: "mdi-account-supervisor-circle", accion: "Servicio"
+            nombre: "Acerca de nosotros", icono: "mdi-account-supervisor-circle", accion: "servicio"
           }
         ]
     }),
