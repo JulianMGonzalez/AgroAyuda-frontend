@@ -61,8 +61,9 @@
                 </p>
                 <v-divider></v-divider>
                 <p>Total = {{total}}.00</p>
-                <v-btn color="primary" v-if="cart == ''" to="/login"> Iniciar Sesion </v-btn>
-                <v-btn color="primary" @click="goToCheckout" v-else> Comprar </v-btn>
+                <v-btn color="primary" v-if="cart == ''"> Agrega productos </v-btn>
+                <v-btn color="primary" v-else-if="!this.$store.state.usuario" @click="iniciar"> Inicia Sesion </v-btn>
+                <v-btn color="primary" v-else  @click="goToCheckout"> Comprar </v-btn>
               </v-card-text>
             </v-card>
           </div>
@@ -106,6 +107,10 @@ module.exports = {
     }
   },
   methods: {
+    iniciar(){
+      this.$router.push({ name: "Login"})
+      
+    },
     goToCheckout() {
       console.log("checkout");
       this.$router.push({ name: "Validacion" });

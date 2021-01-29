@@ -73,7 +73,6 @@ export default {
         .then((data) => {
           swal("Buen Trabajo!", "Ingresando...", "success");
           this.$store.dispatch("guardarToken", data.tokenReturn);
-          this.$router.push({ name: "Home" });
         })
         .catch((error) => {
           //console.log(eror);
@@ -90,6 +89,7 @@ export default {
             this.errorM = "Ocurrió un error con el servidor.";
           }
         });
+        this.$router.go(-1)
     },
     home() {
       this.$router.push({ name: "Home" });

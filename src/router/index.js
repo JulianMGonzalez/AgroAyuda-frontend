@@ -57,7 +57,7 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "tienda" */ '../views/public/Validacion.vue'),
     meta: {
-      auth: true
+      public: true
     }
   },
   {
