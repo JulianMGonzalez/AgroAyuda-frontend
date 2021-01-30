@@ -183,6 +183,8 @@ export default {
               }
               if (response.data[i].disponible === "true") {
                 response.data[i].disponible = true;
+              } else {
+                response.data[i].disponible = false;
               }
               this.tienda.push(response.data[i]);
               
