@@ -5,11 +5,11 @@
       <v-banner elevation="7" class="mt-16">
         <v-carousel cycle show-arrows-on-hover hide-delimiters height="550">
           <v-carousel-item
+            reverse-transition="fade-transition"
+            transition="fade-transition"
             v-for="(item, i) in imagenes"
             :key="i"
             :src="item.src"
-            reverse-transition="fade-transition"
-            transition="fade-transition"
           >
           </v-carousel-item>
         </v-carousel>
@@ -72,7 +72,7 @@
             <v-col
               sm="6"
               md="4"
-              v-for="(producto) in tienda.slice(0, 3)"
+              v-for="producto in tienda.slice(0, 3)"
               :key="producto.nombre"
             >
               <v-card
@@ -128,15 +128,10 @@
                 </v-card-text>
 
                 <v-card-actions>
-                  <v-btn
-                    
-                    color="#5e2129"
-                    outlined
-                    to="/tienda"
+                  <v-btn color="#5e2129" outlined to="/tienda"
                     ><v-icon>mdi-cart-plus</v-icon>
                     Comprar
                   </v-btn>
-                  
                 </v-card-actions>
               </v-card>
             </v-col>
@@ -145,13 +140,19 @@
       </section>
 
       <section id="indicadores">
-        <v-sheet class="mx-auto" elevation="8" max-width="1200">
+        <v-hover
+        v-slot="{ hover }"
+        open-delay="200"
+      >
+        <v-sheet class="mx-auto" :elevation="hover ? 10 : 2" max-width="1200">
           <v-card>
             <h1 class="text-center">indicadores</h1>
             <p>no encuentro una api buena</p>
           </v-card>
         </v-sheet>
+      </v-hover>
       </section>
+      
       <div id="team" class="container-fluid">
         <div class="row justify-content-center mb-5">
           <div
@@ -181,11 +182,22 @@
                     </v-list-item-content>
 
                     <v-row align="center" justify="end">
-                      <v-icon class="mr-1"> mdi-heart </v-icon>
-                      <span class="subheading mr-2">{{ share }}</span>
-                      <span class="mr-1">·</span>
-                      <v-icon class="mr-1"> mdi-share-variant </v-icon>
-                      <span class="subheading">{{ like }}</span>
+                      <div>
+                        <v-btn icon @click="messages++">
+                          <v-badge
+                            :content="messages"
+                            :value="messages"
+                            color="green"
+                            overlap
+                          >
+                            <v-icon class="mr-1"> mdi-heart </v-icon>
+                          </v-badge>
+                        </v-btn>
+
+                        <span class="mr-1">·</span>
+                        <v-icon class="mr-1"> mdi-share-variant </v-icon>
+                        <span class="subheading">{{ like }}</span>
+                      </div>
                     </v-row>
                   </v-list-item>
                 </v-card-actions>
@@ -195,33 +207,46 @@
         </div>
       </div>
 
-      <div id="team" class="container-fluid">
-        <div class="row justify-content-center mb-5">
-          <div class="col mt-5" v-for="(item, index) of team" :key="index">
-            <div class="card green darken-4 text-white" :key="index">
-              <div class="d-flex justify-content-center p-2">
-                <img
-                  v-bind:src="item.image"
-                  width="190"
-                  height="190"
-                  alt="Estudiante"
-                />
-              </div>
-              <div class="card-body">
-                <h5 class="text-center">
-                  {{ item.codigo }}. {{ item.nombre }}
-                </h5>
-                <p class="text-center">{{ item.descripcion }}</p>
-                <p class="text-center">{{ item.rol }}</p>
-              </div>
-              <div class="p-3 mb-2 yellow darken-4 text-dark">
-                <p class="text-center">¡El campo es de todos!</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <v-container class="pa-4 text-center">
+        <v-row class="fill-height" align="center" justify="center">
+          <template v-for="(item, i) in team">
+            <v-col :key="i" cols="12" md="4">
+              <v-hover v-slot="{ hover }">
+                <v-card
+                  class="mx-auto"
+                  color="grey lighten-4"
+                  max-width="600"
+                  elevation="10"
+                >
+                  <v-img :aspect-ratio="16 / 9" :src="item.image">
+                    <v-expand-transition>
+                      <div
+                        v-if="hover"
+                        class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                        style="height: 100%"
+                      >
+                      <v-img src="@/assets/logo footer.png" height="200"></v-img>
+                      </div>
+                    </v-expand-transition>
+                  </v-img>
+                  <v-card-text class="pt-6" style="position: relative">
+                    <div class="font-weight-light grey--text title mb-2">
+                      {{ item.rol }}
+                    </div>
+                    <v-divider></v-divider>
+                    <h3 class="display-1 font-weight-light orange--text mb-2">
+                      {{ item.nombre }}
+                    </h3>
+                    <div class="font-weight-light title mb-2">
+                      {{ item.descripcion }}
+                    </div>
+                  </v-card-text>
+                </v-card>
+              </v-hover>
+            </v-col>
+          </template>
+        </v-row>
+      </v-container>
       <!-- Provides the application the proper gutter -->
     </v-main>
   </v-app>
@@ -233,6 +258,8 @@ import axios from "axios";
 export default {
   data: () => ({
     loading: false,
+    messages: 0,
+    show: false,
     testimonios: [
       [
         "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
@@ -252,34 +279,41 @@ export default {
     team: [
       {
         codigo: 1,
-        nombre: "Julian Carranza",
+        nombre: "Julian Carranza Capera",
         descripcion: "",
         rol: "Desarrollador backend",
-        image: require("@/assets/maiz.jpg"),
+        image: require("@/assets/yo.jpg"),
       },
       {
         codigo: 2,
-        nombre: "Julian David Montero",
+        nombre: "Julian David Montero Gonzalez",
         descripcion: "",
         rol: "Desarrollador backend",
-        image: require("@/assets/maiz.jpg"),
+        image: require("@/assets/rolito.jpg"),
       },
       {
         codigo: 3,
-        nombre: "Laura Vargas",
+        nombre: "Laura Vargas Perdomo",
         descripcion: "",
-        rol: "______________",
-        image: require("@/assets/maiz.jpg"),
+        rol: "Analista",
+        image: require("@/assets/laura.jpg"),
       },
       {
         codigo: 4,
-        nombre: "Santiago maragua",
+        nombre: "Santiago Maragua Trujillo",
         descripcion: "",
         rol: "Desarrollador backend",
-        image: require("@/assets/maiz.jpg"),
+        image: require("@/assets/maragua.jpg"),
       },
       {
         codigo: 5,
+        nombre: "Jesus David Bermeo 1",
+        descripcion: "",
+        rol: "Desarrollador backend",
+        image: require("@/assets/david.jpg"),
+      },
+      {
+        codigo: 6,
         nombre: "Jesus bermeo",
         descripcion: "",
         rol: "Desarrollador backend",
@@ -310,7 +344,6 @@ export default {
   }),
   created() {
     this.list();
-    
   },
   methods: {
     next() {
@@ -339,8 +372,8 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-    }
-  }
+    },
+  },
 };
 </script>
 <style>
@@ -352,5 +385,12 @@ export default {
 }
 .texto {
   font-size: 18px;
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  position: absolute;
+  width: 100%;
 }
 </style>
