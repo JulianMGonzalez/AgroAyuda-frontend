@@ -1,6 +1,6 @@
 <template>
   <!-- App.vue -->
-  <v-app>
+  <v-app class="home">
     <section id="inicio">
       <v-banner elevation="7" class="mt-16">
         <v-carousel cycle show-arrows-on-hover hide-delimiters height="550">
@@ -20,50 +20,63 @@
 
     <v-main class="main">
       <section id="resumen" class="mr-5 ml-5">
-        <v-sheet class="mx-auto" elevation="8" max-width="1200">
-          <v-card>
-            <v-alert border="top" elevation="9" type="warning" color="#1b5e20">
-              <p class="texto">
-                Según el DANE, Los campesinos corresponden al 30% de nuestra
-                población en Colombia, los cuales producen el 83,5 % de los
-                alimentos que consumimos diariamente. Además de ser una
-                población excluida y con diversos problemas a la hora de su
-                producción, compra y venta. Igualmente, se presenta conflictos
-                en sectores esenciales como la salud, educación, vivienda, etc.
-                Por lo tanto, nos enfocaremos en la perdida de esto productos,
-                por la falta de opciones de venta. Podemos referirnos a la
-                difícil situación que afronta el campesino al tratar de
-                contribuir y sacar sus cosechas. La cual sea capaz de
-                suplementar sus necesidades básicas. Nuestro problema se
-                sustenta en las desventajas y características que son atribuidas
-                a problemas emergente, actuales y extensos en nuestro país:<br />
-                • Los campesinos no cuentan con herramientas tecnológicas que
-                faciliten su labor diaria.<br />
-                • No cuenta con una buena educación para sustentar y aprovechar
-                los productos del campo y capacitarse en medios sustentables
-                para el medio ambiente. <br />
-                • La alta demanda de los productos agrícolas hace las
-                compra-venta colapsen y los productores pequeños no puedan
-                exportar, dichos producidos a otras localidades.<br />
-                • No cuentas con precios estables pasa comercialización de estos
-                productos. • La falta de infraestructura vial y transporte.<br />
-                • Constante alza en precios de los peajes. <br />
-                • Compra de producto importados de otros países.<br />
-                • Productos de agro-insumo en constante alza de sus precios y
-                más contaminantes para el ser humano y medio ambiente. <br />
-                • Sequias, inundaciones, plagas, etc. Generado perdidas para el
-                campesino.
-              </p>
-            </v-alert>
-          </v-card>
-        </v-sheet>
+        <v-container class="pa-4">
+          <h3 class="text-center font-weight-black primary--text">
+            CONOCE AGROAYUDA
+          </h3>
+          <v-divider></v-divider>
+          <v-sheet class="mx-auto" elevation="8" max-width="1200">
+            <v-card>
+              <v-alert
+                border="top"
+                elevation="9"
+                type="warning"
+                color="#1b5e20"
+              >
+                <p class="texto">
+                  Según el DANE, Los campesinos corresponden al 30% de nuestra
+                  población en Colombia, los cuales producen el 83,5 % de los
+                  alimentos que consumimos diariamente. Además de ser una
+                  población excluida y con diversos problemas a la hora de su
+                  producción, compra y venta. Igualmente, se presenta conflictos
+                  en sectores esenciales como la salud, educación, vivienda,
+                  etc. Por lo tanto, nos enfocaremos en la perdida de esto
+                  productos, por la falta de opciones de venta. Podemos
+                  referirnos a la difícil situación que afronta el campesino al
+                  tratar de contribuir y sacar sus cosechas. La cual sea capaz
+                  de suplementar sus necesidades básicas. Nuestro problema se
+                  sustenta en las desventajas y características que son
+                  atribuidas a problemas emergente, actuales y extensos en
+                  nuestro país:<br />
+                  • Los campesinos no cuentan con herramientas tecnológicas que
+                  faciliten su labor diaria.<br />
+                  • No cuenta con una buena educación para sustentar y
+                  aprovechar los productos del campo y capacitarse en medios
+                  sustentables para el medio ambiente. <br />
+                  • La alta demanda de los productos agrícolas hace las
+                  compra-venta colapsen y los productores pequeños no puedan
+                  exportar, dichos producidos a otras localidades.<br />
+                  • No cuentas con precios estables pasa comercialización de
+                  estos productos. • La falta de infraestructura vial y
+                  transporte.<br />
+                  • Constante alza en precios de los peajes. <br />
+                  • Compra de producto importados de otros países.<br />
+                  • Productos de agro-insumo en constante alza de sus precios y
+                  más contaminantes para el ser humano y medio ambiente. <br />
+                  • Sequias, inundaciones, plagas, etc. Generado perdidas para
+                  el campesino.
+                </p>
+              </v-alert>
+            </v-card>
+          </v-sheet>
+        </v-container>
       </section>
       <section>
         <v-container>
           <v-row>
             <v-col sm="10" offset-sm="1" lg="8" offset-lg="2">
               <h2>
-                <strong> productos populares </strong>
+                <strong> Productos Populares </strong>
                 <v-btn to="/tienda" small text color="#5e2129">Ver Todos</v-btn>
               </h2>
             </v-col>
@@ -140,19 +153,25 @@
       </section>
 
       <section id="indicadores">
-        <v-hover
-        v-slot="{ hover }"
-        open-delay="200"
-      >
-        <v-sheet class="mx-auto" :elevation="hover ? 10 : 2" max-width="1200">
-          <v-card>
-            <h1 class="text-center">indicadores</h1>
-            <p>no encuentro una api buena</p>
-          </v-card>
-        </v-sheet>
-      </v-hover>
+        <v-container>
+          <h3 class="text-center font-weight-black primary--text">
+            INDICADORES
+          </h3>
+          <v-divider></v-divider>
+          <v-hover v-slot="{ hover }" open-delay="200">
+            <v-sheet
+              class="mx-auto"
+              :elevation="hover ? 10 : 2"
+              max-width="1200"
+            >
+              <v-card>
+                <p>no encuentro una api buena</p>
+              </v-card>
+            </v-sheet>
+          </v-hover>
+        </v-container>
       </section>
-      
+
       <div id="team" class="container-fluid">
         <div class="row justify-content-center mb-5">
           <div
@@ -167,8 +186,10 @@
                   <span class="title font-weight-light">Twitter</span>
                 </v-card-title>
 
-                <v-card-text class="headline font-weight-bold">
-                  {{ testimonio }}
+                <v-card-text class="fw-bold text-white">
+                  <font size="4">
+                    {{ testimonio }}
+                  </font>
                 </v-card-text>
 
                 <v-card-actions>
@@ -207,8 +228,12 @@
         </div>
       </div>
 
-      <v-container class="pa-4 text-center">
-        <v-row class="fill-height" align="center" justify="center">
+      <v-container class="pa-4 text-center mt-16">
+        <h3 class="text-center font-weight-black primary--text">
+          NUESTRO EQUIPO
+        </h3>
+        <v-divider></v-divider>
+        <v-row class="fill-height mb-10" align="center" justify="center">
           <template v-for="(item, i) in team">
             <v-col :key="i" cols="12" md="4">
               <v-hover v-slot="{ hover }">
@@ -225,7 +250,10 @@
                         class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
                         style="height: 100%"
                       >
-                      <v-img src="@/assets/logo footer.png" height="200"></v-img>
+                        <v-img
+                          src="@/assets/logo footer.png"
+                          height="200"
+                        ></v-img>
                       </div>
                     </v-expand-transition>
                   </v-img>
@@ -234,9 +262,9 @@
                       {{ item.rol }}
                     </div>
                     <v-divider></v-divider>
-                    <h3 class="display-1 font-weight-light orange--text mb-2">
+                    <span class="font-weight-bold orange--text mb-2">
                       {{ item.nombre }}
-                    </h3>
+                    </span>
                     <div class="font-weight-light title mb-2">
                       {{ item.descripcion }}
                     </div>
@@ -279,35 +307,35 @@ export default {
     team: [
       {
         codigo: 1,
-        nombre: "Julian Carranza Capera",
+        nombre: "JULIAN CARRANZA CAPERA",
         descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/yo.jpg"),
       },
       {
         codigo: 2,
-        nombre: "Julian David Montero Gonzalez",
+        nombre: "JULIAN DAVID MONTERO GONZALEZ",
         descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/rolito.jpg"),
       },
       {
         codigo: 3,
-        nombre: "Laura Vargas Perdomo",
+        nombre: "LAURA VARGAS PERDOMO",
         descripcion: "",
         rol: "Analista",
         image: require("@/assets/laura.jpg"),
       },
       {
         codigo: 4,
-        nombre: "Santiago Maragua Trujillo",
+        nombre: "SANTIAGO MARAGUA",
         descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/maragua.jpg"),
       },
       {
         codigo: 5,
-        nombre: "Jesus David Bermeo 1",
+        nombre: "JESUS DAVID BERMEO",
         descripcion: "",
         rol: "Desarrollador backend",
         image: require("@/assets/david.jpg"),
@@ -376,7 +404,7 @@ export default {
   },
 };
 </script>
-<style>
+<style >
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
