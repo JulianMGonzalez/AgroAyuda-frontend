@@ -22,7 +22,7 @@
       <section id="resumen" class="mr-5 ml-5">
         <v-container class="pa-4">
           <h3 class="text-center font-weight-black primary--text">
-            CONOCE AGROAYUDA
+            CONOCE A AGROAYUDA
           </h3>
           <v-divider></v-divider>
           <v-sheet class="mx-auto" elevation="8" max-width="1200">
@@ -57,8 +57,8 @@
                   compra-venta colapsen y los productores pequeños no puedan
                   exportar, dichos producidos a otras localidades.<br />
                   • No cuentas con precios estables pasa comercialización de
-                  estos productos. • La falta de infraestructura vial y
-                  transporte.<br />
+                  estos productos. <br />
+                  • La falta de infraestructura vial y transporte.<br />
                   • Constante alza en precios de los peajes. <br />
                   • Compra de producto importados de otros países.<br />
                   • Productos de agro-insumo en constante alza de sus precios y
@@ -79,6 +79,7 @@
                 <strong> Productos Populares </strong>
                 <v-btn to="/tienda" small text color="#5e2129">Ver Todos</v-btn>
               </h2>
+              <v-divider></v-divider>
             </v-col>
           </v-row>
           <v-row>
@@ -164,22 +165,27 @@
               :elevation="hover ? 10 : 2"
               max-width="1200"
             >
-              <v-card>
-                <p>no encuentro una api buena</p>
-              </v-card>
+              <v-skeleton-loader
+                class="mx-auto"
+                max-width="300"
+                type="card"
+              ></v-skeleton-loader>
+              <span>Hola</span>
             </v-sheet>
           </v-hover>
         </v-container>
       </section>
 
-      <div id="team" class="container-fluid">
+      <div id="team" class="container-fluid mt-16">
+        <h3 class="text-center font-weight-black primary--text">TESTIMONIOS</h3>
+        <v-divider></v-divider>
         <div class="row justify-content-center mb-5">
           <div
             class="col mt-5"
-            v-for="([testimonio, imagen, autor, like, share], a) in testimonios"
+            v-for="([testimonio, imagen, autor, like], a) in testimonios"
             :key="a"
           >
-            <v-card class="ml-5 mr-5">
+            <v-card class="ml-10 mr-10">
               <v-card class="mx-auto" color="#5e2129" dark>
                 <v-card-title>
                   <v-icon large left> mdi-twitter </v-icon>
@@ -247,13 +253,10 @@
                     <v-expand-transition>
                       <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal display-3 white--text"
+                        class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal white--text"
                         style="height: 100%"
                       >
-                        <v-img
-                          src="@/assets/logo footer.png"
-                          height="200"
-                        ></v-img>
+                        {{item.descripcion}}
                       </div>
                     </v-expand-transition>
                   </v-img>
@@ -265,9 +268,6 @@
                     <span class="font-weight-bold orange--text mb-2">
                       {{ item.nombre }}
                     </span>
-                    <div class="font-weight-light title mb-2">
-                      {{ item.descripcion }}
-                    </div>
                   </v-card-text>
                 </v-card>
               </v-hover>
@@ -308,42 +308,42 @@ export default {
       {
         codigo: 1,
         nombre: "JULIAN CARRANZA CAPERA",
-        descripcion: "",
+        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
         rol: "Desarrollador backend",
         image: require("@/assets/yo.jpg"),
       },
       {
         codigo: 2,
         nombre: "JULIAN DAVID MONTERO GONZALEZ",
-        descripcion: "",
+        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
         rol: "Desarrollador backend",
         image: require("@/assets/rolito.jpg"),
       },
       {
         codigo: 3,
         nombre: "LAURA VARGAS PERDOMO",
-        descripcion: "",
+        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
         rol: "Analista",
         image: require("@/assets/laura.jpg"),
       },
       {
         codigo: 4,
         nombre: "SANTIAGO MARAGUA",
-        descripcion: "",
+        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
         rol: "Desarrollador backend",
         image: require("@/assets/maragua.jpg"),
       },
       {
         codigo: 5,
         nombre: "JESUS DAVID BERMEO",
-        descripcion: "",
+        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
         rol: "Desarrollador backend",
         image: require("@/assets/david.jpg"),
       },
       {
         codigo: 6,
         nombre: "Jesus bermeo",
-        descripcion: "",
+        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
         rol: "Desarrollador backend",
         image: require("@/assets/maiz.jpg"),
       },

@@ -8,7 +8,7 @@
     >
       <v-list-item class="px-2">
         <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
+          <v-img :src="user.imagen"></v-img>
         </v-list-item-avatar>
         <v-list-item-title class="white--text">
           <br />

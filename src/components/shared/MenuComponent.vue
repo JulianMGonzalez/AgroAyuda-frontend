@@ -58,7 +58,7 @@
           >mdi-microsoft-xbox-controller-menu</v-icon
         ></v-app-bar-nav-icon
       >
-
+      <v-divider vertical></v-divider>
       <v-btn
         color="#1b5e20"
         text
