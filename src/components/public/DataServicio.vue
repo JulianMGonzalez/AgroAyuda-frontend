@@ -63,7 +63,7 @@
             </v-sheet>
           </v-expand-transition>
         </v-sheet>
-        <v-container>
+        <v-container class="mt-10">
           <v-timeline align-top :dense="$vuetify.breakpoint.smAndDown">
             <v-timeline-item
               v-for="(item, i) in items"
@@ -83,6 +83,8 @@
             </v-timeline-item>
           </v-timeline>
         </v-container>
+
+        
       </v-main>
     </section>
   </v-app>
@@ -157,6 +159,7 @@ export default {
       },
     ],
   }),
+  
 };
 </script>
 
@@ -166,5 +169,12 @@ export default {
 }
 .main {
   background: url("fondo.png");
+}
+#create .v-speed-dial {
+  position: absolute;
+}
+
+#create .v-btn--floating {
+  position: relative;
 }
 </style>

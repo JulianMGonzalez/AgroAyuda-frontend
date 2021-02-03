@@ -71,12 +71,35 @@
           </v-sheet>
         </v-container>
       </section>
+      <section id="indicadores">
+        <v-container class="mt-10">
+          <h3 class="text-center font-weight-black primary--text">
+            INDICADORES
+          </h3>
+          <v-divider></v-divider>
+          <v-hover v-slot="{ hover }" open-delay="200">
+            <v-sheet
+              class="mx-auto"
+              :elevation="hover ? 10 : 2"
+              max-width="1200"
+            >
+              <v-skeleton-loader
+                class="mx-auto"
+                max-width="300"
+                type="card"
+              ></v-skeleton-loader>
+            </v-sheet>
+          </v-hover>
+        </v-container>
+      </section>
       <section>
-        <v-container>
+        <v-container class="mt-16">
           <v-row>
             <v-col sm="10" offset-sm="1" lg="8" offset-lg="2">
               <h2>
-                <strong> Productos Populares </strong>
+                <h3 class="font-weight-black primary--text">
+            PRODUCTOS
+          </h3>
                 <v-btn to="/tienda" small text color="#5e2129">Ver Todos</v-btn>
               </h2>
               <v-divider></v-divider>
@@ -152,30 +175,7 @@
           </v-row>
         </v-container>
       </section>
-
-      <section id="indicadores">
-        <v-container>
-          <h3 class="text-center font-weight-black primary--text">
-            INDICADORES
-          </h3>
-          <v-divider></v-divider>
-          <v-hover v-slot="{ hover }" open-delay="200">
-            <v-sheet
-              class="mx-auto"
-              :elevation="hover ? 10 : 2"
-              max-width="1200"
-            >
-              <v-skeleton-loader
-                class="mx-auto"
-                max-width="300"
-                type="card"
-              ></v-skeleton-loader>
-              <span>Hola</span>
-            </v-sheet>
-          </v-hover>
-        </v-container>
-      </section>
-
+      <div class="mt-10"></div>
       <div id="team" class="container-fluid mt-16">
         <h3 class="text-center font-weight-black primary--text">TESTIMONIOS</h3>
         <v-divider></v-divider>
@@ -253,7 +253,7 @@
                     <v-expand-transition>
                       <div
                         v-if="hover"
-                        class="d-flex transition-fast-in-fast-out orange darken-2 v-card--reveal white--text"
+                        class="d-flex transition-fast-in-fast-out secondary darken-2 v-card--reveal white--text"
                         style="height: 100%"
                       >
                         {{item.descripcion}}
@@ -261,11 +261,11 @@
                     </v-expand-transition>
                   </v-img>
                   <v-card-text class="pt-6" style="position: relative">
-                    <div class="font-weight-light grey--text title mb-2">
+                    <div class="font-weight-medium grey--text mb-2">
                       {{ item.rol }}
                     </div>
                     <v-divider></v-divider>
-                    <span class="font-weight-bold orange--text mb-2">
+                    <span class="font-weight-bold secondary--text mb-2">
                       {{ item.nombre }}
                     </span>
                   </v-card-text>
@@ -275,7 +275,6 @@
           </template>
         </v-row>
       </v-container>
-      <!-- Provides the application the proper gutter -->
     </v-main>
   </v-app>
 </template>
@@ -308,36 +307,36 @@ export default {
       {
         codigo: 1,
         nombre: "JULIAN CARRANZA CAPERA",
-        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
-        rol: "Desarrollador backend",
+        descripcion: "Determinar las necesidades esenciales y no esenciales, así como las que son de segundo nivel, definir una estructura básica del sistema que incluya fuentes de información, módulos de procesamiento de información, y resultados esperados. ",
+        rol: "Desarrollador Full Stack - Gerente del proyecto",
         image: require("@/assets/yo.jpg"),
       },
       {
         codigo: 2,
         nombre: "JULIAN DAVID MONTERO GONZALEZ",
-        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
-        rol: "Desarrollador backend",
+        descripcion: "Cuenta con la capacidad suficiente para entender a su equipo de trabajo, también con la capacidad suficiente para la solución de los problemas que se presenten en el trascurso del proyecto, todas sus funciones están puestas las actividades del resto del equipo, debe hacer control de tareas diarias. ",
+        rol: "Desarrollador Frontend - Analista",
         image: require("@/assets/rolito.jpg"),
       },
       {
         codigo: 3,
         nombre: "LAURA VARGAS PERDOMO",
-        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
-        rol: "Analista",
+        descripcion: "Como líder cuenta con porte organizativo, se encarga de redactar y mantener actualizaciones de los requerimientos, crea y asigna tareas al resto del equipo; pero sus tareas de programación deben limitarse únicamente a la arquitectura marcando la línea a seguir por el resto de los programadores. ",
+        rol: "Analista - Líder del proyecto",
         image: require("@/assets/laura.jpg"),
       },
       {
         codigo: 4,
         nombre: "SANTIAGO MARAGUA",
-        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
-        rol: "Desarrollador backend",
+        descripcion: "No son necesariamente los desarrolladores con más experiencia. Deben tener habilidades de programación adecuadas. ",
+        rol: "Diseñador - Tester",
         image: require("@/assets/maragua.jpg"),
       },
       {
         codigo: 5,
         nombre: "JESUS DAVID BERMEO",
-        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
-        rol: "Desarrollador backend",
+        descripcion: "El ingeniero de tener altas capacidades en programación, teniendo en cuenta que las bases de datos son una herramienta muy poderosa en un proyecto. ",
+        rol: "Diseñador - Analista",
         image: require("@/assets/david.jpg"),
       },
       {

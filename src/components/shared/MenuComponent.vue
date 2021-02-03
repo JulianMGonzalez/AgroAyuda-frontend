@@ -104,9 +104,9 @@ export default {
   data: () => ({
     sideNav: false,
     menuItems: [
-      { icon: "mdi-home", title: "inicio", link: "/" },
+      { icon: "mdi-home", title: "Inicio", link: "/" },
       { icon: "mdi-forum", title: "Blog", link: "/blog" },
-      { icon: "mdi-clipboard-text-outline", title: "servicio", link: "/servicio" },
+      { icon: "mdi-clipboard-text-outline", title: "Servicios", link: "/servicio" },
       { icon: "mdi-store", title: "Tienda", link: "/tienda" },
       { icon: "mdi-cart", title: "Carrito", link: "/compras" },
     ],
