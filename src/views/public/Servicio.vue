@@ -16,8 +16,10 @@ export default {
         DataServicio,
         FooterComponent,
         NavigationDrawer
-    }
+    },
+    created(){
+    NavigationDrawer
+  }
     
 }
-</script>,
-        NavigationDrawer
+</script>

@@ -63,7 +63,7 @@
                           label="Descripcion"
                           auto-grow
                           no-resize
-                          counter="256"
+                          counter="560"
                         ></v-textarea>
                       </v-col>
                       <v-col cols="12" sm="6" md="4">

@@ -5,16 +5,16 @@
     <!-- Sizes your content based upon application components -->
     <v-main class="main">
       <!-- Provides the application the proper gutter -->
-      <v-container fluid>
-        <!-- If using vue-router -->
-        <router-view></router-view>
-      </v-container>
+  
       <v-row justify="space-around">
         <v-col cols="auto">
           <v-dialog transition="dialog-bottom-transition" max-width="800">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" v-bind="attrs" v-on="on"
+              <v-btn color="primary" v-bind="attrs" v-on="on" v-if="$store.state.usuario"
                 >Crear pregunta</v-btn
+              >
+              <v-btn color="primary" to="/login" v-else
+                >Iniciar Sesion</v-btn
               >
             </template>
             <template v-slot:default="dialog">
@@ -116,6 +116,7 @@
         class="mx-auto mt-10"
         elevation="8"
         max-width="1200"
+        height="250"
         v-for="(blog, i) in blogs"
         :key="i"
       >
@@ -128,8 +129,8 @@
           </div>
         </v-card-text>
         <v-card-actions>
-          <v-btn text color="teal accent-4" @click="abrir(blog)">
-            Learn More
+          <v-btn text color="secondary" @click="abrir(blog)">
+            Leer Mas
           </v-btn>
         </v-card-actions>
 
@@ -147,8 +148,8 @@
               </p>
             </v-card-text>
             <v-card-actions class="pt-0">
-              <v-btn text color="teal accent-4" @click="reveal = false">
-                Close
+              <v-btn text color="secondary" @click="reveal = false">
+                Cerrar
               </v-btn>
             </v-card-actions>
           </v-card>

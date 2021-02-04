@@ -17,6 +17,9 @@ export default {
     BlogComponent,
     FooterComponent,
     NavigationDrawer
+  },
+  created(){
+    NavigationDrawer
   }
 }
 </script>

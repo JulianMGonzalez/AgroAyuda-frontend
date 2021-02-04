@@ -3,7 +3,7 @@
       v-model="drawer"
       :mini-variant.sync="mini"
       app
-      color="green darken-4"
+      color="primary"
       v-if="this.$store.state.usuario"
     >
       <v-list-item class="px-2">
@@ -16,7 +16,7 @@
           <p>{{ user.rol }}</p>
         </v-list-item-title>
 
-        <v-btn icon @click.stop="mini = !mini" color="orange">
+        <v-btn icon @click.stop="mini = !mini" color="white">
           <v-icon>mdi-chevron-left</v-icon>
         </v-btn>
       </v-list-item>
@@ -73,6 +73,7 @@ export default {
     }),
     methods:{
       admin() {
+        console.log(this.$store.state.usuario.rol)
       try {
         if (
           this.$store.state.usuario.rol === "Administrador" ||

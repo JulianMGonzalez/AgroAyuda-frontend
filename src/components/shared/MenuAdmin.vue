@@ -68,7 +68,7 @@
       </v-list>
     </v-card>
     </v-navigation-drawer>
-        <v-app-bar app color="white" class="mt-3">
+        <v-app-bar app color="white" prominent dense>
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
       
       <v-img
