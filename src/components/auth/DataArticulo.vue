@@ -175,7 +175,9 @@
   </div>
 </template>
 <script>
+import productos from "@/logic/APIproductos.js";
 import axios from "axios";
+
 export default {
   data: () => ({
     dialog: false,
@@ -258,21 +260,14 @@ export default {
   },
 
   methods: {
-    list() {
-      axios
-        .get("http://localhost:3000/api/articulo/list", {
-          headers: {
-            token: this.$store.state.token,
-          },
-        })
-        .then((response) => {
-            this.articulos = response.data
-            this.cargando = false;
-          
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    async list() {
+      try {
+        let response = await productos.get();
+        this.articulos = response.data
+        this.cargando = false
+      } catch (error) {
+        console.log(error)
+      }
     },
     listCategoria() {
       axios
@@ -362,7 +357,7 @@ export default {
       });
     },
 
-    save() {
+    async save() {
       if (this.editedIndex > -1) {
         axios
           .put(
@@ -391,10 +386,8 @@ export default {
             return error;
           });
       } else {
-        axios
-          .post(
-            "http://localhost:3000/api/articulo/add",
-            {
+        await productos.post({
+            
               estado: 1,
               id: this.editedItem.id,
               nombre: this.editedItem.nombre,
@@ -412,12 +405,9 @@ export default {
               },
             }
           )
-          .then((response) => {
-            this.list();
-          })
-          .catch((error) => {
-            return error;
-          });
+          this.list();
+          
+        
       }
       this.close();
     },

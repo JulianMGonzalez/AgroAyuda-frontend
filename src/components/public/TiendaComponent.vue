@@ -135,6 +135,8 @@
   </v-app>
 </template>
 <script>
+import productos from "@/logic/APIproductos.js";
+
 export default {
   data() {
     return {
@@ -168,15 +170,9 @@ export default {
     }
   },
   methods: {
-    list() {
-      axios
-        .get("http://localhost:3000/api/articulo/list", {
-          headers: {
-            token: this.$store.state.token,
-          },
-        })
-        .then((response) => {
-          for (var i = 0; i < response.data.length; i++) {
+    async list() {
+      let response = await productos.get();
+        for (var i = 0; i < response.data.length; i++) {
             if (response.data[i].estado === 1) {
               if (response.data[i].disponible === "false") {
                 response.data[i].disponible = false;
@@ -187,17 +183,8 @@ export default {
                 response.data[i].disponible = false;
               }
               this.tienda.push(response.data[i]);
-              
-  
-//   var parsedyourElement = JSON.parse(JSON.stringify(this.tienda))
-// console.log(parsedyourElement)
             }
           }
-          this.cargando = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     },
     addCard(producto, quantity = 1) {
       let cart = [];

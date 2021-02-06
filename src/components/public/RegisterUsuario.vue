@@ -4,7 +4,7 @@
      
       <v-layout align-center justify-center>
         <v-flex xs12 sm8 md6 lg5 x14>
-          <v-card class="mt-16">
+          <v-card class="mt-16 pt-10">
             <div>
               <div class="d-flex justify-content-center align-items-center">
                 <img
@@ -15,7 +15,7 @@
                 />
                 <h1 class="font-weight-black ">AgroAyuda</h1>
               </div>
-              <h1 class="alert alert-secundary mt-5 ml-15">¡Unete a nuestros servicos de AgroAyuda!</h1>
+              <h1 class="alert alert-secundary mt-5 ml-15">¡Unete a nuestros servicos!</h1>
 
               <validation-observer ref="observer" v-slot="{ invalid }">
                 <form @submit.prevent="submit">

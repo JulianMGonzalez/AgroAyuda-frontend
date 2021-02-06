@@ -17,21 +17,21 @@
           <v-list-item-action>
             <v-icon>mdi-account-plus</v-icon>
           </v-list-item-action>
-          <v-list-item-content>registrate</v-list-item-content>
+          <v-list-item-content>Registrate</v-list-item-content>
         </v-list-item>
 
         <v-list-item to="/login" v-if="!this.$store.state.usuario" color="#1b5e20">
           <v-list-item-action>
             <v-icon>mdi-login</v-icon>
           </v-list-item-action>
-          <v-list-item-content>iniciar sesion</v-list-item-content>
+          <v-list-item-content>Iniciar sesion</v-list-item-content>
         </v-list-item>
 
         <v-list-item @click="salir()" v-else color="#1b5e20">
           <v-list-item-action>
             <v-icon>mdi-logout-variant</v-icon>
           </v-list-item-action>
-          <v-list-item-content>salir</v-list-item-content>
+          <v-list-item-content>Salir</v-list-item-content>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>

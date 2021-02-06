@@ -57,6 +57,7 @@
 <script>
 export default {
     data: () => ({
+      user: null,
         drawer: true,
         mini: true,
         navegation:[
@@ -73,7 +74,6 @@ export default {
     }),
     methods:{
       admin() {
-        console.log(this.$store.state.usuario.rol)
       try {
         if (
           this.$store.state.usuario.rol === "Administrador" ||

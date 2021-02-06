@@ -5,17 +5,19 @@
     <!-- Sizes your content based upon application components -->
     <v-main class="main">
       <!-- Provides the application the proper gutter -->
-  
+
       <v-row justify="space-around">
         <v-col cols="auto">
           <v-dialog transition="dialog-bottom-transition" max-width="800">
             <template v-slot:activator="{ on, attrs }">
-              <v-btn color="primary" v-bind="attrs" v-on="on" v-if="$store.state.usuario"
+              <v-btn
+                color="primary"
+                v-bind="attrs"
+                v-on="on"
+                v-if="$store.state.usuario"
                 >Crear pregunta</v-btn
               >
-              <v-btn color="primary" to="/login" v-else
-                >Iniciar Sesion</v-btn
-              >
+              <v-btn color="primary" to="/login" v-else>Iniciar Sesion</v-btn>
             </template>
             <template v-slot:default="dialog">
               <v-card>
@@ -68,7 +70,6 @@
                         prepend-icon="mdi-filter-variant"
                         solo
                       >
-                      
                         <template
                           v-slot:selection="{ attrs, item, select, selected }"
                         >
@@ -120,31 +121,27 @@
         v-for="(blog, i) in blogs"
         :key="i"
       >
-      
         <v-card-text>
           <div>Categoria</div>
-          <p class="display-1 text--primary">{{blog.titulo}}</p>
+          <p class="display-1 text--primary">{{ blog.titulo }}</p>
           <div class="text--primary">
-            {{blog.usuarioId}}
+            {{ blog.usuarioId }}
           </div>
         </v-card-text>
         <v-card-actions>
-          <v-btn text color="secondary" @click="abrir(blog)">
-            Leer Mas
-          </v-btn>
+          <v-btn text color="secondary" @click="abrir(blog)"> Leer Mas </v-btn>
         </v-card-actions>
 
         <v-expand-transition>
-          
           <v-card
             v-if="reveal"
             class="transition-fast-in-fast-out v-card--reveal"
             style="height: 100%"
           >
             <v-card-text class="pb-0">
-              <p class="display-1 text--primary">{{blog.titulo}}</p>
+              <p class="display-1 text--primary">{{ blog.titulo }}</p>
               <p>
-                {{blog.descripcion}}
+                {{ blog.descripcion }}
               </p>
             </v-card-text>
             <v-card-actions class="pt-0">
@@ -153,7 +150,6 @@
               </v-btn>
             </v-card-actions>
           </v-card>
-         
         </v-expand-transition>
       </v-card>
     </v-main>
@@ -161,6 +157,7 @@
 </template>
 
 <script>
+import blogs from "@/logic/APIblogs.js";
 import { required, max, regex } from "vee-validate/dist/rules";
 import {
   extend,
@@ -223,11 +220,8 @@ export default {
       this.chips.splice(this.chips.indexOf(item), 1);
       this.chips = [...this.chips];
     },
-    enviar() {
-      axios
-        .post(
-          "http://localhost:3000/api/blog/add",
-          {
+    async enviar() {
+      await blogs.post({
             usuarioId: this.$store.state.usuario.id,
             titulo: this.blog.titulo,
             descripcion: this.blog.descripcion,
@@ -235,30 +229,19 @@ export default {
           },
           {
             headers: {
-              token: this.$store.state.token,
-            },
+              token: this.$store.state.token
+            }
           }
-        )
-        .then((response) => {})
-        .catch((error) => {
-          return error;
-        });
+          );
       this.$refs.observer.validate();
     },
-    list() {
-      axios
-        .get("http://localhost:3000/api/blog/list", {
-          headers: {
-            token: this.$store.state.token,
-          },
-        })
-        .then((response) => {
-          this.blogs = response.data;
-          this.cargando = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    async list() {
+      try {
+        let response = await blogs.get();
+        this.blogs = response.data;
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 };

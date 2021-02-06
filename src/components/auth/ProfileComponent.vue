@@ -26,6 +26,7 @@
                 class="ml-6 mr-6"
                 v-model="user.email"
                 label="E-mail"
+                disabled
                 required
               ></v-text-field>
 

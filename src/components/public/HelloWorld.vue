@@ -97,9 +97,7 @@
           <v-row>
             <v-col sm="10" offset-sm="1" lg="8" offset-lg="2">
               <h2>
-                <h3 class="font-weight-black primary--text">
-            PRODUCTOS
-          </h3>
+                <h3 class="font-weight-black primary--text">PRODUCTOS</h3>
                 <v-btn to="/tienda" small text color="#5e2129">Ver Todos</v-btn>
               </h2>
               <v-divider></v-divider>
@@ -256,7 +254,7 @@
                         class="d-flex transition-fast-in-fast-out secondary darken-2 v-card--reveal white--text"
                         style="height: 100%"
                       >
-                        {{item.descripcion}}
+                        {{ item.descripcion }}
                       </div>
                     </v-expand-transition>
                   </v-img>
@@ -281,6 +279,7 @@
 
 <script>
 import axios from "axios";
+import productos from "@/logic/APIproductos.js";
 
 export default {
   data: () => ({
@@ -307,42 +306,48 @@ export default {
       {
         codigo: 1,
         nombre: "JULIAN CARRANZA CAPERA",
-        descripcion: "Determinar las necesidades esenciales y no esenciales, así como las que son de segundo nivel, definir una estructura básica del sistema que incluya fuentes de información, módulos de procesamiento de información, y resultados esperados. ",
-        rol: "Desarrollador Full Stack - Gerente del proyecto",
+        descripcion:
+          "Determinar las necesidades esenciales y no esenciales, así como las que son de segundo nivel, definir una estructura básica del sistema que incluya fuentes de información, módulos de procesamiento de información, y resultados esperados. ",
+        rol: "Desarrollador Frontend - Analista",
         image: require("@/assets/yo.jpg"),
       },
       {
         codigo: 2,
         nombre: "JULIAN DAVID MONTERO GONZALEZ",
-        descripcion: "Cuenta con la capacidad suficiente para entender a su equipo de trabajo, también con la capacidad suficiente para la solución de los problemas que se presenten en el trascurso del proyecto, todas sus funciones están puestas las actividades del resto del equipo, debe hacer control de tareas diarias. ",
-        rol: "Desarrollador Frontend - Analista",
+        descripcion:
+          "Cuenta con la capacidad suficiente para entender a su equipo de trabajo, también con la capacidad suficiente para la solución de los problemas que se presenten en el trascurso del proyecto, todas sus funciones están puestas las actividades del resto del equipo, debe hacer control de tareas diarias. ",
+        rol: "Desarrollador Full Stack - Lider del proyecto",
         image: require("@/assets/rolito.jpg"),
       },
       {
         codigo: 3,
         nombre: "LAURA VARGAS PERDOMO",
-        descripcion: "Como líder cuenta con porte organizativo, se encarga de redactar y mantener actualizaciones de los requerimientos, crea y asigna tareas al resto del equipo; pero sus tareas de programación deben limitarse únicamente a la arquitectura marcando la línea a seguir por el resto de los programadores. ",
-        rol: "Analista - Líder del proyecto",
+        descripcion:
+          "Como líder cuenta con porte organizativo, se encarga de redactar y mantener actualizaciones de los requerimientos, crea y asigna tareas al resto del equipo; pero sus tareas de programación deben limitarse únicamente a la arquitectura marcando la línea a seguir por el resto de los programadores. ",
+        rol: "Analista - Gerente del proyecto",
         image: require("@/assets/laura.jpg"),
       },
       {
         codigo: 4,
         nombre: "SANTIAGO MARAGUA",
-        descripcion: "No son necesariamente los desarrolladores con más experiencia. Deben tener habilidades de programación adecuadas. ",
+        descripcion:
+          "No son necesariamente los desarrolladores con más experiencia. Deben tener habilidades de programación adecuadas. ",
         rol: "Diseñador - Tester",
         image: require("@/assets/maragua.jpg"),
       },
       {
         codigo: 5,
         nombre: "JESUS DAVID BERMEO",
-        descripcion: "El ingeniero de tener altas capacidades en programación, teniendo en cuenta que las bases de datos son una herramienta muy poderosa en un proyecto. ",
+        descripcion:
+          "El ingeniero de tener altas capacidades en programación, teniendo en cuenta que las bases de datos son una herramienta muy poderosa en un proyecto. ",
         rol: "Diseñador - Analista",
         image: require("@/assets/david.jpg"),
       },
       {
         codigo: 6,
         nombre: "Jesus bermeo",
-        descripcion: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
+        descripcion:
+          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
         rol: "Desarrollador backend",
         image: require("@/assets/maiz.jpg"),
       },
@@ -370,9 +375,18 @@ export default {
     news: null,
   }),
   created() {
-    this.list();
-  },
+    this.listar()
+  
+},
   methods: {
+    async listar(){
+      let response = await productos.get();
+    for (var i = 0; i < response.data.length; i++) {
+      if (response.data[i].estado === 1) {
+        this.tienda.push(response.data[i]);
+      }
+    }
+    },
     next() {
       this.onboarding =
         this.onboarding + 1 === this.length ? 0 : this.onboarding + 1;
@@ -380,25 +394,6 @@ export default {
     prev() {
       this.onboarding =
         this.onboarding - 1 < 0 ? this.length - 1 : this.onboarding - 1;
-    },
-    list() {
-      axios
-        .get("http://localhost:3000/api/articulo/list", {
-          headers: {
-            token: this.$store.state.token,
-          },
-        })
-        .then((response) => {
-          for (var i = 0; i < response.data.length; i++) {
-            if (response.data[i].estado === 1) {
-              this.tienda.push(response.data[i]);
-            }
-          }
-          this.cargando = false;
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     },
   },
 };
