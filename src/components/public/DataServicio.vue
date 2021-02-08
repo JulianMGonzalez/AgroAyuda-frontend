@@ -44,16 +44,16 @@
 
           <v-expand-transition v-for="(item, i) in servicios" :key="i">
             <v-sheet v-if="model != null" tile>
-              <v-card align="center" justify="center">
-                <v-card-subtitle v-if="model === i">{{
+              <v-card align="center" justify="center" class="card text-center">
+                <h5 v-if="model === i" class="text-center">{{
                   item.nombre
-                }}</v-card-subtitle>
+                }}</h5>
                 <v-card-subtitle v-if="model === i">{{
                   item.texto
                 }}</v-card-subtitle>
                 <v-btn
                   color="green"
-                  class="mx-4 white--text"
+                  class="mx-4 white--text mb-5"
                   v-if="model === i"
                   :to="{ path: item.link }"
                   ><v-icon size="24px"> {{ item.icono }} </v-icon

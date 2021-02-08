@@ -36,17 +36,20 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar app color="white" dense dark prominent hide-on-scroll>
-      <v-img
+      <v-btn to="/" icon class="ml-4 mt-6">
+        <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
         max-height="98"
         max-width="98"
-        src="@/assets/LOGO (2).png"
-      ></v-img>
+        src="@/assets/logo footer.png">
+
+        </v-img>
+      </v-btn>
       <v-img
         lazy-src="https://picsum.photos/id/11/10/6"
         max-height="150"
         max-width="150"
-        class="mt-8 hidden-xs-only"
+        class="mt-8 ml-6 hidden-xs-only"
         src="@/assets/agroayuda.png"
       ></v-img>
 
@@ -104,7 +107,6 @@ export default {
   data: () => ({
     sideNav: false,
     menuItems: [
-      { icon: "mdi-home", title: "Inicio", link: "/" },
       { icon: "mdi-forum", title: "Blog", link: "/blog" },
       { icon: "mdi-clipboard-text-outline", title: "Servicios", link: "/servicio" },
       { icon: "mdi-store", title: "Tienda", link: "/tienda" },
