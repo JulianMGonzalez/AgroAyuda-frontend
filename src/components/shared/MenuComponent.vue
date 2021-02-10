@@ -13,18 +13,12 @@
           </v-list-item-action>
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
-        <v-list-item to="/registrar" v-if="!this.$store.state.usuario" color="#1b5e20">
-          <v-list-item-action>
-            <v-icon>mdi-account-plus</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>Registrate</v-list-item-content>
-        </v-list-item>
 
         <v-list-item to="/login" v-if="!this.$store.state.usuario" color="#1b5e20">
           <v-list-item-action>
             <v-icon>mdi-login</v-icon>
           </v-list-item-action>
-          <v-list-item-content>Iniciar sesion</v-list-item-content>
+          <v-list-item-content>Cuenta</v-list-item-content>
         </v-list-item>
 
         <v-list-item @click="salir()" v-else color="#1b5e20">
@@ -80,7 +74,7 @@
         class="hidden-md-and-down mt-6"
         text
         to="/login"
-        ><v-icon>mdi-login</v-icon>Inicia Sesion
+        ><v-icon>mdi-login</v-icon>Cuenta
       </v-btn>
       <v-btn
         v-else
@@ -90,15 +84,6 @@
         @click="salir()"
         ><v-icon>mdi-logout-variant</v-icon> Salir</v-btn
       >
-      <v-btn
-        v-if="!this.$store.state.usuario"
-        color="#1b5e20"
-        text
-        class="hidden-md-and-down mt-6"
-        to="/registrar"
-        ><v-icon>mdi-account-plus</v-icon>
-        Registrate
-      </v-btn>
     </v-app-bar>
   </v-card>
 </template>

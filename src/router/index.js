@@ -61,17 +61,6 @@ const routes = [
     }
   },
   {
-    path: '/registrar',
-    name: 'Registrar',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "register" */ '../views/public/Registrar.vue'),
-    meta: {
-      public: true
-    }
-  },
-  {
     path: '/servicio',
     name: 'Servicio',
     // route level code-splitting

@@ -329,7 +329,7 @@ export default {
       },
       {
         codigo: 4,
-        nombre: "SANTIAGO MARAGUA",
+        nombre: "EYLEN MONTERO",
         descripcion:
           "No son necesariamente los desarrolladores con más experiencia. Deben tener habilidades de programación adecuadas. ",
         rol: "Diseñador - Tester",
@@ -342,15 +342,7 @@ export default {
           "El ingeniero de tener altas capacidades en programación, teniendo en cuenta que las bases de datos son una herramienta muy poderosa en un proyecto. ",
         rol: "Diseñador - Analista",
         image: require("@/assets/david.jpg"),
-      },
-      {
-        codigo: 6,
-        nombre: "Jesus bermeo",
-        descripcion:
-          "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum in mollitia accusamus, iste eligendi fuga inventore commodi unde fugiat eius necessitatibus magni sed id repellat quas culpa saepe quaerat laboriosam!",
-        rol: "Desarrollador backend",
-        image: require("@/assets/maiz.jpg"),
-      },
+      }
     ],
     imagenes: [
       {
