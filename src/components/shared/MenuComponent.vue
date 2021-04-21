@@ -8,16 +8,10 @@
           :to="item.link"
           color="#1b5e20"
         >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
 
         <v-list-item to="/login" v-if="!this.$store.state.usuario" color="#1b5e20">
-          <v-list-item-action>
-            <v-icon>mdi-login</v-icon>
-          </v-list-item-action>
           <v-list-item-content>Cuenta</v-list-item-content>
         </v-list-item>
 
@@ -64,7 +58,7 @@
         :key="i"
         :to="item.link"
       >
-        <v-icon left dark>{{ item.icon }}</v-icon>
+        
         {{ item.title }}
       </v-btn>
       <v-btn
@@ -74,7 +68,7 @@
         class="hidden-md-and-down mt-6"
         text
         to="/login"
-        ><v-icon>mdi-login</v-icon>Cuenta
+        >Cuenta
       </v-btn>
       <v-btn
         v-else
@@ -82,7 +76,7 @@
         text
         class="hidden-md-and-down mt-6"
         @click="salir()"
-        ><v-icon>mdi-logout-variant</v-icon> Salir</v-btn
+        > Salir</v-btn
       >
     </v-app-bar>
   </v-card>
@@ -92,10 +86,10 @@ export default {
   data: () => ({
     sideNav: false,
     menuItems: [
-      { icon: "mdi-forum", title: "Blog", link: "/blog" },
-      { icon: "mdi-clipboard-text-outline", title: "Servicios", link: "/servicio" },
-      { icon: "mdi-store", title: "Tienda", link: "/tienda" },
-      { icon: "mdi-cart", title: "Carrito", link: "/compras" },
+      {  title: "Blog", link: "/blog" },
+      {  title: "Servicios", link: "/servicio" },
+      { title: "Tienda", link: "/tienda" },
+      { title: "Carrito", link: "/compras" },
     ],
   }),
   methods: {

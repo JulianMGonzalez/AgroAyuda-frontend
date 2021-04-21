@@ -2,11 +2,6 @@
   <v-app>
     <!-- Sizes your content based upon application components -->
     <v-main class="main">
-      <v-container fluid>
-        <!-- If using vue-router -->
-        <router-view></router-view>
-      </v-container>
-
       <v-row>
         <v-col md="2" offset-lg="1">
           <div>
@@ -22,7 +17,7 @@
                 <v-radio
                   v-for="(price, i) in prices"
                   :key="i"
-                  :label="price"
+                  :label="price.nombre"
                   :value="i"
                 />
               </v-radio-group>
@@ -37,7 +32,7 @@
                     <v-radio
                       v-for="(price, i) in prices"
                       :key="i"
-                      :label="price"
+                      :label="price.nombre"
                       :value="i"
                     />
                   </v-radio-group>
@@ -48,7 +43,26 @@
         </v-col>
         <v-col md="9" lg="7" xl="7">
           <div>
-            <h3>Productos</h3>
+            <h3 class="text-center font-weight-black primary--text">
+              PRODUCTOS
+            </h3>
+            <v-divider></v-divider>
+            <v-text-field
+              v-model="buscar"
+              rounded
+              solo
+              filled
+              placeholder="Buscar producto"
+              label="Buscar"
+            ></v-text-field>
+            <ul>
+              <li v-for="producto in buscarProducto" :key="producto.id">
+                <div>
+                  <v-img :src="producto.imagen" width="150"></v-img>
+                  <p>{{producto.nombre}}</p>
+                </div>
+              </li>
+            </ul>
 
             <v-row>
               <v-col sm="8" md="4" v-for="(producto, i) in tienda" :key="i">
@@ -140,11 +154,20 @@ import productos from "@/logic/APIproductos.js";
 export default {
   data() {
     return {
+      buscar: null,
       prices: [
-        "Todos",
-        "5.000 a 100.000",
-        "$100.000 a $500.000",
-        "Mas de 500.000",
+        {
+          nombre: "Todos", precio: 'all'
+        },
+        { 
+          nombre: "5.000 a 100.000", precio: 5000
+        },
+        { 
+          nombre: "100.000 a 500.000", precio: 100000
+        },
+        { 
+          nombre: "Mas de 500.000", precio: 500000
+        }
       ],
       priceFilter: 0,
       checkbox: true,
@@ -155,7 +178,7 @@ export default {
   created() {
     this.list();
 
-   let cart = [];
+    let cart = [];
     if (JSON.parse(localStorage.getItem("products"))) {
       cart = JSON.parse(localStorage.getItem("products"));
     } else {
@@ -169,22 +192,30 @@ export default {
       }
     }
   },
+  computed: {
+    buscarProducto() {
+      return this.tienda.filter((item) => item.nombre.includes(this.buscar));
+    },
+    filtrarProducto(){
+      return this.tienda.filter((item => item.precio_venta.filter(this.prices.precio)))
+    }
+  },
   methods: {
     async list() {
       let response = await productos.get();
-        for (var i = 0; i < response.data.length; i++) {
-            if (response.data[i].estado === 1) {
-              if (response.data[i].disponible === "false") {
-                response.data[i].disponible = false;
-              }
-              if (response.data[i].disponible === "true") {
-                response.data[i].disponible = true;
-              } else {
-                response.data[i].disponible = false;
-              }
-              this.tienda.push(response.data[i]);
-            }
+      for (var i = 0; i < response.data.length; i++) {
+        if (response.data[i].estado === 1) {
+          if (response.data[i].disponible === "false") {
+            response.data[i].disponible = false;
           }
+          if (response.data[i].disponible === "true") {
+            response.data[i].disponible = true;
+          } else {
+            response.data[i].disponible = false;
+          }
+          this.tienda.push(response.data[i]);
+        }
+      }
     },
     addCard(producto, quantity = 1) {
       let cart = [];

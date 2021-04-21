@@ -107,7 +107,7 @@
             <v-col
               sm="6"
               md="4"
-              v-for="producto in tienda.slice(0, 3)"
+              v-for="producto in mostrarAlimentos.slice(0,3)"
               :key="producto.nombre"
             >
               <v-card
@@ -329,7 +329,7 @@ export default {
       },
       {
         codigo: 4,
-        nombre: "EYLEN MONTERO",
+        nombre: "SANTIAGO MARAGUA",
         descripcion:
           "No son necesariamente los desarrolladores con más experiencia. Deben tener habilidades de programación adecuadas. ",
         rol: "Diseñador - Tester",
@@ -342,7 +342,7 @@ export default {
           "El ingeniero de tener altas capacidades en programación, teniendo en cuenta que las bases de datos son una herramienta muy poderosa en un proyecto. ",
         rol: "Diseñador - Analista",
         image: require("@/assets/david.jpg"),
-      }
+      },
     ],
     imagenes: [
       {
@@ -367,17 +367,17 @@ export default {
     news: null,
   }),
   created() {
-    this.listar()
-  
-},
-  methods: {
-    async listar(){
-      let response = await productos.get();
-    for (var i = 0; i < response.data.length; i++) {
-      if (response.data[i].estado === 1) {
-        this.tienda.push(response.data[i]);
-      }
+    this.listar();
+  },
+  computed: {
+    mostrarAlimentos(){
+      return this.tienda.filter( item => item.estado == 1)
     }
+  },
+  methods: {
+    async listar() {
+      let response = await productos.get();
+      this.tienda = response.data;
     },
     next() {
       this.onboarding =

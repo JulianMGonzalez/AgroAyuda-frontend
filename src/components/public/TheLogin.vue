@@ -37,6 +37,9 @@
                             prepend-icon="email"
                             type="text"
                             color="primary"
+                            rounded
+                            shaped
+                            solo
                           />
 
                           <v-text-field
@@ -47,6 +50,9 @@
                             prepend-icon="lock"
                             type="password"
                             color="primary"
+                            rounded
+                            shaped
+                            solo
                           />
                         </v-form>
                         <h3 class="text-center mt-4">
@@ -398,7 +404,7 @@ export default {
         .post(
           "http://localhost:3000/api/usuario/add",
           {
-            nombre: this.nombre,
+            nombre: this.nombre.toLowerCase(),
             email: this.email,
             password: this.password,
             telefono: this.telefono,
