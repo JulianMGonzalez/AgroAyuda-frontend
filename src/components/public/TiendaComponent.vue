@@ -58,18 +58,20 @@
             <ul>
               <li v-for="producto in buscarProducto" :key="producto.id">
                 <div>
-                  <v-img :src="producto.imagen" width="150"></v-img>
-                  <p>{{producto.nombre}}</p>
+                  <v-img :src="producto.imagen" width="100%"></v-img>
+                  <p>{{ producto.nombre }}</p>
                 </div>
               </li>
             </ul>
 
             <v-row>
               <v-col sm="8" md="4" v-for="(producto, i) in tienda" :key="i">
+                <v-hover v-slot="{ hover }">
                 <v-card
                   outlined
+                  rounded="xl"
                   :loading="loading"
-                  class="mx-auto my-12"
+                  class="mx-auto"
                   max-width="374"
                 >
                   <template slot="progress">
@@ -77,15 +79,40 @@
                       color="primary"
                       height="10"
                       indeterminate
+                      class="ma-0 pa-0"
                     ></v-progress-linear>
                   </template>
+                  <div class="img-contenedor">
+                  <img
+                    width="100%"
+                    height="250"
+                    :src="producto.imagen"
+                  >
+                  <v-expand-transition>
+                        <div
+                          v-if="hover"
+                          class="d-flex transition-fast-in-fast-out darken-2 v-card--reveal display-3 white--text"
+                          style="height: 100%"
+                        >
+                          <v-btn
+                            icon
+                            fab
+                            top
+                            class="white--text"
+                            color="white"
+                            ><v-icon>mdi-magnify</v-icon></v-btn
+                          >
+                        </div>
+                      </v-expand-transition>
+                  </div>
+                  <div class="d-flex justify-center align-center flex-column">
+                    <v-card-title class="overline ma-0 pa-0">{{
+                      producto.nombre
+                    }}</v-card-title>
 
-                  <v-img height="250" :src="producto.imagen"></v-img>
-
-                  <v-card-title>{{ producto.nombre }}</v-card-title>
-
-                  <v-card-text>
-                    <v-row align="center" class="mx-0">
+                    <v-card-text
+                      class="d-flex justify-center align-center flex-column ma-0 pa-0"
+                    >
                       <v-rating
                         :value="4.5"
                         color="amber"
@@ -95,51 +122,32 @@
                         size="14"
                       ></v-rating>
 
-                      <div class="grey--text ml-4">4.5</div>
-                    </v-row>
-
-                    <div class="my-4 subtitle-1">
-                      ${{ producto.precio_venta }}
-                    </div>
-
-                    <div>{{ producto.descripcion }}</div>
-                  </v-card-text>
-
-                  <v-divider class="mx-4"></v-divider>
-
-                  <v-card-title>Disponible!</v-card-title>
-
-                  <v-card-text>
-                    <v-chip-group
-                      active-class="primary accent-4 white--text"
-                      column
-                    >
-                      <v-chip>{{ producto.stock }}</v-chip>
-                    </v-chip-group>
-                  </v-card-text>
-                  <v-card-actions>
-                    <v-btn
-                      v-if="!producto.disponible"
-                      :disabled="producto.disponible"
-                      color="#5e2129"
-                      outlined
-                      @click="
-                        (producto.disponible = true),
-                          addCard(JSON.parse(JSON.stringify(producto)))
-                      "
-                      ><v-icon>mdi-cart-plus</v-icon>
-                      Añadir al carro
-                    </v-btn>
-                    <v-btn
-                      v-if="producto.disponible"
-                      :disabled="producto.disponible"
-                      color="#5e2129"
-                      outlined
-                      ><v-icon>mdi-cart-plus</v-icon>
-                      Añadido
-                    </v-btn>
-                  </v-card-actions>
+                      <p class="body-1 mt-2">${{ producto.precio_venta }}</p>
+                    </v-card-text>
+                    <v-card-actions>
+                      <v-btn
+                        v-if="!producto.disponible"
+                        :disabled="producto.disponible"
+                        color="secondary"
+                        outlined
+                        rounded
+                        @click="
+                          (producto.disponible = true),
+                            addCard(JSON.parse(JSON.stringify(producto)))
+                        "
+                        ><v-icon>mdi-cart-plus</v-icon>
+                      </v-btn>
+                      <v-btn
+                        v-if="producto.disponible"
+                        :disabled="producto.disponible"
+                        color="secondary"
+                        outlined
+                        ><v-icon>mdi-cart-check</v-icon>
+                      </v-btn>
+                    </v-card-actions>
+                  </div>
                 </v-card>
+                </v-hover>
               </v-col>
             </v-row>
           </div>
@@ -157,17 +165,21 @@ export default {
       buscar: null,
       prices: [
         {
-          nombre: "Todos", precio: 'all'
+          nombre: "Todos",
+          precio: "all",
         },
-        { 
-          nombre: "5.000 a 100.000", precio: 5000
+        {
+          nombre: "5.000 a 100.000",
+          precio: 5000,
         },
-        { 
-          nombre: "100.000 a 500.000", precio: 100000
+        {
+          nombre: "100.000 a 500.000",
+          precio: 100000,
         },
-        { 
-          nombre: "Mas de 500.000", precio: 500000
-        }
+        {
+          nombre: "Mas de 500.000",
+          precio: 500000,
+        },
       ],
       priceFilter: 0,
       checkbox: true,
@@ -196,9 +208,11 @@ export default {
     buscarProducto() {
       return this.tienda.filter((item) => item.nombre.includes(this.buscar));
     },
-    filtrarProducto(){
-      return this.tienda.filter((item => item.precio_venta.filter(this.prices.precio)))
-    }
+    filtrarProducto() {
+      return this.tienda.filter((item) =>
+        item.precio_venta.filter(this.prices.precio)
+      );
+    },
   },
   methods: {
     async list() {
@@ -237,11 +251,37 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .main {
   background: url("fondo.png");
+}
+.v-card--reveal {
+  align-items: center;
+  bottom: 0;
+  justify-content: center;
+  opacity: 10;
+  position: absolute;
+  width: 100%;
+  margin-bottom: 40px;
+}
+.img-contenedor img {
+-webkit-transition:all .9s ease; /* Safari y Chrome */
+-moz-transition:all .9s ease; /* Firefox */
+-o-transition:all .9s ease; /* IE 9 */
+-ms-transition:all .9s ease; /* Opera */
+width:100%;
+}
+.img-contenedor:hover img {
+-webkit-transform:scale(1.25);
+-moz-transform:scale(1.25);
+-ms-transform:scale(1.25);
+-o-transform:scale(1.25);
+transform:scale(1.25);
+}
+.img-contenedor {/*Ancho y altura son modificables al requerimiento de cada uno*/
+overflow:hidden;
 }
 </style>

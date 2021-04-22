@@ -1,23 +1,42 @@
 <template>
   <!-- App.vue -->
   <v-app class="home">
-    <section id="inicio">
-      <v-banner elevation="7" class="mt-16">
-        <v-carousel cycle show-arrows-on-hover hide-delimiters height="550">
-          <v-carousel-item
-            reverse-transition="fade-transition"
-            transition="fade-transition"
-            v-for="(item, i) in imagenes"
-            :key="i"
-            :src="item.src"
-          >
-          </v-carousel-item>
-        </v-carousel>
-      </v-banner>
-    </section>
+    <v-carousel
+      show-arrows-on-hover
+      hide-delimiters
+      height="600"
+      cycle
+      class="mt-16"
+    >
+      <v-carousel-item
+        v-for="(item, i) in imagenes"
+        :key="i"
+        reverse-transition="fade-transition"
+        transition="fade-transition"
+      >
+        <v-parallax dark :src="item.src" height="500">
+          <v-row align="center" justify="center">
+            <v-col cols="10">
+              <v-row align="center" justify="center">
+                <v-col cols="12" md="6" xl="8">
+                  <h1 class="display-2 font-weight-bold mb-4">AgroAyuda</h1>
+                  <h1 class="font-weight-light">
+                    {{ item.p }}
+                  </h1>
+                </v-col>
+                <v-col cols="12" md="6" xl="4" class="hidden-sm-and-down">
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+          <div class="svg-border-waves text-white">
+            <v-img src="@/assets/borderWaves.svg" />
+          </div>
+        </v-parallax>
+      </v-carousel-item>
+    </v-carousel>
 
     <!-- Sizes your content based upon application components -->
-
     <v-main class="main">
       <section id="resumen" class="mr-5 ml-5">
         <v-container class="pa-4">
@@ -25,80 +44,60 @@
             CONOCE A AGROAYUDA
           </h3>
           <v-divider></v-divider>
-          <v-sheet class="mx-auto" elevation="8" max-width="1200">
-            <v-card>
-              <v-alert
-                border="top"
-                elevation="9"
-                type="warning"
-                color="#1b5e20"
-              >
-                <p class="texto">
-                  Según el DANE, Los campesinos corresponden al 30% de nuestra
-                  población en Colombia, los cuales producen el 83,5 % de los
-                  alimentos que consumimos diariamente. Además de ser una
-                  población excluida y con diversos problemas a la hora de su
-                  producción, compra y venta. Igualmente, se presenta conflictos
-                  en sectores esenciales como la salud, educación, vivienda,
-                  etc. Por lo tanto, nos enfocaremos en la perdida de esto
-                  productos, por la falta de opciones de venta. Podemos
-                  referirnos a la difícil situación que afronta el campesino al
-                  tratar de contribuir y sacar sus cosechas. La cual sea capaz
-                  de suplementar sus necesidades básicas. Nuestro problema se
-                  sustenta en las desventajas y características que son
-                  atribuidas a problemas emergente, actuales y extensos en
-                  nuestro país:<br />
-                  • Los campesinos no cuentan con herramientas tecnológicas que
-                  faciliten su labor diaria.<br />
-                  • No cuenta con una buena educación para sustentar y
-                  aprovechar los productos del campo y capacitarse en medios
-                  sustentables para el medio ambiente. <br />
-                  • La alta demanda de los productos agrícolas hace las
-                  compra-venta colapsen y los productores pequeños no puedan
-                  exportar, dichos producidos a otras localidades.<br />
-                  • No cuentas con precios estables pasa comercialización de
-                  estos productos. <br />
-                  • La falta de infraestructura vial y transporte.<br />
-                  • Constante alza en precios de los peajes. <br />
-                  • Compra de producto importados de otros países.<br />
-                  • Productos de agro-insumo en constante alza de sus precios y
-                  más contaminantes para el ser humano y medio ambiente. <br />
-                  • Sequias, inundaciones, plagas, etc. Generado perdidas para
-                  el campesino.
-                </p>
-              </v-alert>
-            </v-card>
-          </v-sheet>
-        </v-container>
-      </section>
-      <section id="indicadores">
-        <v-container class="mt-10">
-          <h3 class="text-center font-weight-black primary--text">
-            INDICADORES
-          </h3>
-          <v-divider></v-divider>
-          <v-hover v-slot="{ hover }" open-delay="200">
-            <v-sheet
-              class="mx-auto"
-              :elevation="hover ? 10 : 2"
-              max-width="1200"
+          <v-card>
+            <v-alert
+              border="top"
+              elevation="9"
+              type="warning"
+              color="primary"
+              rounded="xl"
+              shaped
             >
-              <v-skeleton-loader
-                class="mx-auto"
-                max-width="300"
-                type="card"
-              ></v-skeleton-loader>
-            </v-sheet>
-          </v-hover>
+              <p class="texto">
+                Según el DANE, Los campesinos corresponden al 30% de nuestra
+                población en Colombia, los cuales producen el 83,5 % de los
+                alimentos que consumimos diariamente. Además de ser una
+                población excluida y con diversos problemas a la hora de su
+                producción, compra y venta. Igualmente, se presenta conflictos
+                en sectores esenciales como la salud, educación, vivienda, etc.
+                Por lo tanto, nos enfocaremos en la perdida de esto productos,
+                por la falta de opciones de venta. Podemos referirnos a la
+                difícil situación que afronta el campesino al tratar de
+                contribuir y sacar sus cosechas. La cual sea capaz de
+                suplementar sus necesidades básicas. Nuestro problema se
+                sustenta en las desventajas y características que son atribuidas
+                a problemas emergente, actuales y extensos en nuestro país:<br />
+                • Los campesinos no cuentan con herramientas tecnológicas que
+                faciliten su labor diaria.<br />
+                • No cuenta con una buena educación para sustentar y aprovechar
+                los productos del campo y capacitarse en medios sustentables
+                para el medio ambiente. <br />
+                • La alta demanda de los productos agrícolas hace las
+                compra-venta colapsen y los productores pequeños no puedan
+                exportar, dichos producidos a otras localidades.<br />
+                • No cuentas con precios estables pasa comercialización de estos
+                productos. <br />
+                • La falta de infraestructura vial y transporte.<br />
+                • Constante alza en precios de los peajes. <br />
+                • Compra de producto importados de otros países.<br />
+                • Productos de agro-insumo en constante alza de sus precios y
+                más contaminantes para el ser humano y medio ambiente. <br />
+                • Sequias, inundaciones, plagas, etc. Generado perdidas para el
+                campesino.
+              </p>
+            </v-alert>
+          </v-card>
         </v-container>
       </section>
       <section>
-        <v-container class="mt-16">
+        <v-container class="mt-10">
           <v-row>
             <v-col sm="10" offset-sm="1" lg="8" offset-lg="2">
               <h2>
                 <h3 class="font-weight-black primary--text">PRODUCTOS</h3>
-                <v-btn to="/tienda" small text color="#5e2129">Ver Todos</v-btn>
+                <v-btn to="/tienda" small text color="secondary"
+                  >Ver Todos</v-btn
+                >
               </h2>
               <v-divider></v-divider>
             </v-col>
@@ -107,11 +106,12 @@
             <v-col
               sm="6"
               md="4"
-              v-for="producto in mostrarAlimentos.slice(0,3)"
+              v-for="producto in mostrarAlimentos.slice(0, 3)"
               :key="producto.nombre"
             >
               <v-card
                 outlined
+                rounded="xl"
                 :loading="loading"
                 class="mx-auto my-12"
                 max-width="374"
@@ -171,6 +171,27 @@
               </v-card>
             </v-col>
           </v-row>
+        </v-container>
+      </section>
+      <section id="indicadores">
+        <v-container class="mt-10">
+          <h3 class="text-center font-weight-black primary--text">
+            INDICADORES
+          </h3>
+          <v-divider></v-divider>
+          <v-hover v-slot="{ hover }" open-delay="200">
+            <v-sheet
+              class="mx-auto"
+              :elevation="hover ? 10 : 2"
+              max-width="1200"
+            >
+              <v-skeleton-loader
+                class="mx-auto"
+                max-width="300"
+                type="card"
+              ></v-skeleton-loader>
+            </v-sheet>
+          </v-hover>
         </v-container>
       </section>
       <div class="mt-10"></div>
@@ -278,14 +299,12 @@
 </template>
 
 <script>
-import axios from "axios";
 import productos from "@/logic/APIproductos.js";
-
 export default {
   data: () => ({
-    loading: false,
     messages: 0,
-    show: false,
+    tienda: [],
+    loading: false,
     testimonios: [
       [
         "Mis productos ahora se están distribuyendo con facilidad, me agrada poder educar a las personas sobre productos agricolas. ",
@@ -347,32 +366,32 @@ export default {
     imagenes: [
       {
         src: require("@/assets/banner1.jpg"),
+        p: "Compra a los mejores precios!",
       },
       {
-        src: require("@/assets/frutas.png"),
+        src: require("@/assets/banner2.jpg"),
+        p: "Agroayuda es lo mejor",
       },
       {
-        src: require("@/assets/persona.png"),
+        src: require("@/assets/banner3.jpg"),
+        p: "Agroayuda es lo mejor",
       },
       {
-        src: require("@/assets/carro.jpg"),
+        src: require("@/assets/banner4.jpg"),
+        p: "Agroayuda es lo mejor",
       },
     ],
 
     length: 3,
-    tienda: [],
-    cargando: true,
     onboarding: 0,
-    alert: true,
-    news: null,
   }),
   created() {
     this.listar();
   },
   computed: {
-    mostrarAlimentos(){
-      return this.tienda.filter( item => item.estado == 1)
-    }
+    mostrarAlimentos() {
+      return this.tienda.filter((item) => item.estado == 1);
+    },
   },
   methods: {
     async listar() {
@@ -406,5 +425,13 @@ export default {
   justify-content: center;
   position: absolute;
   width: 100%;
+}
+.svg-border-waves .v-image {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3rem;
+  width: 100%;
+  overflow: hidden;
 }
 </style>

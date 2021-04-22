@@ -6,16 +6,25 @@
           v-for="item in menuItems"
           :key="item.title"
           :to="item.link"
-          color="#1b5e20"
+          color="primary"
         >
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
-
-        <v-list-item to="/login" v-if="!this.$store.state.usuario" color="#1b5e20">
+        <v-list-item
+          to="/compras"
+          color="primary"
+        >
+          <v-list-item-content>Cuenta</v-list-item-content>
+        </v-list-item>
+        <v-list-item
+          to="/login"
+          v-if="!this.$store.state.usuario"
+          color="primary"
+        >
           <v-list-item-content>Cuenta</v-list-item-content>
         </v-list-item>
 
-        <v-list-item @click="salir()" v-else color="#1b5e20">
+        <v-list-item @click="salir()" v-else color="primary">
           <v-list-item-action>
             <v-icon>mdi-logout-variant</v-icon>
           </v-list-item-action>
@@ -23,61 +32,76 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-    <v-app-bar app color="white" dense dark prominent hide-on-scroll>
-      <v-btn to="/" icon class="ml-4 mt-6">
-        <v-img
-        lazy-src="https://picsum.photos/id/11/10/6"
-        max-height="98"
-        max-width="98"
-        src="@/assets/logo footer.png">
+    <v-app-bar app color="white" dense dark hide-on-scroll>
+      <v-container class="d-flex justify-center">
+        <v-btn to="/" icon class="ml-4">
+          <v-img
+            lazy-src="https://picsum.photos/id/11/10/6"
+            max-height="50"
+            max-width="50"
+            src="@/assets/logo footer.png"
+          >
+          </v-img>
+        </v-btn>
+        <a href="/" class="ma-auto">
+          <v-img
+            lazy-src="https://picsum.photos/id/11/10/6"
+            max-height="100"
+            max-width="100"
+            class="ml-3 hidden-xs-only"
+            src="@/assets/agroayuda.png"
+          ></v-img>
+        </a>
 
-        </v-img>
-      </v-btn>
-      <v-img
-        lazy-src="https://picsum.photos/id/11/10/6"
-        max-height="150"
-        max-width="150"
-        class="mt-8 ml-6 hidden-xs-only"
-        src="@/assets/agroayuda.png"
-      ></v-img>
-
-      <v-spacer></v-spacer>
-      <v-app-bar-nav-icon
-        @click.stop="sideNav = !sideNav"
-        class="hidden-lg-and-up"
-        ><v-icon color="green" class="mt-10" large
-          >mdi-microsoft-xbox-controller-menu</v-icon
-        ></v-app-bar-nav-icon
-      >
-      <v-divider vertical></v-divider>
-      <v-btn
-        color="#1b5e20"
-        text
-        class="hidden-md-and-down mt-6"
-        v-for="(item, i) in menuItems"
-        :key="i"
-        :to="item.link"
-      >
-        
-        {{ item.title }}
-      </v-btn>
-      <v-btn
-        v-if="!this.$store.state.usuario"
-        depressed
-        color="#1b5e20"
-        class="hidden-md-and-down mt-6"
-        text
-        to="/login"
-        >Cuenta
-      </v-btn>
-      <v-btn
-        v-else
-        color="#1b5e20"
-        text
-        class="hidden-md-and-down mt-6"
-        @click="salir()"
-        > Salir</v-btn
-      >
+        <v-spacer></v-spacer>
+        <v-app-bar-nav-icon
+          @click.stop="sideNav = !sideNav"
+          class="hidden-lg-and-up"
+          ><v-icon color="primary" large
+            >mdi-microsoft-xbox-controller-menu</v-icon
+          ></v-app-bar-nav-icon
+        >
+        <v-divider vertical></v-divider>
+        <v-btn
+          small
+          rounded
+          color="primary"
+          text
+          class="hidden-md-and-down ma-auto"
+          v-for="(item, i) in menuItems"
+          :key="i"
+          :to="item.link"
+        >
+          {{ item.title }}
+        </v-btn>
+        <v-btn small icon to="/compras" class="ma-auto">
+          <v-badge content="1" value="1" color="green" overlap>
+            <v-icon color="primary" small> mdi-cart-outline </v-icon>
+          </v-badge>
+        </v-btn>
+        <v-btn
+          small
+          rounded
+          v-if="!this.$store.state.usuario"
+          depressed
+          color="primary"
+          class="hidden-md-and-down ma-auto"
+          text
+          to="/login"
+          >Cuenta
+        </v-btn>
+        <v-btn
+          small
+          rounded
+          v-else
+          color="primary"
+          text
+          class="hidden-md-and-down ma-auto"
+          @click="salir()"
+        >
+          Salir</v-btn
+        >
+      </v-container>
     </v-app-bar>
   </v-card>
 </template>
@@ -86,10 +110,9 @@ export default {
   data: () => ({
     sideNav: false,
     menuItems: [
-      {  title: "Blog", link: "/blog" },
-      {  title: "Servicios", link: "/servicio" },
+      { title: "Blog", link: "/blog" },
+      { title: "Servicios", link: "/servicio" },
       { title: "Tienda", link: "/tienda" },
-      { title: "Carrito", link: "/compras" },
     ],
   }),
   methods: {
