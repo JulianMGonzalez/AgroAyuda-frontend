@@ -22,10 +22,7 @@
                           </v-btn>
 
                           <v-btn class="mx-2" fab color="black" outlined>
-                            <v-icon>mdi-google-plus</v-icon>
-                          </v-btn>
-                          <v-btn class="mx-2" fab color="black" outlined>
-                            <v-icon>mdi-linkedin</v-icon>
+                            <v-icon>mdi-google</v-icon>
                           </v-btn>
                         </div>
                         <h4 class="text-center mt-4">El campo es de todos!</h4>
@@ -38,7 +35,6 @@
                             type="text"
                             color="primary"
                             rounded
-                            shaped
                             solo
                           />
 
@@ -51,7 +47,6 @@
                             type="password"
                             color="primary"
                             rounded
-                            shaped
                             solo
                           />
                         </v-form>
@@ -130,10 +125,7 @@
                           </v-btn>
 
                           <v-btn class="mx-2" fab color="black" outlined>
-                            <v-icon>mdi-google-plus</v-icon>
-                          </v-btn>
-                          <v-btn class="mx-2" fab color="black" outlined>
-                            <v-icon>mdi-linkedin</v-icon>
+                            <v-icon>mdi-google</v-icon>
                           </v-btn>
                         </div>
                         <h4 class="text-center mt-4">El campo es de todos!</h4>
@@ -154,6 +146,8 @@
                                 :error-messages="errors"
                                 label="Nombre"
                                 required
+                                rounded
+                                solo
                               ></v-text-field>
                             </validation-provider>
                             <validation-provider
@@ -168,6 +162,8 @@
                                 :error-messages="errors"
                                 label="Telefono"
                                 required
+                                rounded
+                                solo
                               ></v-text-field>
                             </validation-provider>
                             <validation-provider
@@ -181,6 +177,8 @@
                                 :error-messages="errors"
                                 label="E-mail"
                                 required
+                                rounded
+                                solo
                               ></v-text-field>
                             </validation-provider>
                             <validation-provider
@@ -195,6 +193,8 @@
                                 label="Contraseña"
                                 required
                                 class="ml-6 mr-6"
+                                rounded
+                                solo
                               ></v-text-field>
                             </validation-provider>
                             <validation-provider
@@ -209,6 +209,8 @@
                                 label=" repita la contraseña"
                                 required
                                 class="ml-6 mr-6"
+                                rounded
+                                solo
                               ></v-text-field>
                             </validation-provider>
                             <validation-provider

@@ -44,49 +44,41 @@
             CONOCE A AGROAYUDA
           </h3>
           <v-divider></v-divider>
-          <v-card>
-            <v-alert
-              border="top"
-              elevation="9"
-              type="warning"
-              color="primary"
-              rounded="xl"
-              shaped
+          <v-row no-gutters>
+            <v-col
+              cols="12"
+              sm="6"
+              class="d-flex justify-center align-items-center pa-4"
             >
-              <p class="texto">
-                Según el DANE, Los campesinos corresponden al 30% de nuestra
-                población en Colombia, los cuales producen el 83,5 % de los
-                alimentos que consumimos diariamente. Además de ser una
-                población excluida y con diversos problemas a la hora de su
-                producción, compra y venta. Igualmente, se presenta conflictos
-                en sectores esenciales como la salud, educación, vivienda, etc.
-                Por lo tanto, nos enfocaremos en la perdida de esto productos,
-                por la falta de opciones de venta. Podemos referirnos a la
-                difícil situación que afronta el campesino al tratar de
-                contribuir y sacar sus cosechas. La cual sea capaz de
-                suplementar sus necesidades básicas. Nuestro problema se
-                sustenta en las desventajas y características que son atribuidas
-                a problemas emergente, actuales y extensos en nuestro país:<br />
-                • Los campesinos no cuentan con herramientas tecnológicas que
-                faciliten su labor diaria.<br />
-                • No cuenta con una buena educación para sustentar y aprovechar
-                los productos del campo y capacitarse en medios sustentables
-                para el medio ambiente. <br />
-                • La alta demanda de los productos agrícolas hace las
-                compra-venta colapsen y los productores pequeños no puedan
-                exportar, dichos producidos a otras localidades.<br />
-                • No cuentas con precios estables pasa comercialización de estos
-                productos. <br />
-                • La falta de infraestructura vial y transporte.<br />
-                • Constante alza en precios de los peajes. <br />
-                • Compra de producto importados de otros países.<br />
-                • Productos de agro-insumo en constante alza de sus precios y
-                más contaminantes para el ser humano y medio ambiente. <br />
-                • Sequias, inundaciones, plagas, etc. Generado perdidas para el
-                campesino.
-              </p>
-            </v-alert>
-          </v-card>
+              <v-img
+                max-width="300"
+                height="300"
+                src="@/assets/info.png"
+              ></v-img>
+            </v-col>
+            <v-col cols="12" sm="6">
+              <v-alert
+                border="right"
+                elevation="18"
+                icon="mdi-firework"
+                color="primary"
+                dark
+                >Buscamos ayudar a las personas del campo agrícola para que
+                puedan dar a conocer sus productos a más personas no solo a
+                nivel local sino también a nivel departamental y nacional, con
+                esta plataforma se busca brindar apoyo con el uso de la misma de
+                una forma interactiva para que estos pueda postear sus productos
+                y tener comunicación directa con los compradores para no tener
+                que incluir los intermediarios.<br />
+                En Colombia se suelen comprar los productos a muy bajo costo
+                para luego venderlos por el doble o hasta el triple de lo que se
+                le compra al campesino Colombiano afectando así su economía,
+                dando poco margen de ganancia o hasta dando perdidas por
+                cosechas las cuales toman meses de arduo trabajo para el
+                campesino.</v-alert
+              >
+            </v-col>
+          </v-row>
         </v-container>
       </section>
       <section>
@@ -163,7 +155,7 @@
                 </v-card-text>
 
                 <v-card-actions>
-                  <v-btn color="#5e2129" outlined to="/tienda"
+                  <v-btn color="secondary" outlined to="/tienda"
                     ><v-icon>mdi-cart-plus</v-icon>
                     Comprar
                   </v-btn>
@@ -204,8 +196,8 @@
             v-for="([testimonio, imagen, autor, like], a) in testimonios"
             :key="a"
           >
-            <v-card class="ml-10 mr-10">
-              <v-card class="mx-auto" color="#5e2129" dark>
+            <v-card class="ml-10 mr-10" rounded="xl">
+              <v-card class="mx-auto" color="secondary" dark>
                 <v-card-title>
                   <v-icon large left> mdi-twitter </v-icon>
                   <span class="title font-weight-light">Twitter</span>

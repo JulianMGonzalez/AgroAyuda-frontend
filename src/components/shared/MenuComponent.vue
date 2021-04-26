@@ -11,17 +11,11 @@
           <v-list-item-content>{{ item.title }}</v-list-item-content>
         </v-list-item>
         <v-list-item
-          to="/compras"
-          color="primary"
-        >
-          <v-list-item-content>Cuenta</v-list-item-content>
-        </v-list-item>
-        <v-list-item
           to="/login"
           v-if="!this.$store.state.usuario"
           color="primary"
         >
-          <v-list-item-content>Cuenta</v-list-item-content>
+        <v-list-item-content>Cuenta</v-list-item-content>
         </v-list-item>
 
         <v-list-item @click="salir()" v-else color="primary">
