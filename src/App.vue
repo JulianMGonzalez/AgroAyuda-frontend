@@ -21,11 +21,13 @@
         Cerrar
       </v-btn>
     </v-snackbar>
+    <footer-component></footer-component>
   </v-app>
 </template>
 
 <script>
 import HelloWorld from "./components/public/HelloWorld";
+import FooterComponent from './components/shared/FooterComponent.vue';
 import MenuComponent from './components/shared/MenuComponent.vue';
 
 export default {
@@ -33,7 +35,8 @@ export default {
 
   components: {
     HelloWorld,
-    MenuComponent
+    MenuComponent,
+    FooterComponent
   },
   created(){
     this.$store.dispatch("autoLogin");

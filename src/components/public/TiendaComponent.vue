@@ -255,9 +255,6 @@ export default {
 * {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
-.main {
-  background: url("fondo.png");
-}
 .v-card--reveal {
   align-items: center;
   bottom: 0;

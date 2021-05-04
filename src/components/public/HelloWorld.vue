@@ -6,7 +6,7 @@
       hide-delimiters
       height="600"
       cycle
-      class="mt-16"
+      class="mt-12"
     >
       <v-carousel-item
         v-for="(item, i) in imagenes"
@@ -14,7 +14,7 @@
         reverse-transition="fade-transition"
         transition="fade-transition"
       >
-        <v-parallax dark :src="item.src" height="500">
+        <v-parallax dark :src="item.src" height="600">
           <v-row align="center" justify="center">
             <v-col cols="10">
               <v-row align="center" justify="center">
@@ -38,18 +38,17 @@
 
     <!-- Sizes your content based upon application components -->
     <v-main class="main">
-      <section id="resumen" class="mr-5 ml-5">
-        <v-container class="pa-4">
+      <v-container>
+        <section id="resumen" class="resumen">
           <h3 class="text-center font-weight-black primary--text">
             CONOCE A AGROAYUDA
           </h3>
           <v-divider></v-divider>
-          <v-row no-gutters>
-            <v-col
-              cols="12"
-              sm="6"
-              class="d-flex justify-center align-items-center pa-4"
-            >
+          <v-row
+            no-gutters
+            class="d-flex justify-center align-items-center pa-4"
+          >
+            <v-col cols="12" sm="6">
               <v-img
                 max-width="300"
                 height="300"
@@ -58,9 +57,10 @@
             </v-col>
             <v-col cols="12" sm="6">
               <v-alert
+                rounded="xl"
                 border="right"
                 elevation="18"
-                icon="mdi-firework"
+                icon="mdi-piggy-bank-outline"
                 color="primary"
                 dark
                 >Buscamos ayudar a las personas del campo agrícola para que
@@ -79,14 +79,14 @@
               >
             </v-col>
           </v-row>
-        </v-container>
-      </section>
-      <section>
-        <v-container class="mt-10">
+        </section>
+        <section id="products" class="products py-10">
           <v-row>
             <v-col sm="10" offset-sm="1" lg="8" offset-lg="2">
               <h2>
-                <h3 class="font-weight-black primary--text">PRODUCTOS</h3>
+                <h3 class="text-center font-weight-black primary--text">
+                  PRODUCTOS
+                </h3>
                 <v-btn to="/tienda" small text color="secondary"
                   >Ver Todos</v-btn
                 >
@@ -163,10 +163,8 @@
               </v-card>
             </v-col>
           </v-row>
-        </v-container>
-      </section>
-      <section id="indicadores">
-        <v-container class="mt-10">
+        </section>
+        <section id="indicadores" class="indicadores py-10">
           <h3 class="text-center font-weight-black primary--text">
             INDICADORES
           </h3>
@@ -184,107 +182,114 @@
               ></v-skeleton-loader>
             </v-sheet>
           </v-hover>
-        </v-container>
-      </section>
-      <div class="mt-10"></div>
-      <div id="team" class="container-fluid mt-16">
-        <h3 class="text-center font-weight-black primary--text">TESTIMONIOS</h3>
-        <v-divider></v-divider>
-        <div class="row justify-content-center mb-5">
-          <div
-            class="col mt-5"
-            v-for="([testimonio, imagen, autor, like], a) in testimonios"
-            :key="a"
-          >
-            <v-card class="ml-10 mr-10" rounded="xl">
-              <v-card class="mx-auto" color="secondary" dark>
-                <v-card-title>
-                  <v-icon large left> mdi-twitter </v-icon>
-                  <span class="title font-weight-light">Twitter</span>
-                </v-card-title>
+        </section>
+        <section id="testimonials" class="testimonials py-10">
+          <div class="container-fluid mt-16">
+            <h3 class="text-center font-weight-black primary--text">
+              TESTIMONIOS
+            </h3>
+            <v-divider></v-divider>
+            <div class="row justify-content-center mb-5">
+              <div
+                class="col mt-5"
+                v-for="([testimonio, imagen, autor, like], a) in testimonios"
+                :key="a"
+              >
+                <v-card class="ml-10 mr-10" rounded="xl">
+                  <v-card class="mx-auto" color="secondary" dark>
+                    <v-card-title>
+                      <v-icon large left> mdi-twitter </v-icon>
+                      <span class="title font-weight-light">Twitter</span>
+                    </v-card-title>
 
-                <v-card-text class="fw-bold text-white">
-                  <font size="4">
-                    {{ testimonio }}
-                  </font>
-                </v-card-text>
+                    <v-card-text class="fw-bold text-white">
+                      <font size="4">
+                        {{ testimonio }}
+                      </font>
+                    </v-card-text>
 
-                <v-card-actions>
-                  <v-list-item class="grow">
-                    <v-list-item-avatar color="grey darken-3">
-                      <v-img class="elevation-6" alt="" :src="imagen"></v-img>
-                    </v-list-item-avatar>
+                    <v-card-actions>
+                      <v-list-item class="grow">
+                        <v-list-item-avatar color="grey darken-3">
+                          <v-img
+                            class="elevation-6"
+                            alt=""
+                            :src="imagen"
+                          ></v-img>
+                        </v-list-item-avatar>
 
-                    <v-list-item-content>
-                      <v-list-item-title>{{ autor }}</v-list-item-title>
-                    </v-list-item-content>
+                        <v-list-item-content>
+                          <v-list-item-title>{{ autor }}</v-list-item-title>
+                        </v-list-item-content>
 
-                    <v-row align="center" justify="end">
-                      <div>
-                        <v-btn icon @click="messages++">
-                          <v-badge
-                            :content="messages"
-                            :value="messages"
-                            color="green"
-                            overlap
-                          >
-                            <v-icon class="mr-1"> mdi-heart </v-icon>
-                          </v-badge>
-                        </v-btn>
+                        <v-row align="center" justify="end">
+                          <div>
+                            <v-btn icon @click="messages++">
+                              <v-badge
+                                :content="messages"
+                                :value="messages"
+                                color="green"
+                                overlap
+                              >
+                                <v-icon class="mr-1"> mdi-heart </v-icon>
+                              </v-badge>
+                            </v-btn>
 
-                        <span class="mr-1">·</span>
-                        <v-icon class="mr-1"> mdi-share-variant </v-icon>
-                        <span class="subheading">{{ like }}</span>
-                      </div>
-                    </v-row>
-                  </v-list-item>
-                </v-card-actions>
-              </v-card>
-            </v-card>
-          </div>
-        </div>
-      </div>
-
-      <v-container class="pa-4 text-center mt-16">
-        <h3 class="text-center font-weight-black primary--text">
-          NUESTRO EQUIPO
-        </h3>
-        <v-divider></v-divider>
-        <v-row class="fill-height mb-10" align="center" justify="center">
-          <template v-for="(item, i) in team">
-            <v-col :key="i" cols="12" md="4">
-              <v-hover v-slot="{ hover }">
-                <v-card
-                  class="mx-auto"
-                  color="grey lighten-4"
-                  max-width="600"
-                  elevation="10"
-                >
-                  <v-img :aspect-ratio="16 / 9" :src="item.image">
-                    <v-expand-transition>
-                      <div
-                        v-if="hover"
-                        class="d-flex transition-fast-in-fast-out secondary darken-2 v-card--reveal white--text"
-                        style="height: 100%"
-                      >
-                        {{ item.descripcion }}
-                      </div>
-                    </v-expand-transition>
-                  </v-img>
-                  <v-card-text class="pt-6" style="position: relative">
-                    <div class="font-weight-medium grey--text mb-2">
-                      {{ item.rol }}
-                    </div>
-                    <v-divider></v-divider>
-                    <span class="font-weight-bold secondary--text mb-2">
-                      {{ item.nombre }}
-                    </span>
-                  </v-card-text>
+                            <span class="mr-1">·</span>
+                            <v-icon class="mr-1"> mdi-share-variant </v-icon>
+                            <span class="subheading">{{ like }}</span>
+                          </div>
+                        </v-row>
+                      </v-list-item>
+                    </v-card-actions>
+                  </v-card>
                 </v-card>
-              </v-hover>
-            </v-col>
-          </template>
-        </v-row>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="team" class="team py-16">
+          <h3 class="text-center font-weight-black primary--text">
+            NUESTRO EQUIPO
+          </h3>
+          <v-divider></v-divider>
+          <v-row class="fill-height mb-10" align="center" justify="center">
+            <template v-for="(item, i) in team">
+              <v-col :key="i" cols="12" md="4">
+                <v-hover v-slot="{ hover }">
+                  <v-card
+                    class="mx-auto text-center"
+                    color="grey lighten-4"
+                    max-width="600"
+                    elevation="10"
+                    rounded="xl"
+                  >
+                    <v-img :aspect-ratio="16 / 9" :src="item.image">
+                      <v-expand-transition>
+                        <div
+                          v-if="hover"
+                          class="d-flex transition-fast-in-fast-out secondary darken-2 v-card--reveal white--text"
+                          style="height: 100%"
+                        >
+                          {{ item.descripcion }}
+                        </div>
+                      </v-expand-transition>
+                    </v-img>
+                    <v-card-text class="pt-6" style="position: relative">
+                      <div class="font-weight-medium grey--text mb-2">
+                        {{ item.rol }}
+                      </div>
+                      <v-divider></v-divider>
+                      <span class="font-weight-bold secondary--text mb-2">
+                        {{ item.nombre }}
+                      </span>
+                    </v-card-text>
+                  </v-card>
+                </v-hover>
+              </v-col>
+            </template>
+          </v-row>
+        </section>
       </v-container>
     </v-main>
   </v-app>
@@ -358,7 +363,8 @@ export default {
     imagenes: [
       {
         src: require("@/assets/banner1.jpg"),
-        p: "Compra a los mejores precios!",
+        p:
+          "AgroAyuda apuesta por la calidad. Te ofrecemos los mejores productos!",
       },
       {
         src: require("@/assets/banner2.jpg"),
@@ -406,7 +412,10 @@ export default {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .main {
-  background: url(fondo.png);
+  background-image: url("~@/assets/fondo.png");
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
 }
 .texto {
   font-size: 18px;

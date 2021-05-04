@@ -253,7 +253,4 @@ export default {
   position: absolute;
   width: 100%;
 }
-.main {
-  background: url("fondo.png");
-}
 </style>

@@ -1,13 +1,12 @@
 <template>
-  <v-footer>
-    <v-card flat tile class="text-center" color="#5e2129">
-      <v-card-text>
+  <v-footer color="secondary text-center white--text">
+    <v-container fluid>
         <v-btn
           v-for="(icon, i) in icons"
           :key="i"
           :onclick="icon.onclick"
           target="_blank"
-          class="mx-4 white--text"
+          class="mx-4"
           icon
           color="white"
         >
@@ -15,15 +14,9 @@
             {{ icon.p }}
           </v-icon>
         </v-btn>
-      </v-card-text>
-      <v-card-text class="white--text pt-0">
-        <div>
-          <!--Grid row-->
-          <div class="row">
-            <!--Grid column-->
+          <v-row class="py-4">
             <div class="col-lg-5 col-md-12 mb-4 mb-md-0">
               <h5 class="text-uppercase"><b>Agroayuda</b></h5>
-
               <br />
               <p>
                 <font size="4">
@@ -66,24 +59,13 @@
                 aria-hidden="false"
                 tabindex="0"
               ></iframe>
-              <!-- <h5 class="text-uppercase"><b>CONTACTOS</b></h5>
-                  <br>
-                  <p>
-                    <font size=4> 
-                      <ul><li><a href="mailto:tuagroayuda@gmail.com">Gmail</a></li></ul>
-                     </font>
-                  </p> -->
             </div>
-          </div>
-          <!--Grid row-->
-        </div>
-      </v-card-text>
+          </v-row>
       <v-divider></v-divider>
-
-      <v-card-text class="white--text">
+      <v-card-text>
         {{ new Date().getFullYear() }} — <strong>AgroAyuda</strong><br />
       </v-card-text>
-    </v-card>
+      </v-container>
   </v-footer>
 </template>
 
@@ -129,7 +111,7 @@ export default {
       {
         p: "mdi-github",
         onclick:
-          "window.open('https://github.com/julca02/backendagroayuda', '_blank')",
+          "window.open('https://github.com/JulianMGonzalez/AgroAyuda-backend', '_blank')",
       },
     ],
   }),
